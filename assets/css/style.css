@@ -172,7 +172,7 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 400; color: var(--em); }
 .dot { position: relative; width: 34px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; }
 .dot::before { content: ""; position: absolute; left: 0; right: 0; top: 11px; height: 2px; background: var(--line); }
 .dot::after { content: ""; position: absolute; left: 0; top: 11px; height: 2px; width: 0; background: var(--gold); }
-.dot.on::after { animation: dotfill 4960ms linear forwards; }
+.dot.on::after { animation: dotfill var(--slide-ms, 8300ms) linear forwards; }
 @keyframes dotfill { to { width: 100%; } }
 .dot b { position: absolute; left: 50%; bottom: 100%; transform: translate(-50%, 4px); white-space: nowrap; font: 500 11px/1 var(--font-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); opacity: 0; transition: opacity .3s, transform .3s; pointer-events: none; }
 .dot.on b, .dot:hover b, .dot:focus-visible b { opacity: 1; transform: translate(-50%, -2px); }

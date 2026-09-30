@@ -70,13 +70,16 @@
   });
 
   /* ---------- Ambient videos: load near viewport, pause off-screen ---------- */
+  const RATE = .6; // ambient clips play slower for a calmer feel
   const ambient = [...document.querySelectorAll('.vbg video')];
+  ambient.forEach((v) => { v.defaultPlaybackRate = RATE; v.playbackRate = RATE; });
   const saveData = navigator.connection && navigator.connection.saveData;
   if (ambient.length && !saveData && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const vio = new IntersectionObserver((entries) => entries.forEach((e) => {
       const v = e.target;
       if (e.isIntersecting) {
         if (!v.getAttribute('src')) { v.muted = true; v.src = (v.canPlayType('video/mp4; codecs="avc1.42E01E"') || !v.canPlayType('video/webm; codecs="vp9"')) ? v.dataset.src : v.dataset.webm; }
+        v.defaultPlaybackRate = RATE; v.playbackRate = RATE;
         v.play().catch(() => {});
       } else v.pause();
     }), { rootMargin: '240px' });
@@ -87,10 +90,11 @@
   const slides = [...document.querySelectorAll('.hero .slide')], dots = [...document.querySelectorAll('.hero .dot')];
   if (slides.length > 1) {
     const veil = document.querySelector('.hero .vbg-fg');
-    const ms = 4960, still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ms = Math.round(4960 / RATE), still = matchMedia('(prefers-reduced-motion: reduce)').matches;
     let cur = 0, timer;
     const setVeil = (i) => { if (veil) veil.style.setProperty('--m', `url("${new URL(slides[i].dataset.m, location.href).href}")`); };
     setVeil(0);
+    document.querySelector('.slide-nav').style.setProperty('--slide-ms', ms + 'ms');
     const go = (n, first) => {
       n = (n + slides.length) % slides.length;
       if (n === cur && !first) return;
