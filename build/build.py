@@ -241,10 +241,10 @@ def steps_block(lang):
     return f'<div class="steps">{rows}</div>'
 
 
-def vbg(lang, name, opacity=".5"):
+def vbg(lang, name, opacity=".5", cls=""):
     """Ambient looping background video (lazy-loaded by main.js, tinted per theme by CSS)."""
     A = asset_prefix(lang)
-    return (f'<div class="vbg" style="--vo:{opacity}" aria-hidden="true"><video muted loop playsinline preload="none" '
+    return (f'<div class="vbg {cls}" style="--vo:{opacity}" aria-hidden="true"><video muted loop playsinline preload="none" '
             f'poster="{A}assets/video/{name}.jpg" data-src="{A}assets/video/{name}.mp4" data-webm="{A}assets/video/{name}.webm"></video></div>')
 
 
@@ -285,7 +285,7 @@ def page_index(lang):
     </div>
     <div class="hero-stage">
       <i class="arc a3"></i><i class="arc"></i><i class="arc a2"></i>
-      <span class="hero-bottle">{picture(lang, "h", "hero-lineup", t(lang, "hero_alt"), eager=True)}</span>
+      <span class="hero-bottle"><span class="hero-float">{picture(lang, "h", "hero-lineup", t(lang, "hero_alt"), eager=True)}{vbg(lang, "hero", ".1", "vbg-fg")}</span></span>
     </div>
   </div>
 </section>
