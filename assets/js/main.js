@@ -86,8 +86,8 @@
   /* ---------- Hero slider ---------- */
   const slides = [...document.querySelectorAll('.hero .slide')], dots = [...document.querySelectorAll('.hero .dot')];
   if (slides.length > 1) {
-    const veil = document.querySelector('.hero .vbg-fg'), nav = document.querySelector('.slide-nav');
-    const ms = 5500, still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const veil = document.querySelector('.hero .vbg-fg');
+    const ms = 4960, still = matchMedia('(prefers-reduced-motion: reduce)').matches;
     let cur = 0, timer;
     const setVeil = (i) => { if (veil) veil.style.setProperty('--m', `url("${new URL(slides[i].dataset.m, location.href).href}")`); };
     setVeil(0);
@@ -104,9 +104,6 @@
     };
     const start = () => { clearInterval(timer); if (!still) timer = setInterval(() => go(cur + 1), ms); };
     dots.forEach((d, k) => d.addEventListener('click', () => { go(k); start(); }));
-    const stageEl = document.querySelector('.hero-stage');
-    stageEl.addEventListener('mouseenter', () => { clearInterval(timer); nav.classList.add('paused'); });
-    stageEl.addEventListener('mouseleave', () => { nav.classList.remove('paused'); const d = dots[cur]; d.classList.remove('on'); void d.offsetWidth; d.classList.add('on'); start(); });
     document.addEventListener('visibilitychange', () => document.hidden ? clearInterval(timer) : start());
     start();
   }
