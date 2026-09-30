@@ -83,6 +83,34 @@
     ambient.forEach((v) => vio.observe(v));
   }
 
+  /* ---------- Hero slider ---------- */
+  const slides = [...document.querySelectorAll('.hero .slide')], dots = [...document.querySelectorAll('.hero .dot')];
+  if (slides.length > 1) {
+    const veil = document.querySelector('.hero .vbg-fg'), nav = document.querySelector('.slide-nav');
+    const ms = 5500, still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let cur = 0, timer;
+    const setVeil = (i) => { if (veil) veil.style.setProperty('--m', `url("${new URL(slides[i].dataset.m, location.href).href}")`); };
+    setVeil(0);
+    const go = (n, first) => {
+      n = (n + slides.length) % slides.length;
+      if (n === cur && !first) return;
+      const prev = slides[cur];
+      prev.classList.remove('on'); prev.classList.add('out');
+      setTimeout(() => prev.classList.remove('out'), 1400);
+      if (veil) { veil.classList.add('off'); setTimeout(() => { setVeil(n); veil.classList.remove('off'); }, 650); }
+      slides[n].classList.add('on');
+      dots.forEach((d, k) => { d.classList.toggle('on', k === n); d.setAttribute('aria-selected', k === n); });
+      cur = n;
+    };
+    const start = () => { clearInterval(timer); if (!still) timer = setInterval(() => go(cur + 1), ms); };
+    dots.forEach((d, k) => d.addEventListener('click', () => { go(k); start(); }));
+    const stageEl = document.querySelector('.hero-stage');
+    stageEl.addEventListener('mouseenter', () => { clearInterval(timer); nav.classList.add('paused'); });
+    stageEl.addEventListener('mouseleave', () => { nav.classList.remove('paused'); const d = dots[cur]; d.classList.remove('on'); void d.offsetWidth; d.classList.add('on'); start(); });
+    document.addEventListener('visibilitychange', () => document.hidden ? clearInterval(timer) : start());
+    start();
+  }
+
   /* ---------- Hero parallax ---------- */
   const stage = document.querySelector('.hero-stage'), bottle = document.querySelector('.hero-bottle');
   if (stage && bottle && matchMedia('(hover:hover)').matches) {

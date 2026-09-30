@@ -66,6 +66,10 @@ def bdi(text):
     return f'<bdi dir="ltr">{text}</bdi>'
 
 
+HERO_SLIDES = [("hero-newsmart", "New Smart"), ("hero-flatcurved-s", "Flat Curved"),
+               ("hero-flatcurved-l", "Flat Curved L"), ("hero-round", "Round"), ("hero-atype", "A Type")]
+
+
 def picture(lang, kind, stem, alt, cls="", eager=False):
     w, h = img_size(kind, stem)
     A = asset_prefix(lang)
@@ -267,6 +271,14 @@ def page_index(lang):
         cards += f"""<a href="{c['page']}" class="coll rv" style="--d:{i * .12:.2f}s">
 {fan(lang, c['id'])}
         <h3>{t(lang, c['name'])}</h3><p>{names}</p><span class="link-arrow more">{t(lang, 'explore')} <i class="arrow"></i></span></a>"""
+    A = asset_prefix(lang)
+    hero_slides = "".join(
+        f'<span class="slide{" on" if i == 0 else ""}" data-m="{A}assets/img/h/{stem}.webp">'
+        + picture(lang, "h", stem, f'{name} — {t(lang, "hero_alt")}', eager=(i == 0)) + '</span>'
+        for i, (stem, name) in enumerate(HERO_SLIDES))
+    hero_dots = "".join(
+        f'<button role="tab" class="dot{" on" if i == 0 else ""}" aria-label="{name}" aria-selected="{"true" if i == 0 else "false"}"><b>{name}</b></button>'
+        for i, (stem, name) in enumerate(HERO_SLIDES))
     return head(lang, "index", "title_index", "desc_index") + header(lang, "index") + f"""
 <section class="hero has-vbg">
   {vbg(lang, "hero", ".85")}
@@ -285,7 +297,11 @@ def page_index(lang):
     </div>
     <div class="hero-stage">
       <i class="arc a3"></i><i class="arc"></i><i class="arc a2"></i>
-      <span class="hero-bottle"><span class="hero-float">{picture(lang, "h", "hero-lineup", t(lang, "hero_alt"), eager=True)}{vbg(lang, "hero", ".12", "vbg-fg")}</span></span>
+      <span class="hero-bottle"><span class="hero-float">
+        <span class="slides" aria-roledescription="carousel">{hero_slides}</span>
+        {vbg(lang, "hero", ".2", "vbg-fg")}
+      </span></span>
+      <span class="slide-nav" role="tablist">{hero_dots}</span>
     </div>
   </div>
 </section>
