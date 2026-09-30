@@ -34,6 +34,7 @@ add("aria_lang", "Dil", "Language", "Langue", "اللغة", "Язык")
 add("aria_home", "Uzman Cosmetic — ana sayfa", "Uzman Cosmetic — home", "Uzman Cosmetic — accueil",
     "Uzman Cosmetic — الصفحة الرئيسية", "Uzman Cosmetic — главная")
 add("explore", "İncele", "Explore", "Découvrir", "استكشف", "Смотреть")
+add("skip", "İçeriğe geç", "Skip to content", "Aller au contenu", "انتقل إلى المحتوى", "К содержимому")
 add("close", "Kapat", "Close", "Fermer", "إغلاق", "Закрыть")
 add("soon", "Görsel yakında", "Image coming soon", "Visuel à venir", "الصورة قريباً", "Фото скоро")
 add("all", "Tümü", "All", "Tout", "الكل", "Все")

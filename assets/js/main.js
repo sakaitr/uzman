@@ -39,9 +39,6 @@
       <rect x="18" y="104" width="164" height="208" rx="16" fill="url(#g-glass)"/>
       <rect x="44" y="176" width="112" height="92" fill="var(--glass)" stroke="var(--gold)" stroke-width="1"/>
       <rect x="49" y="181" width="102" height="82" fill="none" stroke="var(--gold)" stroke-opacity=".35" stroke-width=".6"/>
-      <text x="100" y="208" text-anchor="middle" font-family="Manrope,sans-serif" font-size="8" letter-spacing="4" fill="var(--gold)" font-weight="600">ATELIER</text>
-      <text x="100" y="234" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="24" fill="var(--text)" font-style="italic">Extrait</text>
-      <text x="100" y="252" text-anchor="middle" font-family="Manrope,sans-serif" font-size="6" letter-spacing="2.5" fill="var(--muted)">100 ML · PARFUM</text>
       <line x1="30" y1="118" x2="30" y2="298" stroke="#fff" stroke-opacity=".28" stroke-width="2" stroke-linecap="round"/>
     </symbol>
     <symbol id="aerosol" viewBox="0 0 120 320">
@@ -52,10 +49,6 @@
       <rect x="22" y="130" width="76" height="120" fill="var(--glass)" opacity=".92"/>
       <line x1="22" y1="130" x2="98" y2="130" stroke="var(--gold-hi)" stroke-width="1.4"/>
       <line x1="22" y1="250" x2="98" y2="250" stroke="var(--gold-hi)" stroke-width="1"/>
-      <text x="60" y="160" text-anchor="middle" font-family="Manrope,sans-serif" font-size="6.5" letter-spacing="3" fill="var(--gold)" font-weight="700">UZMAN</text>
-      <text x="60" y="190" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="21" fill="var(--text)" font-style="italic">Noir</text>
-      <text x="60" y="208" text-anchor="middle" font-family="Manrope,sans-serif" font-size="5.5" letter-spacing="2" fill="var(--muted)">DEODORANT</text>
-      <text x="60" y="236" text-anchor="middle" font-family="Manrope,sans-serif" font-size="6" letter-spacing="2" fill="var(--gold-hi)">150 ML</text>
       <rect x="44" y="84" width="9" height="210" fill="#fff" opacity=".22"/>
     </symbol>
     <symbol id="diffuser" viewBox="0 0 200 320">
@@ -68,8 +61,6 @@
       <path d="M24 226 Q100 214 176 226 L176 292 Q176 312 156 312 L44 312 Q24 312 24 292Z" fill="url(#g-liquid)"/>
       <path d="M84 170 Q22 180 22 236 L22 292 Q22 314 44 314 L156 314 Q178 314 178 292 L178 236 Q178 180 116 170Z" fill="url(#g-glass)"/>
       <rect x="56" y="240" width="88" height="52" fill="var(--glass)" stroke="var(--gold)" stroke-width=".9"/>
-      <text x="100" y="262" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="17" fill="var(--text)" font-style="italic">Maison</text>
-      <text x="100" y="278" text-anchor="middle" font-family="Manrope,sans-serif" font-size="5.5" letter-spacing="3" fill="var(--gold)">AMBIANCE</text>
     </symbol>
     <symbol id="jar" viewBox="0 0 200 240">
       <rect x="30" y="16" width="140" height="62" rx="6" fill="url(#g-gold)"/>
@@ -77,9 +68,6 @@
       <path d="M38 84h124v6c12 6 16 18 16 34v72c0 22-14 32-34 32H56c-20 0-34-10-34-32v-72c0-16 4-28 16-34z" fill="var(--glass)" stroke="url(#g-gold)" stroke-width="2"/>
       <path d="M22 146h156v50c0 22-14 32-34 32H56c-20 0-34-10-34-32z" fill="url(#g-liquid)" opacity=".7"/>
       <path d="M38 84h124v6c12 6 16 18 16 34v72c0 22-14 32-34 32H56c-20 0-34-10-34-32v-72c0-16 4-28 16-34z" fill="url(#g-glass)"/>
-      <text x="100" y="160" text-anchor="middle" font-family="Manrope,sans-serif" font-size="7" letter-spacing="4" fill="var(--gold-hi)" font-weight="600">UZMAN</text>
-      <text x="100" y="186" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="24" fill="var(--text)" font-style="italic">Cire</text>
-      <text x="100" y="202" text-anchor="middle" font-family="Manrope,sans-serif" font-size="5.5" letter-spacing="2.5" fill="var(--muted)">HAIR WAX · 100 ML</text>
     </symbol>
   </svg>`;
   const viewBoxes = { perfume: '0 0 200 320', aerosol: '0 0 120 320', diffuser: '0 0 200 320', jar: '0 0 200 240' };
@@ -103,7 +91,13 @@
     if (y < lastY - 4) siteHeader.classList.remove('hide');
     lastY = y;
   };
-  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  const bar = document.querySelector('.progress');
+  const onProgress = () => { if (bar) bar.style.transform = `scaleX(${Math.min(1, window.scrollY / Math.max(1, document.body.scrollHeight - innerHeight))})`; };
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => { onScroll(); onProgress(); ticking = false; });
+  }, { passive: true }); onScroll(); onProgress();
   const burger = document.getElementById('burger');
   burger?.addEventListener('click', () => {
     const open = document.body.classList.toggle('menu-open');
@@ -136,7 +130,8 @@
       const n = Math.round(progress * words.length);
       words.forEach((w, i) => w.classList.toggle('on', i < n));
     };
-    window.addEventListener('scroll', update, { passive: true }); update();
+    let t2 = false;
+    window.addEventListener('scroll', () => { if (t2) return; t2 = true; requestAnimationFrame(() => { update(); t2 = false; }); }, { passive: true }); update();
   });
 
   /* ---------- Counters ---------- */

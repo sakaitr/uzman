@@ -96,10 +96,21 @@ def head(lang, page, title_key, desc_key):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{FONTS}" rel="stylesheet">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Uzman Cosmetic">
+<meta property="og:title" content="{t(lang, title_key)}">
+<meta property="og:description" content="{t(lang, desc_key) if desc_key else ''}">
+<meta property="og:image" content="{SITE}/assets/img/og.jpg">
+<meta property="og:locale" content="{HTML_LANG[lang]}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="{A}assets/img/favicon.png">
+<link rel="apple-touch-icon" href="{A}assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="{A}assets/css/style.css">
 <script>try{{var s=new URLSearchParams(location.search).get('theme')||localStorage.getItem('uzman-theme');if(['noir','bordeaux','emerald'].indexOf(s)>-1)document.documentElement.setAttribute('data-theme',s)}}catch(e){{}}</script>
 </head>
 <body data-page="{page}">
+<a class="skip" href="#main">{t(lang, 'skip')}</a>
+<div class="progress" aria-hidden="true"></div>
 """
 
 
@@ -136,7 +147,7 @@ def header(lang, page):
   </div></div>
   <div class="wrap navbar">
     <a href="index.html" class="brand" aria-label="{t(lang, 'aria_home')}">
-      <span class="brand-mark"><span>U</span></span>
+      <span class="brand-logo" aria-hidden="true"></span>
       <span class="brand-name">UZMAN<span class="brand-sub">{t(lang, 'brand_sub')}</span></span>
     </a>
     <nav class="nav">{nav}</nav>
@@ -153,7 +164,7 @@ def header(lang, page):
   <a class="big" href="contact.html#quote" style="color:var(--gold-hi)">{t(lang, 'nav_quote')}</a>
   <div class="mm-tools">{theme_switch(lang)}{lang_switch(lang, page)}</div>
 </div>
-<main>
+<main id="main">
 """
 
 
@@ -167,7 +178,7 @@ def footer(lang):
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <a href="index.html" class="brand" style="margin-bottom:24px"><span class="brand-mark"><span>U</span></span><span class="brand-name">UZMAN<span class="brand-sub">COSMETIC</span></span></a>
+        <a href="index.html" class="brand" style="margin-bottom:24px"><span class="brand-logo lg" aria-hidden="true"></span><span class="brand-name">UZMAN<span class="brand-sub">COSMETIC</span></span></a>
         <p style="max-width:38ch">{t(lang, 'foot_blurb')}</p>
       </div>
       <div><h5>{t(lang, 'foot_discover')}</h5><ul>{disc}</ul></div>
@@ -185,7 +196,7 @@ def footer(lang):
 
 
 def cta_band(lang):
-    return f"""<section class="cta-band"><div class="wrap">
+    return f"""<section class="cta-band"><span class="logo-wm" aria-hidden="true"></span><div class="wrap">
   <span class="eyebrow center rv">{t(lang, 'cta_eyebrow')}</span>
   <h2 class="rv">{t(lang, 'cta_h2')}</h2>
   <p class="lead rv">{t(lang, 'cta_lead')}</p>
@@ -216,6 +227,11 @@ def steps_block(lang):
         f'<div class="step rv"><div class="n">0{i}</div><div><h3>{t(lang, f"s{i}_t")}</h3><p>{t(lang, f"s{i}_p")}</p></div></div>'
         for i in range(1, 6))
     return f'<div class="steps">{rows}</div>'
+
+
+def fan_imgs(lang, stems, eager=False):
+    imgs = "".join(f'<span class="f{i}">{picture(lang, "p", st, "", eager=eager)}</span>' for i, st in enumerate(stems, 1))
+    return f'<div class="fan">{imgs}</div>'
 
 
 def fan(lang, kind):
@@ -250,9 +266,9 @@ def page_index(lang):
     </div>
     <div class="hero-stage">
       <i class="arc a3"></i><i class="arc"></i><i class="arc a2"></i>
-      <span class="hero-tag t1">{t(lang, 'tag_edp')}</span>
+      <span class="hero-tag t1"><b>{t(lang, 'cat_body')}</b> · {t(lang, 'cat_home')}</span>
       <span class="hero-tag t2">{t(lang, 'tag_80')}</span>
-      <span class="hero-bottle" data-art="perfume"></span>
+      <span class="hero-bottle">{fan_imgs(lang, ["montagneblack3", "montagneblack6", "camay"], eager=True)}</span>
     </div>
   </div>
   <div class="scroll-hint"><span>{t(lang, 'scroll')}</span><i></i></div>
@@ -293,7 +309,7 @@ def page_index(lang):
 </div></section>
 
 <section class="section" style="background:var(--bg-2)"><div class="wrap split">
-  <div class="split-media rv"><span data-art="aerosol" data-cls="big" style="width:34%"></span><span class="cap">{t(lang, 'pw_cap')}</span></div>
+  <div class="split-media rv">{fan_imgs(lang, ["montagneblack3", "montagneblack6", "camay"])}<span class="cap">{t(lang, 'pw_cap')}</span></div>
   <div class="rv" style="--d:.1s">
     <span class="eyebrow">{t(lang, 'pw_eyebrow')}</span>
     <h2>{t(lang, 'pw_h2')}</h2>
@@ -448,7 +464,7 @@ def page_about(lang):
       <div class="tl"><div class="yr">{t(lang, 'tl_today')}</div><p>{t(lang, 'tl3')}</p></div>
     </div>
   </div>
-  <div class="split-media rv" style="--d:.1s"><span data-art="aerosol" data-cls="big" style="width:38%"></span><span class="cap">{t(lang, 'ab_caption')}</span></div>
+  <div class="split-media rv" style="--d:.1s">{fan_imgs(lang, ["x-block1", "montagneblack2", "x-block3"])}<span class="cap">{t(lang, 'ab_caption')}</span></div>
 </div></section>
 {values_block(lang, bg=True)}
 <section class="section"><div class="wrap">
@@ -497,6 +513,23 @@ BUILDERS = {
 }
 
 
+def page_404():
+    """Branded 404 (root-relative URLs: it can be served from any path)."""
+    body = page_index_min()
+    return body
+
+
+def page_index_min():
+    lang = DEFAULT_LANG
+    html = head(lang, "404", "title_index", None)
+    html = html.replace('href="assets/', 'href="/assets/').replace('<body data-page="404">', '<body data-page="404">')
+    return html + f"""<div class="site-header scrolled" id="siteHeader"><div class="wrap navbar"><a href="/index.html" class="brand"><span class="brand-logo" aria-hidden="true"></span><span class="brand-name">UZMAN<span class="brand-sub">COSMETIC</span></span></a></div></div>
+<main id="main"><section class="hero"><div class="wrap" style="text-align:center"><span class="eyebrow center">404</span>
+<h1 style="margin:28px 0"><em>404</em></h1><p class="lead" style="margin:0 auto 40px">Aradığınız sayfa bulunamadı. · Page not found.</p>
+<div class="cta-row" style="justify-content:center"><a href="/index.html" class="btn btn-solid"><span>Ana sayfa / Home</span><i class="arrow"></i></a></div></div></section></main>
+<script src="/assets/js/main.js" defer></script></body></html>"""
+
+
 def main():
     # remove previously generated output (only files this script owns)
     for lang in LANGS:
@@ -507,7 +540,9 @@ def main():
         for page in PAGES:
             with open(os.path.join(base, f"{page}.html"), "w", encoding="utf-8") as fh:
                 fh.write(BUILDERS[page](lang))
-    print(f"built {len(PAGES)} pages x {len(LANGS)} languages")
+    with open(os.path.join(ROOT, "404.html"), "w", encoding="utf-8") as fh:
+        fh.write(page_404())
+    print(f"built {len(PAGES)} pages x {len(LANGS)} languages + 404")
 
 
 if __name__ == "__main__":
