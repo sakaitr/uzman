@@ -90,7 +90,7 @@
   const slides = [...document.querySelectorAll('.hero .slide')], dots = [...document.querySelectorAll('.hero .dot')];
   if (slides.length > 1) {
     const veil = document.querySelector('.hero .vbg-fg');
-    const ms = Math.round(4960 / RATE), still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ms = 4960, still = matchMedia('(prefers-reduced-motion: reduce)').matches;
     let cur = 0, timer;
     const setVeil = (i) => { if (veil) veil.style.setProperty('--m', `url("${new URL(slides[i].dataset.m, location.href).href}")`); };
     setVeil(0);
