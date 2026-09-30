@@ -13,73 +13,8 @@
   const queryTheme = new URLSearchParams(location.search).get('theme');
   applyTheme(['noir', 'bordeaux', 'emerald', 'twotone', 'inverse'].includes(queryTheme) ? queryTheme : safe(() => localStorage.getItem(THEME_KEY)) || 'noir');
 
-  /* ---------- SVG sprite (product art, themed via CSS variables) ---------- */
-  const sprite = `
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" style="stop-color:var(--gold-hi)"/><stop offset=".55" style="stop-color:var(--gold)"/><stop offset="1" style="stop-color:var(--gold-lo)"/>
-      </linearGradient>
-      <linearGradient id="g-metal" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" style="stop-color:var(--gold-lo)"/><stop offset=".3" style="stop-color:var(--gold)"/><stop offset=".48" style="stop-color:var(--gold-hi)"/><stop offset=".72" style="stop-color:var(--gold-lo)"/><stop offset="1" style="stop-color:var(--glass)"/>
-      </linearGradient>
-      <linearGradient id="g-glass" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".22" stop-color="#fff" stop-opacity=".02"/><stop offset=".8" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".08"/>
-      </linearGradient>
-      <linearGradient id="g-liquid" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" style="stop-color:var(--liquid)" stop-opacity=".95"/><stop offset="1" style="stop-color:var(--liquid)" stop-opacity=".45"/>
-      </linearGradient>
-    </defs>
-    <symbol id="perfume" viewBox="0 0 200 320">
-      <rect x="66" y="6" width="68" height="78" rx="5" fill="url(#g-gold)"/>
-      <rect x="74" y="12" width="6" height="66" fill="#fff" opacity=".28"/>
-      <rect x="82" y="84" width="36" height="20" fill="var(--glass)" stroke="var(--gold)" stroke-width="1.2"/>
-      <rect x="18" y="104" width="164" height="208" rx="16" fill="var(--glass)" stroke="url(#g-gold)" stroke-width="2"/>
-      <path d="M20 196 Q100 184 180 196 L180 296 Q180 310 166 310 L34 310 Q20 310 20 296Z" fill="url(#g-liquid)"/>
-      <rect x="18" y="104" width="164" height="208" rx="16" fill="url(#g-glass)"/>
-      <rect x="44" y="176" width="112" height="92" fill="var(--glass)" stroke="var(--gold)" stroke-width="1"/>
-      <rect x="49" y="181" width="102" height="82" fill="none" stroke="var(--gold)" stroke-opacity=".35" stroke-width=".6"/>
-      <line x1="30" y1="118" x2="30" y2="298" stroke="#fff" stroke-opacity=".28" stroke-width="2" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="aerosol" viewBox="0 0 120 320">
-      <rect x="44" y="6" width="32" height="10" rx="3" fill="var(--gold)"/>
-      <path d="M32 16h56v42H32z" fill="url(#g-metal)"/>
-      <rect x="28" y="58" width="64" height="8" fill="var(--gold-lo)"/>
-      <path d="M22 76 Q22 66 60 66 Q98 66 98 76 L98 296 Q98 314 60 314 Q22 314 22 296Z" fill="url(#g-metal)"/>
-      <rect x="22" y="130" width="76" height="120" fill="var(--glass)" opacity=".92"/>
-      <line x1="22" y1="130" x2="98" y2="130" stroke="var(--gold-hi)" stroke-width="1.4"/>
-      <line x1="22" y1="250" x2="98" y2="250" stroke="var(--gold-hi)" stroke-width="1"/>
-      <rect x="44" y="84" width="9" height="210" fill="#fff" opacity=".22"/>
-    </symbol>
-    <symbol id="diffuser" viewBox="0 0 200 320">
-      <g stroke="var(--gold-hi)" stroke-width="2.4" stroke-linecap="round" opacity=".9">
-        <line x1="92" y1="150" x2="58" y2="8"/><line x1="100" y1="150" x2="96" y2="0"/><line x1="108" y1="150" x2="140" y2="10"/><line x1="96" y1="150" x2="76" y2="20" stroke-opacity=".6"/><line x1="104" y1="150" x2="120" y2="18" stroke-opacity=".6"/>
-      </g>
-      <rect x="84" y="140" width="32" height="30" fill="var(--glass)" stroke="var(--gold)" stroke-width="1.4"/>
-      <rect x="78" y="134" width="44" height="10" rx="2" fill="url(#g-gold)"/>
-      <path d="M84 170 Q22 180 22 236 L22 292 Q22 314 44 314 L156 314 Q178 314 178 292 L178 236 Q178 180 116 170Z" fill="var(--glass)" stroke="url(#g-gold)" stroke-width="2"/>
-      <path d="M24 226 Q100 214 176 226 L176 292 Q176 312 156 312 L44 312 Q24 312 24 292Z" fill="url(#g-liquid)"/>
-      <path d="M84 170 Q22 180 22 236 L22 292 Q22 314 44 314 L156 314 Q178 314 178 292 L178 236 Q178 180 116 170Z" fill="url(#g-glass)"/>
-      <rect x="56" y="240" width="88" height="52" fill="var(--glass)" stroke="var(--gold)" stroke-width=".9"/>
-    </symbol>
-    <symbol id="jar" viewBox="0 0 200 240">
-      <rect x="30" y="16" width="140" height="62" rx="6" fill="url(#g-gold)"/>
-      <rect x="40" y="22" width="7" height="50" fill="#fff" opacity=".28"/>
-      <path d="M38 84h124v6c12 6 16 18 16 34v72c0 22-14 32-34 32H56c-20 0-34-10-34-32v-72c0-16 4-28 16-34z" fill="var(--glass)" stroke="url(#g-gold)" stroke-width="2"/>
-      <path d="M22 146h156v50c0 22-14 32-34 32H56c-20 0-34-10-34-32z" fill="url(#g-liquid)" opacity=".7"/>
-      <path d="M38 84h124v6c12 6 16 18 16 34v72c0 22-14 32-34 32H56c-20 0-34-10-34-32v-72c0-16 4-28 16-34z" fill="url(#g-glass)"/>
-    </symbol>
-  </svg>`;
-  const viewBoxes = { perfume: '0 0 200 320', aerosol: '0 0 120 320', diffuser: '0 0 200 320', jar: '0 0 200 240' };
-  const art = (id, cls = '') => `<svg class="${cls}" viewBox="${viewBoxes[id]}" role="img" aria-label="${id}"><use href="#${id}"/></svg>`;
-  window.uzmanArt = art;
-
-  document.body.insertAdjacentHTML('afterbegin', sprite);
   applyTheme(root.getAttribute('data-theme'));
   document.querySelectorAll('[data-set]').forEach((b) => b.addEventListener('click', () => applyTheme(b.dataset.set)));
-
-  /* Product art slots: <span data-art="perfume">…</span> */
-  document.querySelectorAll('[data-art]').forEach((el) => { el.innerHTML = art(el.dataset.art, el.dataset.cls || ''); });
 
   /* ---------- Header behaviour ---------- */
   const siteHeader = document.getElementById('siteHeader');
@@ -134,19 +69,6 @@
     window.addEventListener('scroll', () => { if (t2) return; t2 = true; requestAnimationFrame(() => { update(); t2 = false; }); }, { passive: true }); update();
   });
 
-  /* ---------- Counters ---------- */
-  const lang = root.lang || 'tr';
-  const fmt = new Intl.NumberFormat(lang === 'ar' ? 'ar-u-nu-latn' : lang);
-  const counter = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (!e.isIntersecting) return; counter.unobserve(e.target);
-      const el = e.target, end = +el.dataset.count, dur = 1800, t0 = performance.now();
-      const tick = (t) => { const k = Math.min(1, (t - t0) / dur), v = Math.round(end * (1 - Math.pow(1 - k, 4))); el.firstChild.textContent = el.hasAttribute("data-plain") ? v : fmt.format(v); if (k < 1) requestAnimationFrame(tick); };
-      requestAnimationFrame(tick);
-    });
-  }, { threshold: 0.6 });
-  document.querySelectorAll('[data-count]').forEach((el) => counter.observe(el));
-
   /* ---------- Ambient videos: load near viewport, pause off-screen ---------- */
   const ambient = [...document.querySelectorAll('.vbg video')];
   const saveData = navigator.connection && navigator.connection.saveData;
@@ -183,7 +105,7 @@
   if (lightLinks.length) {
     const lb = document.createElement('div');
     lb.className = 'lb'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
-    lb.innerHTML = '<button class="lb-x" aria-label="×">×</button><img alt=""><div class="lb-cap"></div>';
+    lb.innerHTML = `<button class="lb-x" aria-label="${{ tr: 'Kapat', en: 'Close', fr: 'Fermer', ar: 'إغلاق', ru: 'Закрыть' }[document.documentElement.lang] || 'Close'}"></button><img alt=""><div class="lb-cap"></div>`;
     document.body.append(lb);
     const lbImg = lb.querySelector('img'), lbCap = lb.querySelector('.lb-cap');
     const closeLb = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };

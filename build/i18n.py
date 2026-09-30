@@ -16,8 +16,8 @@ def add(key, tr, en, fr, ar, ru):
 
 
 # ---------------------------------------------------------------- global / chrome
-add("top_loc", "ÇAYIROVA / KOCAELİ", "ÇAYIROVA / KOCAELI, TÜRKİYE", "ÇAYIROVA / KOCAELI, TURQUIE",
-    "تشايروفا / قوجه إيلي، تركيا", "ЧАЙЫРОВА / КОДЖАЕЛИ, ТУРЦИЯ")
+add("top_loc", "ÇAYIROVA / KOCAELİ", "ÇAYIROVA / KOCAELI", "ÇAYIROVA / KOCAELI",
+    "تشايروفا / قوجه إيلي", "ЧАЙЫРОВА / КОДЖАЕЛИ")
 add("top_since", "1978'DEN BERİ", "SINCE 1978", "DEPUIS 1978", "منذ عام 1978", "С 1978 ГОДА")
 add("top_export", "80 ÜLKEYE İHRACAT", "EXPORTING TO 80 COUNTRIES", "EXPORT DANS 80 PAYS",
     "نصدّر إلى 80 دولة", "ЭКСПОРТ В 80 СТРАН")
@@ -35,7 +35,6 @@ add("aria_home", "Uzman Cosmetic — ana sayfa", "Uzman Cosmetic — home", "Uzm
     "Uzman Cosmetic — الصفحة الرئيسية", "Uzman Cosmetic — главная")
 add("explore", "İncele", "Explore", "Découvrir", "استكشف", "Смотреть")
 add("skip", "İçeriğe geç", "Skip to content", "Aller au contenu", "انتقل إلى المحتوى", "К содержимому")
-add("close", "Kapat", "Close", "Fermer", "إغلاق", "Закрыть")
 add("soon", "Görsel yakında", "Image coming soon", "Visuel à venir", "الصورة قريباً", "Фото скоро")
 add("all", "Tümü", "All", "Tout", "الكل", "Все")
 
@@ -111,9 +110,6 @@ add("desc_reed", "Çubuklu oda difüzörü; üç boy.", "Reed diffuser in three 
     "Аромадиффузор с палочками, три объёма.")
 
 # ---------------------------------------------------------------- index
-add("hero_eyebrow", "Fason & Private Label · 1978'den beri", "Contract Manufacturing & Private Label · Since 1978",
-    "Sous-traitance & Private Label · Depuis 1978", "التصنيع للغير والعلامة الخاصة · منذ 1978",
-    "Контрактное производство и Private Label · с 1978 года")
 add("hero_l1", "Markanızın", "Your brand's", "La signature", "توقيعُ", "Подпись")
 add("hero_l2", "<em>imzası</em>, bizim", "<em>signature</em>, our", "<em>de votre marque</em>,", "<em>علامتك</em>،", "<em>вашего бренда</em> —")
 add("hero_l3", "ustalığımız.", "craftsmanship.", "notre savoir-faire.", "وحِرفتُنا.", "наше мастерство.")
@@ -124,11 +120,6 @@ add("hero_lead",
     "تأسست أوزمان كوزمتيك في إسطنبول عام 1978، وهي تصنّع منتجات العناية بالجسم والمنزل وتصدّرها إلى 80 دولة، وتبتكر مجموعات خاصة بعلامتك.",
     "Основанная в Стамбуле в 1978 году, Uzman Cosmetic производит средства для ухода за телом и для дома, экспортирует их в 80 стран и создаёт коллекции специально для вашего бренда.")
 add("cta_start", "Projenizi Başlatın", "Start Your Project", "Lancez votre projet", "ابدأ مشروعك", "Начните проект")
-add("tag_edp", "<b>E.D.P.</b> Parfüm Serisi", "<b>E.D.P.</b> Perfume Range", "<b>E.D.P.</b> Gamme de parfums",
-    "<b>E.D.P.</b> مجموعة العطور", "<b>E.D.P.</b> Парфюмерная линия")
-add("tag_80", "<b>80</b> Ülkeye İhracat", "<b>80</b> Export Countries", "<b>80</b> Pays d'exportation",
-    "<b>80</b> دولة تصدير", "<b>80</b> стран экспорта")
-add("scroll", "KAYDIR", "SCROLL", "DÉFILER", "مرّر", "ВНИЗ")
 add("m1", "1978'den beri", "Since 1978", "Depuis 1978", "منذ عام 1978", "С 1978 года")
 add("m2", "80 ülkeye ihracat", "Exporting to 80 countries", "Export dans 80 pays", "تصدير إلى 80 دولة", "Экспорт в 80 стран")
 add("m3", "60 milyon adet aerosol kapasitesi", "60 million aerosol units capacity", "Capacité de 60 millions d'aérosols",
@@ -139,18 +130,12 @@ add("m5", "Ar-Ge · Tasarım · Grafik", "R&amp;D · Design · Graphics", "R&amp
     "البحث والتطوير · التصميم · الجرافيك", "НИОКР · Дизайн · Графика")
 add("m6", "Fason & Private Label", "Contract &amp; Private Label", "Sous-traitance &amp; Private Label",
     "التصنيع للغير والعلامة الخاصة", "Контрактное производство и Private Label")
-add("manifesto_eyebrow", "Felsefemiz", "Our Philosophy", "Notre philosophie", "فلسفتنا", "Наша философия")
 add("manifesto",
     "İnsan değerlerine, doğanın korunmasına ve müşteri ilişkilerinde <em>güvenilirliğe</em> inanıyoruz. Uluslararası standartlarda teknolojiyle, markanız için <em>dünya standartlarında</em> çözümler üretiyoruz.",
-    "We believe in human values, in protecting nature, and in <em>reliability</em> in every customer relationship. With internationally standard technology, we create <em>world-class</em> solutions for your brand.",
+    "We believe in human values, in protecting nature, and in <em>reliability</em> in every customer relationship. With internationally standard technology, we build solutions for your brand <em>to international standards</em>.",
     "Nous croyons aux valeurs humaines, à la protection de la nature et à la <em>fiabilité</em> dans la relation client. Grâce à une technologie aux normes internationales, nous créons pour votre marque des solutions <em>de niveau mondial</em>.",
     "نؤمن بالقيم الإنسانية وحماية الطبيعة و<em>الموثوقية</em> في علاقتنا مع العملاء. وبتقنيات وفق المعايير الدولية، نقدّم لعلامتك حلولاً <em>بمستوى عالمي</em>.",
     "Мы верим в человеческие ценности, защиту природы и <em>надёжность</em> в отношениях с клиентами. Используя технологии международного уровня, мы создаём для вашего бренда решения <em>мирового класса</em>.")
-add("st_founded", "Kuruluş Yılı", "Founded", "Année de fondation", "سنة التأسيس", "Год основания")
-add("st_area", "Kapalı Üretim Alanı", "Indoor Production Area", "Surface de production couverte", "مساحة الإنتاج المغلقة", "Закрытая площадь")
-add("st_export", "İhracat Ülkesi", "Export Countries", "Pays d'exportation", "دولة تصدير", "Стран экспорта")
-add("st_aerosol", "Aerosol Adet Kapasitesi", "Aerosol Unit Capacity", "Capacité aérosol (unités)", "الطاقة الإنتاجية للأيروسول", "Мощность по аэрозолям")
-add("coll_eyebrow", "Ürün Grupları", "Product Groups", "Groupes de produits", "مجموعات المنتجات", "Группы продукции")
 add("coll_h2", "İki <em>dünya</em>, tek çatı.", "Two <em>worlds</em>, one roof.", "Deux <em>univers</em>, un seul toit.",
     "عالمان <em>تحت</em> سقف واحد.", "Два <em>мира</em> под одной крышей.")
 add("coll_lead", "Kişisel bakımdan ev kokularına; fason ve private label üretim için tam bir ürün ağacı.",
@@ -158,7 +143,6 @@ add("coll_lead", "Kişisel bakımdan ev kokularına; fason ve private label üre
     "Du soin personnel aux parfums d'intérieur : une arborescence complète pour la sous-traitance et la marque blanche.",
     "من العناية الشخصية إلى عطور المنزل: شجرة منتجات متكاملة للتصنيع للغير والعلامة الخاصة.",
     "От ухода за собой до ароматов для дома — полное древо продукции для контрактного производства и Private Label.")
-add("pl_eyebrow", "Private Label", "Private Label", "Private Label", "العلامة الخاصة", "Private Label")
 add("pl_h2", "Fikirden <em>rafa</em>, adım adım.", "From idea to <em>shelf</em>, step by step.",
     "De l'idée au <em>rayon</em>, étape par étape.", "من الفكرة إلى <em>الرف</em>، خطوة بخطوة.",
     "От идеи до <em>полки</em>, шаг за шагом.")
@@ -192,7 +176,6 @@ add("s5_t", "Sevkiyat", "Shipping", "Expédition", "الشحن", "Отгрузк
 add("s5_p", "Siparişiniz yurt içine ya da yurt dışına gönderilir.", "Your order ships domestically or abroad.",
     "Votre commande est expédiée en Turquie ou à l'étranger.", "يُشحن طلبك داخل تركيا أو إلى الخارج.",
     "Ваш заказ отправляется по Турции или за рубеж.")
-add("pw_eyebrow", "Üretim Gücü", "Production Strength", "Capacité de production", "القدرة الإنتاجية", "Производственная мощность")
 add("pw_h2", "1980'den beri <em>aerosol</em> ustalığı.", "<em>Aerosol</em> expertise since 1980.",
     "Un savoir-faire <em>aérosol</em> depuis 1980.", "خبرة في <em>الأيروسول</em> منذ عام 1980.",
     "Опыт в <em>аэрозолях</em> с 1980 года.")
@@ -213,7 +196,6 @@ add("pw_c3", "Türkiye'nin tanınmış markalarına fason üretim deneyimi", "Co
 add("pw_link", "Firmamızı Tanıyın", "Get to Know Us", "Découvrez l'entreprise", "تعرّف على شركتنا", "О компании")
 add("pw_cap", "Aerosol · 60 milyon adet kapasite", "Aerosol · 60 million unit capacity", "Aérosol · capacité de 60 millions",
     "أيروسول · طاقة 60 مليون عبوة", "Аэрозоли · мощность 60 млн")
-add("val_eyebrow", "Değerlerimiz", "Our Values", "Nos valeurs", "قيمنا", "Наши ценности")
 add("val_h2", "Üç <em>ilke</em>.", "Three <em>principles</em>.", "Trois <em>principes</em>.", "ثلاثة <em>مبادئ</em>.", "Три <em>принципа</em>.")
 add("v1_t", "İnsan Değerleri", "Human Values", "Valeurs humaines", "القيم الإنسانية", "Человеческие ценности")
 add("v1_p", "Kuruluş ilkelerimizin başında insan değerleri gelir.", "Human values stand first among our founding principles.",
@@ -225,7 +207,6 @@ add("v2_p", "Üretimde doğayı koruyan bir yaklaşım.", "An approach to produc
 add("v3_t", "Güvenilirlik", "Reliability", "Fiabilité", "الموثوقية", "Надёжность")
 add("v3_p", "Müşteri ilişkilerinde güvenilir olmak.", "Being dependable in every customer relationship.",
     "Être fiable dans chaque relation client.", "أن نكون موثوقين في كل علاقة مع العملاء.", "Быть надёжными в отношениях с каждым клиентом.")
-add("ex_eyebrow", "İhracat", "Export", "Export", "التصدير", "Экспорт")
 add("ex_h2", "Dünyanın <em>80 ülkesinde</em>.", "In <em>80 countries</em> worldwide.", "Dans <em>80 pays</em> à travers le monde.",
     "في <em>80 دولة</em> حول العالم.", "В <em>80 странах</em> мира.")
 add("ex_lead", "Ürünlerimizi dünya pazarına tanıtmak ve yerleştirmek için her yıl uluslararası fuarlara katılıyoruz.",
@@ -241,7 +222,6 @@ add("ex_f3", "Fuarlar", "Trade Fairs", "Salons", "المعارض", "Выстав
 add("ex_f3s", "HER YIL", "EVERY YEAR", "CHAQUE ANNÉE", "كل عام", "КАЖДЫЙ ГОД")
 add("ex_f4", "Diller", "Languages", "Langues", "اللغات", "Языки")
 add("ex_f4s", "TR · EN · FR · AR · RU", "TR · EN · FR · AR · RU", "TR · EN · FR · AR · RU", "TR · EN · FR · AR · RU", "TR · EN · FR · AR · RU")
-add("cta_eyebrow", "Birlikte Başlayalım", "Let's Begin Together", "Commençons ensemble", "لنبدأ معاً", "Начнём вместе")
 add("cta_h2", "Koleksiyonunuzu <em>birlikte</em> yazalım.", "Let's write your collection <em>together</em>.",
     "Écrivons votre collection <em>ensemble</em>.", "لنكتب مجموعتك <em>معاً</em>.", "Создадим вашу коллекцию <em>вместе</em>.")
 add("cta_lead", "Projenizi anlatın; ekibimiz numune ve teklif için sizinle iletişime geçsin.",
@@ -272,7 +252,7 @@ add("hc_lead", "Bambu difüzör, oda spreyleri ve reed diffuser.",
     "Diffuseur en bambou, sprays d'ambiance et diffuseurs à roseaux.",
     "موزّع الخيزران وبخاخات الغرف وموزّعات القصب.",
     "Диффузор с бамбуком, освежители воздуха и аромадиффузоры.")
-add("back_tree", "← Ürün ağacı", "← Product tree", "← Arbre des produits", "← شجرة المنتجات", "← Древо продукции")
+add("back_tree", "Ürün ağacı", "Product tree", "Arbre des produits", "شجرة المنتجات", "Древо продукции")
 
 # ---------------------------------------------------------------- private label page
 add("pl_h1", "Sizin markanız, <em>bizim</em> atölyemiz.", "Your brand, <em>our</em> atelier.", "Votre marque, <em>notre</em> atelier.",
@@ -282,12 +262,10 @@ add("pl_page_lead", "Body care ve home care ürünlerinde markanıza özel üret
     "Production sur mesure de soins du corps et de parfums d'intérieur pour votre marque, avec plus de 50 modèles de tubes aluminium.",
     "إنتاج مخصص لمنتجات العناية بالجسم والمنزل لعلامتك، مع أكثر من 50 خياراً من أنابيب الألومنيوم.",
     "Индивидуальное производство средств для тела и дома для вашего бренда — с более чем 50 вариантами алюминиевых баллонов.")
-add("pl_proc_eyebrow", "Süreç", "Process", "Processus", "المراحل", "Процесс")
 add("pl_proc_h2", "Beş adım, <em>tek</em> ekip.", "Five steps, <em>one</em> team.", "Cinq étapes, <em>une</em> équipe.", "خمس خطوات، <em>فريق</em> واحد.", "Пять шагов, <em>одна</em> команда.")
 add("pl_proc_lead", "Ürünün konseptinden sevkiyatına kadar aynı muhatapla ilerleyin.", "From concept to shipping, work with the same contact.",
     "Du concept à l'expédition, avancez avec le même interlocuteur.", "من المفهوم إلى الشحن، مع جهة اتصال واحدة.",
     "От концепции до отгрузки — с одним и тем же контактным лицом.")
-add("tube_eyebrow", "Alüminyum Tüp Kataloğu", "Aluminium Tube Catalogue", "Catalogue de tubes aluminium", "كتالوج أنابيب الألومنيوم", "Каталог алюминиевых баллонов")
 add("tube_h2", "50+ <em>tüp</em> modeli", "50+ <em>tube</em> models", "Plus de 50 <em>modèles</em> de tubes", "أكثر من 50 طراز <em>أنبوب</em>", "50+ моделей <em>баллонов</em>")
 add("tube_lead", "Deodorant, body spray, parfüm ve saç bakım ürünleri için; ölçüler milimetre cinsindendir (çap/genişlik × yükseklik).",
     "For deodorants, body sprays, perfumes and hair care; dimensions in millimetres (diameter/width × height).",
@@ -312,11 +290,10 @@ add("ab_lead", "1978'de İstanbul'da kurulan Uzman Kozmetik, bugün Çayırova /
     "Основанная в Стамбуле в 1978 году, Uzman Cosmetic сегодня производит продукцию на фабрике в Чайырове / Коджаэли.")
 add("ab_manifesto",
     "Türkiye'nin tanınmış markalarına fason üretimle başladık; bugün <em>80 ülkeye</em> ihracat yapan bir üretici olarak <em>dünya standartlarında</em> çözümler sunuyoruz.",
-    "We started with contract manufacturing for well-known Turkish brands; today, as a producer exporting to <em>80 countries</em>, we offer <em>world-class</em> solutions.",
+    "We started with contract manufacturing for well-known Turkish brands; today, as a producer exporting to <em>80 countries</em>, we deliver solutions <em>built to international standards</em>.",
     "Nous avons débuté par la sous-traitance pour des marques turques reconnues ; aujourd'hui, producteur exportant dans <em>80 pays</em>, nous proposons des solutions <em>de niveau mondial</em>.",
     "بدأنا بالتصنيع للغير لعلامات تركية معروفة، واليوم كمصنّع يصدّر إلى <em>80 دولة</em> نقدّم حلولاً <em>بمستوى عالمي</em>.",
     "Мы начинали с контрактного производства для известных турецких брендов; сегодня, экспортируя в <em>80 стран</em>, мы предлагаем решения <em>мирового класса</em>.")
-add("ab_journey_eyebrow", "Yolculuk", "Our Journey", "Notre parcours", "مسيرتنا", "Наш путь")
 add("ab_journey_h2", "İstanbul'dan <em>dünyaya</em>.", "From Istanbul to <em>the world</em>.", "D'Istanbul au <em>monde</em>.", "من إسطنبول إلى <em>العالم</em>.", "Из Стамбула — <em>в мир</em>.")
 add("tl1", "Uzman Kozmetik, İstanbul'da kuruldu.", "Uzman Cosmetic was founded in Istanbul.", "Uzman Cosmetic est fondée à Istanbul.",
     "تأسست أوزمان كوزمتيك في إسطنبول.", "Uzman Cosmetic основана в Стамбуле.")
@@ -331,7 +308,6 @@ add("tl3", "Çayırova / Kocaeli'de 5.500 m² kapalı alan, 60 milyon adet aeros
     "مساحة مغلقة 5500 م² في تشايروفا / قوجه إيلي، وطاقة 60 مليون عبوة أيروسول، وتصدير إلى 80 دولة.",
     "5 500 м² закрытой площади в Чайырове / Коджаэли, мощность 60 млн аэрозолей и экспорт в 80 стран.")
 add("tl_today", "Bugün", "Today", "Aujourd'hui", "اليوم", "Сегодня")
-add("ab_team_eyebrow", "Ekibimiz", "Our Team", "Notre équipe", "فريقنا", "Наша команда")
 add("ab_team_h2", "Ar-Ge, <em>tasarım</em>, grafik.", "R&amp;D, <em>design</em>, graphics.", "R&amp;D, <em>design</em>, graphisme.",
     "البحث والتطوير، <em>التصميم</em>، الجرافيك.", "НИОКР, <em>дизайн</em>, графика.")
 add("ab_team_lead", "Ürünlerimizin kalitesini artırmak için üç ayrı departman birlikte çalışır. Pazarlama ve satış ekibimiz müşteri memnuniyeti için hizmetinizde.",
@@ -368,7 +344,7 @@ add("f_brief_ph", "Örn: Private label deodorant serisi, hedef pazar, tahmini ad
     "Например: линейка дезодорантов под частной маркой, целевой рынок, ориентировочный тираж…")
 add("f_other", "Diğer", "Other", "Autre", "أخرى", "Другое")
 add("f_pl_tube", "Private Label / Alüminyum Tüp", "Private Label / Aluminium Tube", "Private Label / Tube aluminium", "العلامة الخاصة / أنبوب ألومنيوم", "Private Label / Алюминиевый баллон")
-add("f_submit", "Teklif & Numune Talebini İlet", "Send Quote & Sample Request", "Envoyer la demande de devis et d'échantillons", "إرسال طلب عرض السعر والعينات", "Отправить запрос на расчёт и образцы")
+add("f_submit", "Teklif & Numune Talebini İlet", "Send Quote & Sample Request", "Envoyer la demande", "إرسال طلب عرض السعر والعينات", "Отправить запрос")
 add("f_err", "Lütfen işaretli alanları doldurun.", "Please fill in the highlighted fields.", "Veuillez remplir les champs signalés.", "يرجى تعبئة الحقول المحددة.", "Пожалуйста, заполните отмеченные поля.")
 add("f_ok", "Talebiniz alındı. Ekibimiz en kısa sürede sizinle iletişime geçecek.",
     "Your request has been received. Our team will contact you shortly.",

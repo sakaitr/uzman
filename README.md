@@ -27,3 +27,7 @@ Sayfayı belirli bir temayla açmak için `?theme=twotone` eklenir; seçim taray
 Klipler Higgsfield / Veo 3.1 Lite ile üretildi (4 sn, sessiz, klip başı 6 kredi), ileri+geri döngüye alındı.
 Siyah zeminli tek renkli olduklarından CSS (`.vbg`) ile aktif temanın rengine boyanır. Görünür alana
 girince yüklenir, çıkınca durur; "azaltılmış hareket" ve veri tasarrufu modunda oynatılmaz.
+
+## Tipografi
+Yazı tipleri kendi sunucumuzdan sunulur (`assets/fonts/`, `assets/css/fonts.css`; Google'a istek yok):
+Cormorant Garamond (başlık), Manrope (arayüz), Tajawal + Noto Naskh Arabic (Arapça). Latin, Latin-ext, Kiril ve Arapça alt kümeleri.

@@ -12,9 +12,9 @@
 <link rel="alternate" hreflang="ar" href="https://uzmancosmetic.com/ar/contact.html">
 <link rel="alternate" hreflang="ru" href="https://uzmancosmetic.com/ru/contact.html">
 <link rel="alternate" hreflang="x-default" href="https://uzmancosmetic.com/contact.html">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600&family=Tajawal:wght@300;400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="../assets/fonts/cormorant-garamond-cyrillic-4f4a82.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/manrope-cyrillic-ffb0f3.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/fonts.css">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Uzman Cosmetic">
 <meta property="og:title" content="Контакты и запрос — Uzman Cosmetic">
@@ -32,7 +32,7 @@
 <div class="progress" aria-hidden="true"></div>
 <div class="site-header" id="siteHeader">
   <div class="topline"><div class="wrap">
-    <div class="left"><span class="dot"></span>ЧАЙЫРОВА / КОДЖАЕЛИ, ТУРЦИЯ<span class="hide-sm"> &nbsp;·&nbsp; С 1978 ГОДА &nbsp;·&nbsp; ЭКСПОРТ В 80 СТРАН</span></div>
+    <div class="left"><span class="dot"></span>ЧАЙЫРОВА / КОДЖАЕЛИ<span class="hide-sm"> &nbsp;·&nbsp; С 1978 ГОДА &nbsp;·&nbsp; ЭКСПОРТ В 80 СТРАН</span></div>
     <div class="right"><a href="mailto:info@uzmancosmetic.com" class="hide-sm">info@uzmancosmetic.com</a><a href="tel:+902626580099" dir="ltr">+90 262 658 00 99</a></div>
   </div></div>
   <div class="wrap navbar">
@@ -55,15 +55,15 @@
   <div class="mm-tools"><div class="theme-switch" role="group" aria-label="Цветовая тема"><button data-set="noir" aria-label="Noir &amp; Honey" title="Noir &amp; Honey"></button><button data-set="bordeaux" aria-label="Bordeaux Rose Gold" title="Bordeaux Rose Gold"></button><button data-set="emerald" aria-label="Emerald &amp; Rose Gold" title="Emerald &amp; Rose Gold"></button><button data-set="twotone" aria-label="Two-Tone Bordeaux (green ground)" title="Two-Tone Bordeaux"></button><button data-set="inverse" aria-label="Bordeaux ground, emerald accent" title="Bordeaux × Emerald"></button></div><div class="lang" role="group" aria-label="Язык"><a href="../contact.html" hreflang="tr" lang="tr" title="Türkçe">TR</a><a href="../en/contact.html" hreflang="en" lang="en" title="English">EN</a><a href="../fr/contact.html" hreflang="fr" lang="fr" title="Français">FR</a><a href="../ar/contact.html" hreflang="ar" lang="ar" title="العربية">AR</a><b aria-current="true">RU</b></div></div>
 </div>
 <main id="main">
-<header class="page-hero" data-word="Contact">
-  <div class="wrap"><span class="eyebrow">Контакты</span><h1>Расскажите о <em>проекте</em>.</h1>
+<header class="page-hero">
+  <div class="wrap"><h1>Расскажите о <em>проекте</em>.</h1>
   <p class="lead">Расскажите о проекте, целевом рынке и группе продукции — наша команда свяжется с вами.</p></div>
 </header><section class="section" id="quote"><div class="wrap contact-grid">
   <aside class="contact-info rv">
-    <div><h4>Фабрика и офис</h4><p>Şekerpınar Mh. Özbek Sk. No:4<br>Чайырова / Коджаэли, Турция</p></div>
-    <div><h4>Телефон</h4><a href="tel:+902626580099" dir="ltr">+90 262 658 00 99</a><br><a href="tel:+902626580399" dir="ltr">+90 262 658 03 99</a><p style="font-size:14px;color:var(--muted);margin-top:6px">Факс: <bdi dir="ltr">+90 262 658 03 20</bdi></p></div>
-    <div><h4>Эл. почта</h4><a href="mailto:info@uzmancosmetic.com">info@uzmancosmetic.com</a></div>
-    <div style="border-bottom:1px solid var(--line)"><h4>Соцсети</h4><a href="https://www.instagram.com/uzmancosmetic/" rel="noopener">@uzmancosmetic</a></div>
+    <div><h2>Фабрика и офис</h2><p>Şekerpınar Mh. Özbek Sk. No:4<br>Чайырова / Коджаэли, Турция</p></div>
+    <div><h2>Телефон</h2><a href="tel:+902626580099" dir="ltr">+90 262 658 00 99</a><br><a href="tel:+902626580399" dir="ltr">+90 262 658 03 99</a><p style="font-size:14px;color:var(--muted);margin-top:6px">Факс: <bdi dir="ltr">+90 262 658 03 20</bdi></p></div>
+    <div><h2>Эл. почта</h2><a href="mailto:info@uzmancosmetic.com">info@uzmancosmetic.com</a></div>
+    <div style="border-bottom:1px solid var(--line)"><h2>Соцсети</h2><a href="https://www.instagram.com/uzmancosmetic/" rel="noopener">@uzmancosmetic</a></div>
   </aside>
   <form class="form-card rv" data-form data-err="Пожалуйста, заполните отмеченные поля." data-ok="Ваш запрос получен. Наша команда свяжется с вами в ближайшее время." novalidate style="--d:.1s">
     <div class="grid-2">
@@ -76,7 +76,7 @@
     </div>
     <div class="field"><label for="f_cat">Интересующая категория</label><select id="f_cat"><option>Дезодорант</option><option>Роликовый дезодорант</option><option>Средства для волос</option><option>Парфюмерная вода (EDP)</option><option>Спрей для тела</option><option>Диффузор с бамбуком</option><option>Освежитель воздуха</option><option>Ароматизатор для помещений</option><option>Аромадиффузор</option><option>Private Label / Алюминиевый баллон</option><option>Другое</option></select></div>
     <div class="field"><label for="f_brief">Проект и цели</label><textarea id="f_brief" placeholder="Например: линейка дезодорантов под частной маркой, целевой рынок, ориентировочный тираж…"></textarea></div>
-    <button class="btn btn-solid" type="submit"><span>Отправить запрос на расчёт и образцы</span><i class="arrow"></i></button>
+    <button class="btn btn-solid" type="submit"><span>Отправить запрос</span><i class="arrow"></i></button>
     <p class="form-status" role="status" aria-live="polite"></p>
   </form>
 </div></section></main>
@@ -87,9 +87,9 @@
         <a href="index.html" class="brand" style="margin-bottom:24px"><span class="brand-logo lg" aria-hidden="true"></span><span class="brand-name">UZMAN<span class="brand-sub">COSMETIC</span></span></a>
         <p style="max-width:38ch">Основанная в Стамбуле в 1978 году, Uzman Cosmetic производит средства для ухода за телом и для дома по контракту и под частной маркой.</p>
       </div>
-      <div><h5>Разделы</h5><ul><li><a href="private-label.html">Private Label</a></li><li><a href="products.html">Продукция</a></li><li><a href="about.html">О компании</a></li><li><a href="contact.html">Контакты</a></li></ul></div>
-      <div><h5>Продукция</h5><ul><li><a href="body-care.html">Уход за телом</a></li><li><a href="home-care.html">Уход за домом</a></li></ul></div>
-      <div><h5>Офис и фабрика</h5><p>Şekerpınar Mh. Özbek Sk. No:4<br>Чайырова / Коджаэли, Турция<br><a href="tel:+902626580099" dir="ltr">+90 262 658 00 99</a><br><a href="mailto:info@uzmancosmetic.com">info@uzmancosmetic.com</a><br><a href="https://www.instagram.com/uzmancosmetic/" rel="noopener">@uzmancosmetic</a></p></div>
+      <div><h3>Разделы</h3><ul><li><a href="private-label.html">Private Label</a></li><li><a href="products.html">Продукция</a></li><li><a href="about.html">О компании</a></li><li><a href="contact.html">Контакты</a></li></ul></div>
+      <div><h3>Продукция</h3><ul><li><a href="body-care.html">Уход за телом</a></li><li><a href="home-care.html">Уход за домом</a></li></ul></div>
+      <div><h3>Офис и фабрика</h3><p>Şekerpınar Mh. Özbek Sk. No:4<br>Чайырова / Коджаэли, Турция<br><a href="tel:+902626580099" dir="ltr">+90 262 658 00 99</a><br><a href="mailto:info@uzmancosmetic.com">info@uzmancosmetic.com</a><br><a href="https://www.instagram.com/uzmancosmetic/" rel="noopener">@uzmancosmetic</a></p></div>
     </div>
     <div class="foot-word" aria-hidden="true">UZMAN</div>
     <div class="foot-bot"><span>© 1978 – 2026 UZMAN COSMETIC. ВСЕ ПРАВА ЗАЩИЩЕНЫ.</span><span>ÇAYIROVA · KOCAELİ · TÜRKİYE</span></div>

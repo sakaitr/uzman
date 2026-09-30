@@ -17,9 +17,6 @@ SITE = "https://uzmancosmetic.com"
 DEFAULT_LANG = "tr"
 PAGES = ["index", "products", "body-care", "home-care", "private-label", "about", "contact"]
 
-FONTS = ("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500"
-         "&family=Manrope:wght@300;400;500;600&family=Tajawal:wght@300;400;500&family=Noto+Naskh+Arabic:wght@400;500"
-         "&display=swap")
 
 # Photos used for the two big cards on the home page and the products overview.
 FAN = {
@@ -78,8 +75,23 @@ def picture(lang, kind, stem, alt, cls="", eager=False):
 
 
 # ------------------------------------------------------------------ layout
+def preload_fonts(A, lang):
+    names = ["cormorant-garamond-latin", "manrope-latin"]
+    if lang == "ru":
+        names = ["cormorant-garamond-cyrillic", "manrope-cyrillic"]
+    if lang == "ar":
+        names = ["noto-naskh-arabic-arabic", "tajawal-arabic"]
+    out = ""
+    for n in names:
+        f = sorted(glob.glob(os.path.join(ROOT, "assets", "fonts", n + "-*.woff2")))[:1]
+        if f:
+            out += f'<link rel="preload" href="{A}assets/fonts/{os.path.basename(f[0])}" as="font" type="font/woff2" crossorigin>\n'
+    return out
+
+
 def head(lang, page, title_key, desc_key):
     A = asset_prefix(lang)
+    font_links = preload_fonts(A, lang)
     alt = "\n".join(
         f'<link rel="alternate" hreflang="{HTML_LANG[l]}" href="{SITE}/{"" if l == DEFAULT_LANG else l + "/"}{page}.html">'
         for l in LANGS)
@@ -93,9 +105,7 @@ def head(lang, page, title_key, desc_key):
 <title>{t(lang, title_key)}</title>
 <meta name="description" content="{t(lang, desc_key) if desc_key else ''}">
 {alt}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="{FONTS}" rel="stylesheet">
+{font_links}<link rel="stylesheet" href="{A}assets/css/fonts.css">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Uzman Cosmetic">
 <meta property="og:title" content="{t(lang, title_key)}">
@@ -183,9 +193,9 @@ def footer(lang):
         <a href="index.html" class="brand" style="margin-bottom:24px"><span class="brand-logo lg" aria-hidden="true"></span><span class="brand-name">UZMAN<span class="brand-sub">COSMETIC</span></span></a>
         <p style="max-width:38ch">{t(lang, 'foot_blurb')}</p>
       </div>
-      <div><h5>{t(lang, 'foot_discover')}</h5><ul>{disc}</ul></div>
-      <div><h5>{t(lang, 'foot_products')}</h5><ul>{prods}</ul></div>
-      <div><h5>{t(lang, 'foot_hq')}</h5><p>{t(lang, 'foot_addr')}<br><a href="tel:+902626580099" dir="ltr">+90 262 658 00 99</a><br><a href="mailto:info@uzmancosmetic.com">info@uzmancosmetic.com</a><br><a href="https://www.instagram.com/uzmancosmetic/" rel="noopener">@uzmancosmetic</a></p></div>
+      <div><h3>{t(lang, 'foot_discover')}</h3><ul>{disc}</ul></div>
+      <div><h3>{t(lang, 'foot_products')}</h3><ul>{prods}</ul></div>
+      <div><h3>{t(lang, 'foot_hq')}</h3><p>{t(lang, 'foot_addr')}<br><a href="tel:+902626580099" dir="ltr">+90 262 658 00 99</a><br><a href="mailto:info@uzmancosmetic.com">info@uzmancosmetic.com</a><br><a href="https://www.instagram.com/uzmancosmetic/" rel="noopener">@uzmancosmetic</a></p></div>
     </div>
     <div class="foot-word" aria-hidden="true">UZMAN</div>
     <div class="foot-bot"><span>{t(lang, 'foot_rights')}</span><span>ÇAYIROVA · KOCAELİ · TÜRKİYE</span></div>
@@ -200,7 +210,6 @@ def footer(lang):
 def cta_band(lang, video=False):
     bg = vbg(lang, "hero", ".4") if video else ""
     return f"""<section class="cta-band{' has-vbg' if video else ''}">{bg}<span class="logo-wm" aria-hidden="true"></span><div class="wrap">
-  <span class="eyebrow center rv">{t(lang, 'cta_eyebrow')}</span>
   <h2 class="rv">{t(lang, 'cta_h2')}</h2>
   <p class="lead rv">{t(lang, 'cta_lead')}</p>
   <div class="cta-row rv"><a href="contact.html#quote" class="btn btn-solid"><span>{t(lang, 'cta_btn')}</span><i class="arrow"></i></a></div>
@@ -208,8 +217,8 @@ def cta_band(lang, video=False):
 
 
 def page_hero(lang, eyebrow_key, h1_key, lead_key, word):
-    return f"""<header class="page-hero" data-word="{word}">
-  <div class="wrap"><span class="eyebrow">{t(lang, eyebrow_key)}</span><h1>{t(lang, h1_key)}</h1>
+    return f"""<header class="page-hero">
+  <div class="wrap"><h1>{t(lang, h1_key)}</h1>
   <p class="lead">{t(lang, lead_key)}</p></div>
 </header>"""
 
@@ -217,10 +226,10 @@ def page_hero(lang, eyebrow_key, h1_key, lead_key, word):
 def values_block(lang, bg=False):
     style = ' style="background:var(--bg-2)"' if bg else ""
     cells = "".join(
-        f'<div class="value rv" style="--d:{i * .1:.1f}s"><span class="n">{n}</span><h3>{t(lang, f"v{i + 1}_t")}</h3><p>{t(lang, f"v{i + 1}_p")}</p></div>'
-        for i, n in enumerate(["I", "II", "III"]))
+        f'<div class="value rv" style="--d:{i * .1:.1f}s"><h3>{t(lang, f"v{i + 1}_t")}</h3><p>{t(lang, f"v{i + 1}_p")}</p></div>'
+        for i in range(3))
     return f"""<section class="section"{style}><div class="wrap">
-  <div class="sec-head"><div class="rv"><span class="eyebrow">{t(lang, 'val_eyebrow')}</span><h2>{t(lang, 'val_h2')}</h2></div></div>
+  <div class="sec-head"><div class="rv"><h2>{t(lang, 'val_h2')}</h2></div></div>
   <div class="values">{cells}</div>
 </div></section>"""
 
@@ -251,19 +260,18 @@ def fan(lang, kind):
 
 # ------------------------------------------------------------------ pages
 def page_index(lang):
-    marquee = "".join(f"<span>{t(lang, f'm{i}')}</span>" for i in range(1, 7))
+    facts_items = "".join(f"<li>{t(lang, f'm{i}')}</li>" for i in range(1, 7))
     cards = ""
     for i, c in enumerate(TREE):
         names = " · ".join(t(lang, s["name"]) for s in c["subs"])
         cards += f"""<a href="{c['page']}" class="coll rv" style="--d:{i * .12:.2f}s">
-        <span class="idx">{'I' if i == 0 else 'II'}</span>{fan(lang, c['id'])}
+{fan(lang, c['id'])}
         <h3>{t(lang, c['name'])}</h3><p>{names}</p><span class="link-arrow more">{t(lang, 'explore')} <i class="arrow"></i></span></a>"""
     return head(lang, "index", "title_index", "desc_index") + header(lang, "index") + f"""
 <section class="hero has-vbg">
   {vbg(lang, "hero", ".55")}
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">{t(lang, 'hero_eyebrow')}</span>
       <h1>
         <span class="line"><span>{t(lang, 'hero_l1')}</span></span>
         <span class="line"><span>{t(lang, 'hero_l2')}</span></span>
@@ -277,31 +285,20 @@ def page_index(lang):
     </div>
     <div class="hero-stage">
       <i class="arc a3"></i><i class="arc"></i><i class="arc a2"></i>
-      <span class="hero-tag t1"><b>{t(lang, 'cat_body')}</b> · {t(lang, 'cat_home')}</span>
-      <span class="hero-tag t2">{t(lang, 'tag_80')}</span>
       <span class="hero-bottle">{fan_imgs(lang, ["montagneblack3", "montagneblack6", "camay"], eager=True)}</span>
     </div>
   </div>
-  <div class="scroll-hint"><span>{t(lang, 'scroll')}</span><i></i></div>
 </section>
 
-<div class="marquee"><div class="marquee-track">{marquee}{marquee}</div></div>
+<div class="facts"><ul>{facts_items}</ul></div>
 
 <section class="section manifesto has-vbg">{vbg(lang, "silk", ".5")}<div class="wrap">
-  <span class="eyebrow rv" style="margin-bottom:44px">{t(lang, 'manifesto_eyebrow')}</span>
   <p>{t(lang, 'manifesto')}</p>
 </div></section>
 
-<div class="wrap"><div class="stats">
-  <div class="stat rv"><div class="num"><span data-count="1978" data-plain>0</span></div><p>{t(lang, 'st_founded')}</p></div>
-  <div class="stat rv" style="--d:.1s"><div class="num"><span data-count="5500">0</span><small>m²</small></div><p>{t(lang, 'st_area')}</p></div>
-  <div class="stat rv" style="--d:.2s"><div class="num"><span data-count="80">0</span></div><p>{t(lang, 'st_export')}</p></div>
-  <div class="stat rv" style="--d:.3s"><div class="num"><span data-count="60">0</span><small>M</small></div><p>{t(lang, 'st_aerosol')}</p></div>
-</div></div>
-
 <section class="section has-vbg">{vbg(lang, "liquid", ".42")}<div class="wrap">
   <div class="sec-head">
-    <div class="rv"><span class="eyebrow">{t(lang, 'coll_eyebrow')}</span><h2>{t(lang, 'coll_h2')}</h2></div>
+    <div class="rv"><h2>{t(lang, 'coll_h2')}</h2></div>
     <p class="lead rv">{t(lang, 'coll_lead')}</p>
   </div>
   <div class="collections two">{cards}</div>
@@ -311,7 +308,6 @@ def page_index(lang):
 
 <section class="section"><div class="wrap process-grid">
   <div class="process-sticky rv">
-    <span class="eyebrow">{t(lang, 'pl_eyebrow')}</span>
     <h2>{t(lang, 'pl_h2')}</h2>
     <p class="lead" style="margin-bottom:36px">{t(lang, 'pl_lead')}</p>
     <a href="private-label.html" class="btn"><span>{t(lang, 'pl_btn')}</span><i class="arrow"></i></a>
@@ -322,7 +318,6 @@ def page_index(lang):
 <section class="section has-vbg" style="background:var(--bg-2)">{vbg(lang, "mist", ".5")}<div class="wrap split">
   <div class="split-media rv">{fan_imgs(lang, ["montagneblack3", "montagneblack6", "camay"])}<span class="cap">{t(lang, 'pw_cap')}</span></div>
   <div class="rv" style="--d:.1s">
-    <span class="eyebrow">{t(lang, 'pw_eyebrow')}</span>
     <h2>{t(lang, 'pw_h2')}</h2>
     <p class="lead">{t(lang, 'pw_lead')}</p>
     <ul class="checks"><li>{t(lang, 'pw_c1')}</li><li>{t(lang, 'pw_c2')}</li><li>{t(lang, 'pw_c3')}</li></ul>
@@ -334,7 +329,6 @@ def page_index(lang):
 
 <section class="section export" style="background:var(--bg-2)"><div class="wrap export-grid">
   <div class="rv">
-    <span class="eyebrow">{t(lang, 'ex_eyebrow')}</span>
     <h2>{t(lang, 'ex_h2')}</h2>
     <p class="lead">{t(lang, 'ex_lead')}</p>
     <div class="regions">
@@ -367,7 +361,7 @@ def tree_card(lang, cat, idx):
                  f'<span class="sz">{bdi(ml(lang, s["sizes"])) if s["sizes"] else ""}</span></a>{leaf}</li>')
     return f"""<article class="tree rv" style="--d:{idx * .12:.2f}s">
   {fan(lang, cat['id'])}
-  <header><span class="idx">{'I' if idx == 0 else 'II'}</span><h2><a href="{cat['page']}">{t(lang, cat['name'])}</a></h2></header>
+  <header><h2><a href="{cat['page']}">{t(lang, cat['name'])}</a></h2></header>
   <ul class="branch">{rows}</ul>
   <a href="{cat['page']}" class="link-arrow">{t(lang, 'explore')} <i class="arrow"></i></a>
 </article>"""
@@ -388,7 +382,7 @@ def pcard(lang, caption, stem, art):
         A = asset_prefix(lang)
         return (f'<a class="pcard" href="{A}assets/img/p/{stem}.webp" data-lb data-cap="{cap}">'
                 f'{picture(lang, "p", stem, cap)}<span class="cap">{cap}</span></a>')
-    return (f'<div class="pcard ph"><span data-art="{art}" class="ph-art"></span>'
+    return (f'<div class="pcard ph"><span class="ph-frame" aria-hidden="true"></span>'
             f'<span class="cap">{cap}</span><span class="soon">{t(lang, "soon")}</span></div>')
 
 
@@ -446,11 +440,11 @@ def page_private_label(lang):
     return (head(lang, "private-label", "title_pl", "pl_page_lead") + header(lang, "private-label")
             + page_hero(lang, "nav_pl", "pl_h1", "pl_page_lead", "Label")
             + f"""<section class="section"><div class="wrap process-grid">
-  <div class="process-sticky rv"><span class="eyebrow">{t(lang, 'pl_proc_eyebrow')}</span><h2>{t(lang, 'pl_proc_h2')}</h2><p class="lead">{t(lang, 'pl_proc_lead')}</p></div>
+  <div class="process-sticky rv"><h2>{t(lang, 'pl_proc_h2')}</h2><p class="lead">{t(lang, 'pl_proc_lead')}</p></div>
   {steps_block(lang)}
 </div></section>
 <section class="section" style="background:var(--bg-2)" id="tubes"><div class="wrap">
-  <div class="sec-head"><div class="rv"><span class="eyebrow">{t(lang, 'tube_eyebrow')}</span><h2>{t(lang, 'tube_h2')}</h2></div><p class="lead rv">{t(lang, 'tube_lead')}</p></div>
+  <div class="sec-head"><div class="rv"><h2>{t(lang, 'tube_h2')}</h2></div><p class="lead rv">{t(lang, 'tube_lead')}</p></div>
   <div class="filters rv">{filters}</div>
   <div class="tgrid">{cards}</div>
 </div></section>"""
@@ -461,14 +455,8 @@ def page_about(lang):
     return (head(lang, "about", "title_about", "ab_lead") + header(lang, "about")
             + page_hero(lang, "nav_about", "ab_h1", "ab_lead", "1978")
             + f"""<section class="section manifesto"><div class="wrap"><p>{t(lang, 'ab_manifesto')}</p></div></section>
-<div class="wrap"><div class="stats">
-  <div class="stat rv"><div class="num"><span data-count="1978" data-plain>0</span></div><p>{t(lang, 'st_founded')}</p></div>
-  <div class="stat rv"><div class="num"><span data-count="5500">0</span><small>m²</small></div><p>{t(lang, 'st_area')}</p></div>
-  <div class="stat rv"><div class="num"><span data-count="60">0</span><small>M</small></div><p>{t(lang, 'st_aerosol')}</p></div>
-  <div class="stat rv"><div class="num"><span data-count="80">0</span></div><p>{t(lang, 'st_export')}</p></div>
-</div></div>
 <section class="section"><div class="wrap split">
-  <div class="rv"><span class="eyebrow">{t(lang, 'ab_journey_eyebrow')}</span><h2>{t(lang, 'ab_journey_h2')}</h2>
+  <div class="rv"><h2>{t(lang, 'ab_journey_h2')}</h2>
     <div class="timeline" style="margin-top:48px">
       <div class="tl"><div class="yr">1978</div><p>{t(lang, 'tl1')}</p></div>
       <div class="tl"><div class="yr">1980</div><p>{t(lang, 'tl2')}</p></div>
@@ -479,7 +467,7 @@ def page_about(lang):
 </div></section>
 {values_block(lang, bg=True)}
 <section class="section"><div class="wrap">
-  <div class="sec-head"><div class="rv"><span class="eyebrow">{t(lang, 'ab_team_eyebrow')}</span><h2>{t(lang, 'ab_team_h2')}</h2></div><p class="lead rv">{t(lang, 'ab_team_lead')}</p></div>
+  <div class="sec-head"><div class="rv"><h2>{t(lang, 'ab_team_h2')}</h2></div><p class="lead rv">{t(lang, 'ab_team_lead')}</p></div>
 </div></section>"""
             + cta_band(lang) + footer(lang))
 
@@ -491,10 +479,10 @@ def page_contact(lang):
             + page_hero(lang, "nav_contact", "ct_h1", "ct_lead", "Contact")
             + f"""<section class="section" id="quote"><div class="wrap contact-grid">
   <aside class="contact-info rv">
-    <div><h4>{t(lang, 'ct_addr')}</h4><p>{t(lang, 'foot_addr')}</p></div>
-    <div><h4>{t(lang, 'ct_phone')}</h4><a href="tel:+902626580099" dir="ltr">+90 262 658 00 99</a><br><a href="tel:+902626580399" dir="ltr">+90 262 658 03 99</a><p style="font-size:14px;color:var(--muted);margin-top:6px">{t(lang, 'ct_fax')}: <bdi dir="ltr">+90 262 658 03 20</bdi></p></div>
-    <div><h4>{t(lang, 'ct_email')}</h4><a href="mailto:info@uzmancosmetic.com">info@uzmancosmetic.com</a></div>
-    <div style="border-bottom:1px solid var(--line)"><h4>{t(lang, 'ct_social')}</h4><a href="https://www.instagram.com/uzmancosmetic/" rel="noopener">@uzmancosmetic</a></div>
+    <div><h2>{t(lang, 'ct_addr')}</h2><p>{t(lang, 'foot_addr')}</p></div>
+    <div><h2>{t(lang, 'ct_phone')}</h2><a href="tel:+902626580099" dir="ltr">+90 262 658 00 99</a><br><a href="tel:+902626580399" dir="ltr">+90 262 658 03 99</a><p style="font-size:14px;color:var(--muted);margin-top:6px">{t(lang, 'ct_fax')}: <bdi dir="ltr">+90 262 658 03 20</bdi></p></div>
+    <div><h2>{t(lang, 'ct_email')}</h2><a href="mailto:info@uzmancosmetic.com">info@uzmancosmetic.com</a></div>
+    <div style="border-bottom:1px solid var(--line)"><h2>{t(lang, 'ct_social')}</h2><a href="https://www.instagram.com/uzmancosmetic/" rel="noopener">@uzmancosmetic</a></div>
   </aside>
   <form class="form-card rv" data-form data-err="{t(lang, 'f_err')}" data-ok="{t(lang, 'f_ok')}" novalidate style="--d:.1s">
     <div class="grid-2">
@@ -535,8 +523,7 @@ def page_index_min():
     html = head(lang, "404", "title_index", None)
     html = html.replace('href="assets/', 'href="/assets/').replace('<body data-page="404">', '<body data-page="404">')
     return html + f"""<div class="site-header scrolled" id="siteHeader"><div class="wrap navbar"><a href="/index.html" class="brand"><span class="brand-logo" aria-hidden="true"></span><span class="brand-name">UZMAN<span class="brand-sub">COSMETIC</span></span></a></div></div>
-<main id="main"><section class="hero"><div class="wrap" style="text-align:center"><span class="eyebrow center">404</span>
-<h1 style="margin:28px 0"><em>404</em></h1><p class="lead" style="margin:0 auto 40px">Aradığınız sayfa bulunamadı. · Page not found.</p>
+<main id="main"><section class="hero"><div class="wrap" style="text-align:center"><h1 style="margin:28px 0"><em>404</em></h1><p class="lead" style="margin:0 auto 40px">Aradığınız sayfa bulunamadı. · Page not found.</p>
 <div class="cta-row" style="justify-content:center"><a href="/index.html" class="btn btn-solid"><span>Ana sayfa / Home</span><i class="arrow"></i></a></div></div></section></main>
 <script src="/assets/js/main.js" defer></script></body></html>"""
 
