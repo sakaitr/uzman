@@ -366,3 +366,10 @@ add("title_home", "Home Care — Uzman Cosmetic", "Home Care — Uzman Cosmetic"
 add("title_pl", "Private Label — Uzman Cosmetic", "Private Label — Uzman Cosmetic", "Private Label — Uzman Cosmetic", "العلامة الخاصة — أوزمان كوزمتيك", "Private Label — Uzman Cosmetic")
 add("title_about", "Kurumsal — Uzman Cosmetic", "About Us — Uzman Cosmetic", "Entreprise — Uzman Cosmetic", "من نحن — أوزمان كوزمتيك", "О компании — Uzman Cosmetic")
 add("title_contact", "İletişim & Teklif — Uzman Cosmetic", "Contact & Quote — Uzman Cosmetic", "Contact & devis — Uzman Cosmetic", "اتصل بنا وعرض السعر — أوزمان كوزمتيك", "Контакты и запрос — Uzman Cosmetic")
+
+add("hero_alt",
+    "Örnek (konsept) görsel: markasız, siyah ve altın private label ürün seti; deodorant, parfüm, body mist ve oda difüzörü",
+    "Illustrative concept image: an unbranded black and gold private-label set with deodorant, perfume, body mist and reed diffuser",
+    "Image conceptuelle : ensemble private label sans marque, noir et or, avec déodorant, parfum, brume corporelle et diffuseur d'ambiance",
+    "صورة توضيحية: مجموعة علامة خاصة بدون علامة تجارية بالأسود والذهبي تضم مزيل عرق وعطراً وبخاخ جسم وموزّع عطور",
+    "Концептуальное изображение: набор Private Label без бренда в чёрном и золотом — дезодорант, парфюм, спрей для тела и диффузор")

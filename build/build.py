@@ -285,7 +285,7 @@ def page_index(lang):
     </div>
     <div class="hero-stage">
       <i class="arc a3"></i><i class="arc"></i><i class="arc a2"></i>
-      <span class="hero-bottle">{fan_imgs(lang, ["montagneblack3", "montagneblack6", "camay"], eager=True)}</span>
+      <span class="hero-bottle">{picture(lang, "h", "hero-lineup", t(lang, "hero_alt"), eager=True)}</span>
     </div>
   </div>
 </section>

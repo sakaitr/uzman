@@ -161,12 +161,14 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 400; color: var(--em); }
 .hero-stage { position: relative; aspect-ratio: 4/5; display: grid; place-items: center; }
 .hero-stage::before { content: ""; position: absolute; inset: 6%; border-radius: 50%; background: radial-gradient(circle, var(--glow), transparent 68%); filter: blur(30px); animation: breathe 7s ease-in-out infinite; }
 @keyframes breathe { 50% { transform: scale(1.12); opacity: .7; } }
+.hero-bottle { position: relative; display: block; width: 92%; transition: transform .3s ease-out; }
+.hero-bottle img { position: relative; z-index: 1; width: 100%; height: auto; filter: drop-shadow(0 34px 30px var(--shadow)); animation: float 9s ease-in-out infinite; }
+.hero-bottle::after { content: ""; position: absolute; left: 6%; right: 6%; bottom: -2%; height: 7%; border-radius: 50%; background: radial-gradient(closest-side, var(--shadow), transparent); filter: blur(10px); opacity: .9; }
 .hero-stage .arc { position: absolute; inset: 0; border: 1px solid var(--line); border-radius: 50%; }
 .hero-stage .arc.a2 { inset: 9%; border-style: dashed; animation: spin 90s linear infinite; }
 .hero-stage .arc.a3 { inset: -8%; opacity: .5; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.hero-bottle { position: relative; width: 62%; filter: drop-shadow(0 50px 50px var(--shadow)); transition: transform .3s var(--ease); animation: float 8s ease-in-out infinite; }
-@keyframes float { 50% { margin-top: -18px; } }
+@keyframes float { 50% { transform: translateY(-14px); } }
 @media (max-width: 900px) {
 .hero { padding-top: 170px; } .hero-grid { grid-template-columns: 1fr; } .hero-stage { max-width: 420px; margin: 20px auto 0; }
 }
@@ -323,14 +325,11 @@ h1 em, h2 em, h3 em { font-style: normal; font-weight: 400; color: var(--em); }
   .rv { opacity: 1; transform: none; }
   .hero h1 .line > span { transform: none; } .hero .lead, .hero .cta-row { opacity: 1; }
 }
-.hero-bottle svg { width: 100%; height: auto; }
-.hero-bottle { display: block; }
 .brand-sub { white-space: nowrap; }
 .topline .left { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 @media (max-width: 640px) {
 .topline .right a:first-child { display: none; } .topline .left { font-size: 11px; } .brand-name { font-size: 21px; letter-spacing: .28em; } .brand-sub { font-size: 10px; letter-spacing: .18em; } .nav-right { gap: 8px; }
 }
-.hero-bottle { width: 44%; }
 .topline .right, .topline .right a { white-space: nowrap; }
 .topline .left { min-width: 0; }
 /* ---------- i18n / RTL ---------- */
@@ -450,9 +449,6 @@ body { font-feature-settings: "kern", "liga"; -webkit-font-smoothing: antialiase
 .cta-band::before { z-index: 0; }
 .cta-band .wrap { position: relative; z-index: 1; }
 /* hero photo */
-.hero-bottle { width: 54%; }
-.hero-bottle img { width: 100%; height: auto; filter: drop-shadow(0 40px 40px var(--shadow)); }
-.hero-bottle svg { display: none; }
 /* split media with real photos */
 .split-media .fan { margin: 0; min-height: 0; flex: none; position: relative; z-index: 1; width: 86%; }
 .split-media .fan img { height: auto; max-height: 340px; width: auto; max-width: 30vw; }
@@ -485,11 +481,6 @@ h1, h2, h3, .tl .yr, .nm { font-variant-numeric: lining-nums; }
 .nav-cta { padding: 14px 24px; }
 .nav-cta .arrow { display: none; }
 /* hero: real product trio */
-.hero-bottle { width: 82%; filter: none; }
-.hero-bottle .fan { margin: 0; min-height: 0; flex: none; }
-.hero-bottle .fan img { height: min(46vh, 400px); max-width: 26vw; }
-.hero-bottle .fan .f2 img { height: min(54vh, 470px); }
-.hero-bottle .fan span { margin: 0 -10px; }
 /* logo: larger, crisper */
 .brand-logo { width: 62px; height: 62px; }
 .brand-logo.lg { width: 104px; height: 104px; }
@@ -556,3 +547,4 @@ button:disabled, .btn[aria-disabled="true"], input:disabled, select:disabled, te
 .split-media { padding: 28px; }
 
 html { font-variant-numeric: lining-nums; }
+
