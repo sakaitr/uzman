@@ -101,13 +101,13 @@
   const header = `
   <div class="site-header" id="siteHeader">
     <div class="topline"><div class="wrap">
-      <div class="left"><span class="dot"></span>GEBZE TESİSİ · AKTİF ÜRETİM<span class="hide-sm"> &nbsp;·&nbsp; ISO 22716 GMP · ISO 9001</span></div>
+      <div class="left"><span class="dot"></span>ÇAYIROVA / KOCAELİ<span class="hide-sm"> &nbsp;·&nbsp; 1978'DEN BERİ &nbsp;·&nbsp; 80 ÜLKEYE İHRACAT</span></div>
       <div class="right"><a href="mailto:info@uzmancosmetic.com" class="hide-sm">info@uzmancosmetic.com</a><a href="tel:+902626580099">+90 262 658 00 99</a></div>
     </div></div>
     <div class="wrap navbar">
       <a href="index.html" class="brand" aria-label="Uzman Cosmetic — ana sayfa">
         <span class="brand-mark"><span>U</span></span>
-        <span class="brand-name">UZMAN<span class="brand-sub">COSMETIC · SINCE 1980</span></span>
+        <span class="brand-name">UZMAN<span class="brand-sub">COSMETIC · SINCE 1978</span></span>
       </a>
       <nav class="nav" aria-label="Ana menü">${nav.map(([h, t, k]) => `<a href="${h}" class="${k === page ? 'active' : ''}">${t}</a>`).join('')}</nav>
       <div class="nav-right">
@@ -129,14 +129,14 @@
       <div class="foot-top">
         <div>
           <a href="index.html" class="brand" style="margin-bottom:24px"><span class="brand-mark"><span>U</span></span><span class="brand-name">UZMAN<span class="brand-sub">COSMETIC</span></span></a>
-          <p style="max-width:38ch">1980'den beri dünyanın önde gelen markaları için parfüm, aerosol ve kozmetik üretimi. Markanızın imzası, bizim ustalığımız.</p>
+          <p style="max-width:38ch">1978'de İstanbul'da kurulan Uzman Kozmetik; deodorant, parfüm, roll-on, body mist ve saç bakım ürünlerinde fason ve private label üretim yapar.</p>
         </div>
         <div><h5>Keşfet</h5><ul>${nav.map(([h, t]) => `<li><a href="${h}">${t}</a></li>`).join('')}</ul></div>
-        <div><h5>Üretim</h5><ul><li>Parfüm &amp; EDP</li><li>Aerosol &amp; Deodorant</li><li>Saç Bakımı</li><li>Ambiyans</li></ul></div>
-        <div><h5>Merkez &amp; Fabrika</h5><p>İnönü Mah. Gençlik Cad. No:11<br>Gebze / Kocaeli, Türkiye<br><a href="tel:+902626580099">+90 262 658 00 99</a><br><a href="mailto:info@uzmancosmetic.com">info@uzmancosmetic.com</a></p></div>
+        <div><h5>Üretim</h5><ul><li>Deodorant &amp; Roll-on</li><li>Parfüm &amp; Body Mist</li><li>Oda Spreyi &amp; Difüzör</li><li>Saç &amp; Bakım</li></ul></div>
+        <div><h5>Merkez &amp; Fabrika</h5><p>Şekerpınar Mh. Özbek Sk. No:4<br>Çayırova / Kocaeli, Türkiye<br><a href="tel:+902626580099">+90 262 658 00 99</a><br><a href="mailto:info@uzmancosmetic.com">info@uzmancosmetic.com</a></p></div>
       </div>
       <div class="foot-word" aria-hidden="true">UZMAN</div>
-      <div class="foot-bot"><span>© 1980 – 2026 UZMAN COSMETIC. TÜM HAKLARI SAKLIDIR.</span><span>ISO 22716 · ISO 9001 · CPNP · HELAL</span></div>
+      <div class="foot-bot"><span>© 1978 – 2026 UZMAN KOZMETİK. TÜM HAKLARI SAKLIDIR.</span><span>ÇAYIROVA · KOCAELİ · TÜRKİYE</span></div>
     </div>
   </footer>`;
 
@@ -224,19 +224,6 @@
     document.querySelectorAll('.item').forEach((it) => it.classList.toggle('gone', b.dataset.f !== 'all' && it.dataset.cat !== b.dataset.f));
   }));
 
-  /* ---------- Estimator ---------- */
-  const cat = document.getElementById('calc_cat'), qty = document.getElementById('calc_qty'), pkg = document.getElementById('calc_pkg');
-  if (cat && qty && pkg) {
-    const qtyBase = { 5000: 2, 10000: 3, 25000: 4, 50000: 5 }, catExtra = { aerosol: 0, perfume: 1, mist: 0, hair: 0, room: 0 }, pkgExtra = { alu: 0, glass: 1, pet: 0 };
-    const upd = () => {
-      const base = (qtyBase[qty.value] || 3) + (catExtra[cat.value] || 0) + (pkgExtra[pkg.value] || 0);
-      document.getElementById('res_lead').textContent = `${base} – ${base + 1} Hafta`;
-      document.getElementById('res_std').textContent = ['aerosol', 'room'].includes(cat.value) ? 'ISO 22716 + ADR' : 'ISO 22716';
-      document.getElementById('res_stab').textContent = cat.value === 'perfume' ? '12 Hafta' : 'Dahil';
-    };
-    [cat, qty, pkg].forEach((el) => el.addEventListener('change', upd)); upd();
-  }
-
   /* ---------- Forms ---------- */
   document.querySelectorAll('form[data-form]').forEach((form) => {
     const status = form.querySelector('.form-status');
@@ -246,7 +233,7 @@
       form.querySelectorAll('[required]').forEach((f) => f.setAttribute('aria-invalid', String(bad.includes(f))));
       if (bad.length) { status.textContent = 'Lütfen işaretli alanları doldurun.'; bad[0].focus(); return; }
       // TODO: backend / e-posta servisi bağlanacak (demo aşamasında yalnızca onay gösterilir)
-      status.textContent = 'Talebiniz alındı. Proje yöneticimiz 24 saat içinde sizinle iletişime geçecek.';
+      status.textContent = 'Talebiniz alındı. Ekibimiz en kısa sürede sizinle iletişime geçecek.';
       form.reset();
     });
   });

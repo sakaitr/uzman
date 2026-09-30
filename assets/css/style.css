@@ -366,3 +366,12 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 400; color: var(--gold-hi
 .hero-tag.t1 { right: 0; top: 14%; } .hero-tag.t2 { left: 0; bottom: 14%; }
 .topline .right, .topline .right a { white-space: nowrap; }
 .topline .left { min-width: 0; }
+
+.spec-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.spec-table th, .spec-table td { text-align: left; padding: 22px 12px 22px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.spec-table th { font-size: 10.5px; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+.spec-table td:first-child { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
+.spec-table td { color: var(--muted); } .spec-table td:first-child { color: var(--text); }
+.scents { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.catalog { gap: 0; background: var(--bg); border-right: 0; border-bottom: 0; }
+.item { box-shadow: inset -1px -1px 0 var(--line); }
