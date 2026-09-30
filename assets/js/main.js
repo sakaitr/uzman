@@ -11,7 +11,7 @@
     document.querySelectorAll('[data-set]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.set === name)));
   };
   const queryTheme = new URLSearchParams(location.search).get('theme');
-  applyTheme(['noir', 'bordeaux', 'emerald'].includes(queryTheme) ? queryTheme : safe(() => localStorage.getItem(THEME_KEY)) || 'noir');
+  applyTheme(['noir', 'bordeaux', 'emerald', 'twotone', 'inverse'].includes(queryTheme) ? queryTheme : safe(() => localStorage.getItem(THEME_KEY)) || 'noir');
 
   /* ---------- SVG sprite (product art, themed via CSS variables) ---------- */
   const sprite = `
@@ -146,6 +146,20 @@
     });
   }, { threshold: 0.6 });
   document.querySelectorAll('[data-count]').forEach((el) => counter.observe(el));
+
+  /* ---------- Ambient videos: load near viewport, pause off-screen ---------- */
+  const ambient = [...document.querySelectorAll('.vbg video')];
+  const saveData = navigator.connection && navigator.connection.saveData;
+  if (ambient.length && !saveData && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const vio = new IntersectionObserver((entries) => entries.forEach((e) => {
+      const v = e.target;
+      if (e.isIntersecting) {
+        if (!v.getAttribute('src')) { v.muted = true; v.src = (v.canPlayType('video/mp4; codecs="avc1.42E01E"') || !v.canPlayType('video/webm; codecs="vp9"')) ? v.dataset.src : v.dataset.webm; }
+        v.play().catch(() => {});
+      } else v.pause();
+    }), { rootMargin: '240px' });
+    ambient.forEach((v) => vio.observe(v));
+  }
 
   /* ---------- Hero parallax ---------- */
   const stage = document.querySelector('.hero-stage'), bottle = document.querySelector('.hero-bottle');

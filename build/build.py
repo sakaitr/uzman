@@ -106,7 +106,7 @@ def head(lang, page, title_key, desc_key):
 <link rel="icon" type="image/png" href="{A}assets/img/favicon.png">
 <link rel="apple-touch-icon" href="{A}assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="{A}assets/css/style.css">
-<script>try{{var s=new URLSearchParams(location.search).get('theme')||localStorage.getItem('uzman-theme');if(['noir','bordeaux','emerald'].indexOf(s)>-1)document.documentElement.setAttribute('data-theme',s)}}catch(e){{}}</script>
+<script>try{{var s=new URLSearchParams(location.search).get('theme')||localStorage.getItem('uzman-theme');if(['noir','bordeaux','emerald','twotone','inverse'].indexOf(s)>-1)document.documentElement.setAttribute('data-theme',s)}}catch(e){{}}</script>
 </head>
 <body data-page="{page}">
 <a class="skip" href="#main">{t(lang, 'skip')}</a>
@@ -129,7 +129,9 @@ def theme_switch(lang):
     return (f'<div class="theme-switch" role="group" aria-label="{t(lang, "aria_theme")}">'
             '<button data-set="noir" aria-label="Noir &amp; Honey" title="Noir &amp; Honey"></button>'
             '<button data-set="bordeaux" aria-label="Bordeaux Rose Gold" title="Bordeaux Rose Gold"></button>'
-            '<button data-set="emerald" aria-label="Emerald &amp; Rose Gold" title="Emerald &amp; Rose Gold"></button></div>')
+            '<button data-set="emerald" aria-label="Emerald &amp; Rose Gold" title="Emerald &amp; Rose Gold"></button>'
+            '<button data-set="twotone" aria-label="Two-Tone Bordeaux (green ground)" title="Two-Tone Bordeaux"></button>'
+            '<button data-set="inverse" aria-label="Bordeaux ground, emerald accent" title="Bordeaux × Emerald"></button></div>')
 
 
 NAV = [("private-label", "nav_pl"), ("products", "nav_products"), ("about", "nav_about"), ("contact", "nav_contact")]
@@ -195,8 +197,9 @@ def footer(lang):
 """
 
 
-def cta_band(lang):
-    return f"""<section class="cta-band"><span class="logo-wm" aria-hidden="true"></span><div class="wrap">
+def cta_band(lang, video=False):
+    bg = vbg(lang, "hero", ".4") if video else ""
+    return f"""<section class="cta-band{' has-vbg' if video else ''}">{bg}<span class="logo-wm" aria-hidden="true"></span><div class="wrap">
   <span class="eyebrow center rv">{t(lang, 'cta_eyebrow')}</span>
   <h2 class="rv">{t(lang, 'cta_h2')}</h2>
   <p class="lead rv">{t(lang, 'cta_lead')}</p>
@@ -229,6 +232,13 @@ def steps_block(lang):
     return f'<div class="steps">{rows}</div>'
 
 
+def vbg(lang, name, opacity=".5"):
+    """Ambient looping background video (lazy-loaded by main.js, tinted per theme by CSS)."""
+    A = asset_prefix(lang)
+    return (f'<div class="vbg" style="--vo:{opacity}" aria-hidden="true"><video muted loop playsinline preload="none" '
+            f'poster="{A}assets/video/{name}.jpg" data-src="{A}assets/video/{name}.mp4" data-webm="{A}assets/video/{name}.webm"></video></div>')
+
+
 def fan_imgs(lang, stems, eager=False):
     imgs = "".join(f'<span class="f{i}">{picture(lang, "p", st, "", eager=eager)}</span>' for i, st in enumerate(stems, 1))
     return f'<div class="fan">{imgs}</div>'
@@ -249,7 +259,8 @@ def page_index(lang):
         <span class="idx">{'I' if i == 0 else 'II'}</span>{fan(lang, c['id'])}
         <h3>{t(lang, c['name'])}</h3><p>{names}</p><span class="link-arrow more">{t(lang, 'explore')} <i class="arrow"></i></span></a>"""
     return head(lang, "index", "title_index", "desc_index") + header(lang, "index") + f"""
-<section class="hero">
+<section class="hero has-vbg">
+  {vbg(lang, "hero", ".55")}
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow">{t(lang, 'hero_eyebrow')}</span>
@@ -276,7 +287,7 @@ def page_index(lang):
 
 <div class="marquee"><div class="marquee-track">{marquee}{marquee}</div></div>
 
-<section class="section manifesto"><div class="wrap">
+<section class="section manifesto has-vbg">{vbg(lang, "silk", ".5")}<div class="wrap">
   <span class="eyebrow rv" style="margin-bottom:44px">{t(lang, 'manifesto_eyebrow')}</span>
   <p>{t(lang, 'manifesto')}</p>
 </div></section>
@@ -288,7 +299,7 @@ def page_index(lang):
   <div class="stat rv" style="--d:.3s"><div class="num"><span data-count="60">0</span><small>M</small></div><p>{t(lang, 'st_aerosol')}</p></div>
 </div></div>
 
-<section class="section"><div class="wrap">
+<section class="section has-vbg">{vbg(lang, "liquid", ".42")}<div class="wrap">
   <div class="sec-head">
     <div class="rv"><span class="eyebrow">{t(lang, 'coll_eyebrow')}</span><h2>{t(lang, 'coll_h2')}</h2></div>
     <p class="lead rv">{t(lang, 'coll_lead')}</p>
@@ -308,7 +319,7 @@ def page_index(lang):
   {steps_block(lang)}
 </div></section>
 
-<section class="section" style="background:var(--bg-2)"><div class="wrap split">
+<section class="section has-vbg" style="background:var(--bg-2)">{vbg(lang, "mist", ".5")}<div class="wrap split">
   <div class="split-media rv">{fan_imgs(lang, ["montagneblack3", "montagneblack6", "camay"])}<span class="cap">{t(lang, 'pw_cap')}</span></div>
   <div class="rv" style="--d:.1s">
     <span class="eyebrow">{t(lang, 'pw_eyebrow')}</span>
@@ -342,7 +353,7 @@ def page_index(lang):
   </div>
 </div></section>
 
-{cta_band(lang)}
+{cta_band(lang, video=True)}
 """ + footer(lang)
 
 
