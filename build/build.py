@@ -208,7 +208,7 @@ def footer(lang):
 
 
 def cta_band(lang, video=False):
-    bg = vbg(lang, "hero", ".4", "vbg-crop") if video else ""
+    bg = vbg(lang, "hero", ".4") if video else ""
     return f"""<section class="cta-band{' has-vbg' if video else ''}">{bg}<span class="logo-wm" aria-hidden="true"></span><div class="wrap">
   <h2 class="rv">{t(lang, 'cta_h2')}</h2>
   <p class="lead rv">{t(lang, 'cta_lead')}</p>
@@ -269,7 +269,7 @@ def page_index(lang):
         <h3>{t(lang, c['name'])}</h3><p>{names}</p><span class="link-arrow more">{t(lang, 'explore')} <i class="arrow"></i></span></a>"""
     return head(lang, "index", "title_index", "desc_index") + header(lang, "index") + f"""
 <section class="hero has-vbg">
-  {vbg(lang, "hero", ".42", "vbg-crop")}
+  {vbg(lang, "hero", ".85")}
   <div class="wrap hero-grid">
     <div>
       <h1>
@@ -285,7 +285,7 @@ def page_index(lang):
     </div>
     <div class="hero-stage">
       <i class="arc a3"></i><i class="arc"></i><i class="arc a2"></i>
-      <span class="hero-bottle"><span class="hero-float">{picture(lang, "h", "hero-lineup", t(lang, "hero_alt"), eager=True)}{vbg(lang, "hero", ".1", "vbg-fg vbg-crop")}</span></span>
+      <span class="hero-bottle"><span class="hero-float">{picture(lang, "h", "hero-lineup", t(lang, "hero_alt"), eager=True)}{vbg(lang, "hero", ".12", "vbg-fg")}</span></span>
     </div>
   </div>
 </section>

@@ -559,9 +559,8 @@ html { font-variant-numeric: lining-nums; }
   -webkit-mask-size: 86.2% auto, 100% 100%; mask-size: 86.2% auto, 100% 100%;
   -webkit-mask-position: center 66.7%, center; mask-position: center 66.7%, center; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
 
-/* framing: keep the atomizer out of shot (spray flows in from the left), crop the white tabletop of the fill clip */
-.vbg-crop video { object-position: 100% 50%; transform: scale(1.36); transform-origin: 100% 50%; }
-.vbg-top video { object-position: 50% 0; transform: scale(1.14); transform-origin: 50% 0; }
+/* framing: crop the bright glass base of the fill clip */
+.vbg-top video { object-position: 50% 0; transform: scale(1.22); transform-origin: 50% 0; }
 
 /* legibility scrim: calm behind the copy, atmosphere behind the products */
 .hero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
