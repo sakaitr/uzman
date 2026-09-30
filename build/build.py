@@ -208,7 +208,7 @@ def footer(lang):
 
 
 def cta_band(lang, video=False):
-    bg = vbg(lang, "hero", ".4") if video else ""
+    bg = vbg(lang, "hero", ".4", "vbg-crop") if video else ""
     return f"""<section class="cta-band{' has-vbg' if video else ''}">{bg}<span class="logo-wm" aria-hidden="true"></span><div class="wrap">
   <h2 class="rv">{t(lang, 'cta_h2')}</h2>
   <p class="lead rv">{t(lang, 'cta_lead')}</p>
@@ -269,7 +269,7 @@ def page_index(lang):
         <h3>{t(lang, c['name'])}</h3><p>{names}</p><span class="link-arrow more">{t(lang, 'explore')} <i class="arrow"></i></span></a>"""
     return head(lang, "index", "title_index", "desc_index") + header(lang, "index") + f"""
 <section class="hero has-vbg">
-  {vbg(lang, "hero", ".55")}
+  {vbg(lang, "hero", ".42", "vbg-crop")}
   <div class="wrap hero-grid">
     <div>
       <h1>
@@ -285,18 +285,18 @@ def page_index(lang):
     </div>
     <div class="hero-stage">
       <i class="arc a3"></i><i class="arc"></i><i class="arc a2"></i>
-      <span class="hero-bottle"><span class="hero-float">{picture(lang, "h", "hero-lineup", t(lang, "hero_alt"), eager=True)}{vbg(lang, "hero", ".1", "vbg-fg")}</span></span>
+      <span class="hero-bottle"><span class="hero-float">{picture(lang, "h", "hero-lineup", t(lang, "hero_alt"), eager=True)}{vbg(lang, "hero", ".1", "vbg-fg vbg-crop")}</span></span>
     </div>
   </div>
 </section>
 
 <div class="facts"><ul>{facts_items}</ul></div>
 
-<section class="section manifesto has-vbg">{vbg(lang, "silk", ".5")}<div class="wrap">
+<section class="section manifesto has-vbg">{vbg(lang, "petals", ".5")}<div class="wrap">
   <p>{t(lang, 'manifesto')}</p>
 </div></section>
 
-<section class="section has-vbg">{vbg(lang, "liquid", ".42")}<div class="wrap">
+<section class="section has-vbg">{vbg(lang, "fill", ".42", "vbg-top")}<div class="wrap">
   <div class="sec-head">
     <div class="rv"><h2>{t(lang, 'coll_h2')}</h2></div>
     <p class="lead rv">{t(lang, 'coll_lead')}</p>
@@ -313,7 +313,7 @@ def page_index(lang):
   {steps_block(lang)}
 </div></section>
 
-<section class="section band has-vbg">{vbg(lang, "mist", ".5")}<div class="wrap split">
+<section class="section band has-vbg">{vbg(lang, "line", ".5")}<div class="wrap split">
   <div class="split-media rv">{fan_imgs(lang, ["montagneblack3", "montagneblack6", "camay"])}<span class="cap">{t(lang, 'pw_cap')}</span></div>
   <div class="rv" style="--d:.1s">
     <h2>{t(lang, 'pw_h2')}</h2>

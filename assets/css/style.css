@@ -558,3 +558,13 @@ html { font-variant-numeric: lining-nums; }
   mask-image: url(../img/h/hero-lineup.webp), radial-gradient(ellipse 58% 34% at 50% 98%, #000, transparent);
   -webkit-mask-size: 86.2% auto, 100% 100%; mask-size: 86.2% auto, 100% 100%;
   -webkit-mask-position: center 66.7%, center; mask-position: center 66.7%, center; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+
+/* framing: keep the atomizer out of shot (spray flows in from the left), crop the white tabletop of the fill clip */
+.vbg-crop video { object-position: 100% 50%; transform: scale(1.36); transform-origin: 100% 50%; }
+.vbg-top video { object-position: 50% 0; transform: scale(1.14); transform-origin: 50% 0; }
+
+/* legibility scrim: calm behind the copy, atmosphere behind the products */
+.hero::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--bg) 94%, transparent) 0%, color-mix(in srgb, var(--bg) 78%, transparent) 34%, color-mix(in srgb, var(--bg) 18%, transparent) 62%, transparent 78%); }
+[dir="rtl"] .hero::before { transform: scaleX(-1); }
+@media (max-width: 900px) { .hero::before { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 80%, transparent) 0%, color-mix(in srgb, var(--bg) 45%, transparent) 55%, transparent 100%); } }

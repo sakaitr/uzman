@@ -23,7 +23,7 @@ Görseller uzmancosmetic.com'daki mevcut siteden alınmıştır.
 Sayfayı belirli bir temayla açmak için `?theme=twotone` eklenir; seçim tarayıcıda hatırlanır.
 
 ## Ana sayfa videoları
-`assets/video/` altında 4 döngü klip (hero, silk, liquid, mist), her biri MP4 (H.264) + WebM (VP9) + poster JPG.
+`assets/video/` altında 4 döngü klip (hero: parfüm sisi, petals: yasemin, fill: şişeye dolan sıvı, line: aerosol dolum hattı), her biri MP4 (H.264) + WebM (VP9) + poster JPG.
 Klipler Higgsfield / Veo 3.1 Lite ile üretildi (4 sn, sessiz, klip başı 6 kredi), ileri+geri döngüye alındı.
 Siyah zeminli tek renkli olduklarından CSS (`.vbg`) ile aktif temanın rengine boyanır. Görünür alana
 girince yüklenir, çıkınca durur; "azaltılmış hareket" ve veri tasarrufu modunda oynatılmaz.
