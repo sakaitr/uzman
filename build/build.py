@@ -66,8 +66,9 @@ def bdi(text):
     return f'<bdi dir="ltr">{text}</bdi>'
 
 
-HERO_SLIDES = [("hero-newsmart", "New Smart"), ("hero-flatcurved-s", "Flat Curved"),
-               ("hero-flatcurved-l", "Flat Curved L"), ("hero-round", "Round"), ("hero-atype", "A Type")]
+HERO_SLIDES = [("hero-set-a", "A Type · Flat Curved · New Smart"), ("hero-newsmart", "New Smart"),
+               ("hero-flatcurved-l", "Flat Curved L"), ("hero-set-b", "Flat Curved L · A Type · Round"),
+               ("hero-round", "Round")]
 
 
 def picture(lang, kind, stem, alt, cls="", eager=False):
