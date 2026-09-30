@@ -71,7 +71,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .wrap { width: min(1280px, 100% - 48px); margin-inline: auto; }
 section { position: relative; }
 .section { padding: clamp(88px, 12vw, 168px) 0; }
-.rule { height: 1px; background: linear-gradient(90deg, transparent, var(--line-strong), transparent); border: 0; }
 h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height: 1.04; letter-spacing: -.01em; }
 h1 { font-size: clamp(2.8rem, 6.6vw, 6rem); }
 h2 { font-size: clamp(2.3rem, 5vw, 4.6rem); }
@@ -548,3 +547,6 @@ button:disabled, .btn[aria-disabled="true"], input:disabled, select:disabled, te
 
 html { font-variant-numeric: lining-nums; }
 
+
+/* tonal bands fade in and out instead of starting on a hard edge */
+.band { background: linear-gradient(to bottom, transparent 0, var(--bg-2) 18%, var(--bg-2) 82%, transparent 100%); }
