@@ -11,7 +11,7 @@
     document.querySelectorAll('[data-set]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.set === name)));
   };
   const queryTheme = new URLSearchParams(location.search).get('theme');
-  applyTheme(['noir', 'bordeaux'].includes(queryTheme) ? queryTheme : safe(() => localStorage.getItem(THEME_KEY)) || 'noir');
+  applyTheme(['noir', 'bordeaux', 'emerald'].includes(queryTheme) ? queryTheme : safe(() => localStorage.getItem(THEME_KEY)) || 'noir');
 
   /* ---------- SVG sprite (product art, themed via CSS variables) ---------- */
   const sprite = `
@@ -96,7 +96,8 @@
   ];
   const themeSwitch = `<div class="theme-switch" role="group" aria-label="Renk teması">
       <button data-set="noir" aria-label="Noir &amp; Honey" title="Noir &amp; Honey"></button>
-      <button data-set="bordeaux" aria-label="Bordeaux Rose Gold" title="Bordeaux Rose Gold"></button></div>`;
+      <button data-set="bordeaux" aria-label="Bordeaux Rose Gold" title="Bordeaux Rose Gold"></button>
+      <button data-set="emerald" aria-label="Gece Yeşili &amp; Rose Gold" title="Gece Yeşili &amp; Rose Gold"></button></div>`;
   const header = `
   <div class="site-header" id="siteHeader">
     <div class="topline"><div class="wrap">

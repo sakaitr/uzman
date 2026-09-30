@@ -19,6 +19,16 @@
   --page: radial-gradient(110% 70% at 75% -10%, #5a1628 0%, transparent 62%), #1c080d;
 }
 
+[data-theme="emerald"] {
+  --bg: #03211b; --bg-2: #04281f; --surface: #072e26; --surface-2: #0b3a30;
+  --line: rgba(237,187,152,.16); --line-strong: rgba(237,187,152,.4);
+  --text: #f3ede6; --muted: #afc6bc; --faint: #5f8579;
+  --gold: #d59473; --gold-hi: #edbb98; --gold-lo: #b8765a;
+  --on-gold: #04261f; --liquid: #1f7a66; --glass: #02160f;
+  --glow: rgba(31,122,102,.45);
+  --page: radial-gradient(110% 70% at 75% -10%, #063e32 0%, transparent 62%), #03211b;
+}
+
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; color-scheme: dark; -webkit-text-size-adjust: 100%; }
 body {
@@ -103,6 +113,7 @@ h1 em, h2 em, h3 em { font-style: italic; font-weight: 400; color: var(--gold-hi
 .theme-switch button:hover { transform: scale(1.2); }
 .theme-switch button[aria-pressed="true"] { border-color: var(--text); box-shadow: 0 0 0 2px var(--bg) inset; }
 .theme-switch [data-set="noir"] { background: linear-gradient(135deg, #0b0c0e 50%, #d4a359 50%); }
+.theme-switch [data-set="emerald"] { background: linear-gradient(135deg, #063e32 50%, #edbb98 50%); }
 .theme-switch [data-set="bordeaux"] { background: linear-gradient(135deg, #5a1628 50%, #f0c2a0 50%); }
 .lang { font-size: 11px; letter-spacing: .2em; color: var(--muted); }
 .lang b { color: var(--gold); font-weight: 500; }
