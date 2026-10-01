@@ -108,7 +108,7 @@ function preload_fonts(string $A): string
     return $out;
 }
 
-function head(string $slug, string $title, string $desc, bool $noindex = false): string
+function head(string $slug, string $title, string $desc, bool $noindex = false, string $extra = ''): string
 {
     $lang = cur_lang();
     $A = asset_prefix();
@@ -125,6 +125,7 @@ function head(string $slug, string $title, string $desc, bool $noindex = false):
     $d = attr(plain($desc));
     $ti = h(plain($title));
     $robots = ($noindex || setting('robots_index', '1') !== '1') ? '<meta name="robots" content="noindex,nofollow">' . "\n" : '';
+    $verify = (seo('seo_gsc') !== '' ? '<meta name="google-site-verification" content="' . h(seo('seo_gsc')) . '">' . "\n" : '') . (seo('seo_bing') !== '' ? '<meta name="msvalidate.01" content="' . h(seo('seo_bing')) . '">' . "\n" : '');
     $themeScript = $switcher
         ? "<script>try{var s=new URLSearchParams(location.search).get('theme')||localStorage.getItem('uzman-theme');if(['noir','bordeaux','emerald','twotone','inverse'].indexOf(s)>-1)document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>\n"
         : '';
@@ -143,13 +144,16 @@ function head(string $slug, string $title, string $desc, bool $noindex = false):
 <meta property="og:site_name" content="' . h(setting('site_name', 'Uzman Cosmetic')) . '">
 <meta property="og:title" content="' . $ti . '">
 <meta property="og:description" content="' . $d . '">
-<meta property="og:image" content="' . $site . 'assets/img/og.jpg">
+<meta property="og:image" content="' . h(abs_url(seo('seo_og_image') ?: 'assets/img/og.jpg')) . '">
+<meta property="og:url" content="' . $canon . '">
 <meta property="og:locale" content="' . $lang . '">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="' . $ti . '">
+<meta name="twitter:image" content="' . h(abs_url(seo('seo_og_image') ?: 'assets/img/og.jpg')) . '">
 <link rel="icon" type="image/png" href="' . $A . 'assets/img/favicon.png">
 <link rel="apple-touch-icon" href="' . $A . 'assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="' . $A . 'assets/css/style.css?v=' . UZ_VERSION . '">
-' . $themeScript . '</head>
+' . $verify . $themeScript . $extra . '</head>
 <body data-page="' . h($slug) . '">
 <a class="skip" href="#main">' . t('skip') . '</a>
 <div class="progress" aria-hidden="true"></div>
@@ -308,11 +312,11 @@ function steps_html(): string
     return '<div class="steps">' . $rows . '</div>';
 }
 
-function fan_html(array $paths, bool $eager = false): string
+function fan_html(array $paths, string $alt = '', bool $eager = false): string
 {
     $imgs = '';
     foreach (array_values($paths) as $i => $p) {
-        $imgs .= '<span class="f' . ($i + 1) . '">' . picture($p, '', '', $eager) . '</span>';
+        $imgs .= '<span class="f' . ($i + 1) . '">' . picture($p, $i === 0 ? plain($alt) : '', '', $eager) . '</span>';
     }
     return '<div class="fan">' . $imgs . '</div>';
 }
@@ -379,7 +383,7 @@ function page_index(): string
     $cards = '';
     foreach (catalog() as $i => $c) {
         $names = implode(' · ', array_map(function ($s) { return ml(jd($s['name'])); }, $c['subs']));
-        $cards .= '<a href="' . h(u($c['page'])) . '" class="coll rv" style="--d:' . number_format($i * .12, 2) . 's">' . fan_html(setting_fan($c['slug'] === 'home' ? 'fan_home' : 'fan_body'))
+        $cards .= '<a href="' . h(u($c['page'])) . '" class="coll rv" style="--d:' . number_format($i * .12, 2) . 's">' . fan_html(setting_fan($c['slug'] === 'home' ? 'fan_home' : 'fan_body'), ml(jd($c['name'])))
             . '<h3>' . ml(jd($c['name'])) . '</h3><p>' . $names . '</p><span class="link-arrow more">' . t('explore') . ' <i class="arrow"></i></span></a>';
     }
     $slides = rows('SELECT * FROM hero_slides WHERE active = 1 ORDER BY sort, id');
@@ -445,7 +449,7 @@ function page_index(): string
 </div></section>
 
 <section class="section band has-vbg">' . vbg('line', '.5') . '<div class="wrap split">
-  <div class="split-media rv">' . fan_html(setting_fan('fan_pw')) . '<span class="cap">' . t('pw_cap') . '</span></div>
+  <div class="split-media rv">' . fan_html(setting_fan('fan_pw'), t('pw_cap')) . '<span class="cap">' . t('pw_cap') . '</span></div>
   <div class="rv" style="--d:.1s">
     <h2>' . t('pw_h2') . '</h2>
     <p class="lead">' . t('pw_lead') . '</p>
@@ -489,7 +493,7 @@ function tree_card(array $cat, int $idx): string
         $sz = ml_sizes((string)$s['sizes']);
         $rows .= '<li><a href="' . h(u($cat['page'])) . '#' . h($s['slug']) . '"><span class="nm">' . ml(jd($s['name'])) . '</span><span class="sz">' . ($sz ? bdi($sz) : '') . '</span></a>' . $leaf . '</li>';
     }
-    return '<article class="tree rv" style="--d:' . number_format($idx * .12, 2) . 's">' . fan_html(setting_fan($cat['slug'] === 'home' ? 'fan_home' : 'fan_body')) . '
+    return '<article class="tree rv" style="--d:' . number_format($idx * .12, 2) . 's">' . fan_html(setting_fan($cat['slug'] === 'home' ? 'fan_home' : 'fan_body'), ml(jd($cat['name']))) . '
   <header><h2><a href="' . h(u($cat['page'])) . '">' . ml(jd($cat['name'])) . '</a></h2></header>
   <ul class="branch">' . $rows . '</ul>
   <a href="' . h(u($cat['page'])) . '" class="link-arrow">' . t('explore') . ' <i class="arrow"></i></a>
@@ -585,7 +589,7 @@ function page_about(): string
       <div class="tl"><div class="yr">' . t('tl_today') . '</div><p>' . t('tl3') . '</p></div>
     </div>
   </div>
-  <div class="split-media rv" style="--d:.1s">' . fan_html(setting_fan('fan_about')) . '<span class="cap">' . t('ab_caption') . '</span></div>
+  <div class="split-media rv" style="--d:.1s">' . fan_html(setting_fan('fan_about'), t('ab_caption')) . '<span class="cap">' . t('ab_caption') . '</span></div>
 </div></section>
 ' . values_html(true) . '
 <section class="section"><div class="wrap">
@@ -770,5 +774,5 @@ function render_page(string $lang, string $slug): array
             $title = ml($tt);
         }
     }
-    return [200, head($slug, $title, $desc) . header_html($slug) . $body . footer_html()];
+    return [200, head($slug, $title, $desc, (int)($page['noindex'] ?? 0) === 1, seo_jsonld_tag($slug, $lang, $page, $title, $desc)) . header_html($slug) . $body . footer_html()];
 }

@@ -23,6 +23,7 @@ if (!is_installed()) {
     exit;
 }
 
+maybe_upgrade();
 start_session();
 if ($a === 'logout') {
     $_SESSION = [];
@@ -45,11 +46,13 @@ $routes = [
     'tubes' => ['lists.php', 'admin_tubes'], 'hero' => ['lists.php', 'admin_hero'], 'docs' => ['lists.php', 'admin_docs'],
     'media' => ['media.php', 'admin_media'], 'media_json' => ['media.php', 'admin_media_json'], 'upload' => ['media.php', 'admin_upload'],
     'subs' => ['subs.php', 'admin_subs'], 'sub_view' => ['subs.php', 'admin_sub_view'], 'subs_csv' => ['subs.php', 'admin_subs_csv'],
+    'seo' => ['seo.php', 'admin_seo'], 'seo_pages' => ['seo.php', 'admin_seo_pages'], 'seo_settings' => ['seo.php', 'admin_seo_settings'], 'seo_preview' => ['seo.php', 'admin_seo_preview'],
     'settings' => ['settings.php', 'admin_settings'], 'users' => ['users.php', 'admin_users'], 'tools' => ['users.php', 'admin_tools'], 'backup' => ['users.php', 'admin_backup'],
 ];
 if (!isset($routes[$a])) {
     http_response_code(404);
     $a = 'dash';
 }
+require_once UZ_APP . '/view.php';
 require UZ_APP . '/admin/' . $routes[$a][0];
 $routes[$a][1]();

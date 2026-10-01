@@ -15,6 +15,8 @@ if (preg_match('#^/(app|data|tools|build)(/|$)#', $path)) { http_response_code(4
 $_SERVER['SCRIPT_NAME'] = $prefix . '/index.php';
 if ($path === '/sitemap.xml') { $_GET['x'] = 'sitemap'; }
 elseif ($path === '/robots.txt') { $_GET['x'] = 'robots'; }
+elseif ($path === '/llms.txt') { $_GET['x'] = 'llms'; }
+elseif ($path === '/llms-full.txt') { $_GET['x'] = 'llmsfull'; }
 elseif (preg_match('#^/(en|fr|ar|ru)/?$#', $path, $m)) { $_GET['l'] = $m[1]; $_GET['p'] = 'index'; }
 elseif (preg_match('#^/(en|fr|ar|ru)/([a-z0-9-]+)\.html$#', $path, $m)) { $_GET['l'] = $m[1]; $_GET['p'] = $m[2]; }
 elseif (preg_match('#^/([a-z0-9-]+)\.html$#', $path, $m)) { $_GET['l'] = 'tr'; $_GET['p'] = $m[1]; }

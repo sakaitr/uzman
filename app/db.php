@@ -51,7 +51,7 @@ function migrate(): void
         id INTEGER PRIMARY KEY AUTOINCREMENT, slug TEXT NOT NULL UNIQUE, type TEXT NOT NULL DEFAULT 'custom',
         status INTEGER NOT NULL DEFAULT 1, in_nav INTEGER NOT NULL DEFAULT 0, in_footer INTEGER NOT NULL DEFAULT 0, sort INTEGER NOT NULL DEFAULT 100,
         title TEXT NOT NULL DEFAULT '{}', meta TEXT NOT NULL DEFAULT '{}', h1 TEXT NOT NULL DEFAULT '{}', lead TEXT NOT NULL DEFAULT '{}',
-        cta INTEGER NOT NULL DEFAULT 1, blocks TEXT NOT NULL DEFAULT '[]', updated_at TEXT
+        cta INTEGER NOT NULL DEFAULT 1, blocks TEXT NOT NULL DEFAULT '[]', updated_at TEXT, noindex INTEGER NOT NULL DEFAULT 0
     );
     CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY AUTOINCREMENT, slug TEXT NOT NULL UNIQUE, page TEXT NOT NULL, name TEXT NOT NULL DEFAULT '{}', sort INTEGER NOT NULL DEFAULT 0);
     CREATE TABLE IF NOT EXISTS subcats (
@@ -74,9 +74,43 @@ function migrate(): void
     );
     CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL UNIQUE, name TEXT NOT NULL DEFAULT '', pass_hash TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'admin', created_at TEXT, last_login TEXT);
     CREATE TABLE IF NOT EXISTS throttle (id INTEGER PRIMARY KEY AUTOINCREMENT, kind TEXT NOT NULL, ip TEXT NOT NULL, ts INTEGER NOT NULL);
+    CREATE TABLE IF NOT EXISTS seo_audits (id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT NOT NULL, score INTEGER NOT NULL, data TEXT NOT NULL);
     CREATE INDEX IF NOT EXISTS idx_throttle ON throttle(kind, ip, ts);
     CREATE INDEX IF NOT EXISTS idx_items_sub ON items(sub_id, sort);
     ");
+}
+
+const SCHEMA_VERSION = 2;
+
+/** Default SEO/GEO values for a fresh install of THIS site (client-specific; replace in seed for another client). */
+function seo_seed_defaults(): array
+{
+    return [
+        'seo_org_name' => 'Uzman Cosmetic', 'seo_legal' => 'Uzman Kozmetik Kimya San. ve Dış Tic. Ltd. Şti.', 'seo_logo' => 'assets/img/apple-touch-icon.png', 'seo_founded' => '1978',
+        'seo_street' => 'Şekerpınar Mh. Özbek Sk. No:4', 'seo_city' => 'Çayırova', 'seo_region' => 'Kocaeli', 'seo_country' => 'TR',
+        'seo_knows' => "Private label cosmetics manufacturing\nAerosol deodorant\nBody mist\nEau de parfum\nRoom freshener\nReed diffuser\nAluminium aerosol bottles",
+        'seo_llms_lang' => 'en',
+    ];
+}
+
+/** Idempotent schema upgrades for already-installed sites (run on every request, cheap when current). */
+function maybe_upgrade(): void
+{
+    if ((int)setting('schema_version', '1') >= SCHEMA_VERSION) {
+        return;
+    }
+    $pdo = db();
+    $cols = array_column($pdo->query('PRAGMA table_info(pages)')->fetchAll(), 'name');
+    if (!in_array('noindex', $cols, true)) {
+        $pdo->exec('ALTER TABLE pages ADD COLUMN noindex INTEGER NOT NULL DEFAULT 0');
+    }
+    $pdo->exec('CREATE TABLE IF NOT EXISTS seo_audits (id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT NOT NULL, score INTEGER NOT NULL, data TEXT NOT NULL)');
+    $st = $pdo->prepare('INSERT OR IGNORE INTO settings(k, v) VALUES(?,?)');
+    foreach (seo_seed_defaults() as $k => $v) {
+        $st->execute([$k, $v]);
+    }
+    set_setting('schema_version', (string)SCHEMA_VERSION);
+    cache_clear();
 }
 
 /** Import design content from app/seed/seed.json (only into empty tables). */
@@ -154,8 +188,8 @@ function seed_import(): void
             'site_url' => '', 'theme' => 'noir', 'theme_switcher' => '0', 'notify_email' => 'info@uzmancosmetic.com',
             'smtp_host' => '', 'smtp_port' => '587', 'smtp_user' => '', 'smtp_pass' => '', 'smtp_secure' => 'tls', 'mail_from' => '',
             'fan_body' => je($d['fan']['body']), 'fan_home' => je($d['fan']['home']), 'fan_pw' => je($d['pw_fan']), 'fan_about' => je($d['about_fan']),
-            'hero_video' => '1', 'robots_index' => '1',
-        ];
+            'hero_video' => '1', 'robots_index' => '1', 'schema_version' => (string)SCHEMA_VERSION,
+        ] + seo_seed_defaults();
         $st = $pdo->prepare('INSERT OR IGNORE INTO settings(k,v) VALUES(?,?)');
         foreach ($defaults as $k => $v) {
             $st->execute([$k, (string)$v]);

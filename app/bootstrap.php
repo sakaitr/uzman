@@ -24,6 +24,7 @@ mb_internal_encoding('UTF-8');
 
 require_once UZ_APP . '/helpers.php';
 require_once UZ_APP . '/db.php';
+require_once UZ_APP . '/seo.php';
 
 /** Data directory (database, cache, logs). Can be moved outside the web root through data/config.php => 'data_dir'. */
 function data_dir(): string

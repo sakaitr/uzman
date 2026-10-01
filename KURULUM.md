@@ -36,9 +36,17 @@ Dağıtım `data/` (veritabanı) ve `uploads/` (yüklemeler) klasörlerine dokun
 | Belgeler | Sertifika / belge galerisi (görsel + PDF) |
 | Medya | Yüklemeler (otomatik WebP + küçültme) |
 | Başvurular | İletişim formundan gelen teklif/numune talepleri, durum, CSV |
+| SEO & GEO | **Skor (0–100) + öncelikli öneriler**, sayfa bazlı durum, yapısal veri (JSON-LD), adres/koordinat, `robots.txt` (yapay zekâ botlarına izin), `llms.txt`, doğrulama kodları, çıktı önizlemesi |
 | Ayarlar / Kullanıcılar / Araçlar | İletişim, tema, SMTP, SEO; kullanıcılar; önbellek, **yedek**, sistem bilgisi |
 
 Her kayıtta sayfa önbelleği otomatik temizlenir.
+
+## SEO & GEO modülü
+Panel → **SEO & GEO**. "Yeniden tara" tüm yayındaki sayfaları 5 dilde üretip 35 kontrol yapar (Teknik SEO, İçerik, GEO — yapay zekâ aramaları, Coğrafi/yerel) ve skorla birlikte iyileştirme önerilerini etki sırasına dizer. Hiçbir veri dışarı gönderilmez.
+Ayarlar sekmesindeki bilgilerden her sayfaya JSON-LD (Organization, WebSite, BreadcrumbList, WebPage/FAQPage, ItemList), `/robots.txt`, `/llms.txt`, `/llms-full.txt` ve `sitemap.xml` otomatik üretilir.
+
+## Güncelleme (mevcut kurulum)
+Yeni sürümün dosyalarını aynı klasöre çıkarın (`data/` ve `uploads/` korunur). Veritabanı ilk istekte kendini yükseltir (`schema_version`); elle bir şey yapmanız gerekmez.
 
 ## Güvenlik notları
 - Şifreler `password_hash` ile saklanır; giriş denemeleri sınırlıdır; tüm formlarda CSRF koruması vardır.

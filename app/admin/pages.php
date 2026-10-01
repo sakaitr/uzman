@@ -72,11 +72,11 @@ function admin_page_edit(): void
                 $slug = $ns;
             }
         }
-        q('UPDATE pages SET slug=?, status=?, in_nav=?, in_footer=?, sort=?, title=?, meta=?, h1=?, lead=?, cta=?, blocks=?, updated_at=? WHERE id=?', [
+        q('UPDATE pages SET slug=?, status=?, in_nav=?, in_footer=?, sort=?, title=?, meta=?, h1=?, lead=?, cta=?, blocks=?, updated_at=?, noindex=? WHERE id=?', [
             $slug, (int)($_POST['status'] ?? 0), (int)($_POST['in_nav'] ?? 0), max(0, min(2, (int)($_POST['in_footer'] ?? 0))), (int)($_POST['sort'] ?? 100),
             je(post_ml('title', false)), je(post_ml('meta', false)),
             $custom ? je(post_ml('h1')) : $p['h1'], $custom ? je(post_ml('lead')) : $p['lead'], $custom ? (int)($_POST['cta'] ?? 0) : $p['cta'],
-            $custom ? je(parse_blocks()) : $p['blocks'], date('Y-m-d H:i:s'), $p['id'],
+            $custom ? je(parse_blocks()) : $p['blocks'], date('Y-m-d H:i:s'), (int)($_POST['noindex'] ?? 0), $p['id'],
         ]);
         when_saved();
         flash('Sayfa kaydedildi.');
@@ -95,7 +95,9 @@ function admin_page_edit(): void
     }
     echo '</div><div class="card"><h2>Arama motoru (SEO)</h2>'
         . ml_input('title', jd($p['title']), $custom ? 'Sayfa başlığı (menüde ve sekmede görünür)' : 'Sekme başlığı (boş bırakılırsa varsayılan kullanılır)', 'input', $custom)
-        . ml_input('meta', jd($p['meta']), 'Meta açıklama (≈150 karakter)', 'area', false) . '</div>';
+        . ml_input('meta', jd($p['meta']), 'Meta açıklama (≈150 karakter)', 'area', false)
+        . '<div class="field" style="max-width:320px"><label class="l">Arama motorlarında</label><select name="noindex"><option value="0"' . (!$p['noindex'] ? ' selected' : '') . '>Dizinlensin</option><option value="1"' . ($p['noindex'] ? ' selected' : '') . '>Dizinlenmesin (noindex)</option></select></div>
+<p class="hint"><a href="' . admin_url('seo_pages') . '">Tüm sayfaların SEO durumu →</a></p></div>';
     if ($custom) {
         echo '<div class="card"><h2>Sayfa üstü</h2>' . ml_input('h1', jd($p['h1']), 'Ana başlık (basit biçim: <em>vurgulu</em> kelime kullanılabilir)', 'input', false) . ml_input('lead', jd($p['lead']), 'Giriş cümlesi', 'area', false)
             . checkbox('cta', (int)$p['cta'] === 1, 'Sayfa sonunda "Teklif al" bandını göster') . '</div>';

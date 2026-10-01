@@ -9,19 +9,31 @@ if (!is_installed()) {
     exit;
 }
 
+maybe_upgrade();
 $x = $_GET['x'] ?? '';
 if ($x === 'robots') {
     header('Content-Type: text/plain; charset=utf-8');
-    echo "User-agent: *\n" . (setting('robots_index', '1') === '1' ? "Disallow: /admin/\nDisallow: /api/\n" : "Disallow: /\n") . 'Sitemap: ' . canonical_base() . "sitemap.xml\n";
+    echo robots_txt();
+    exit;
+}
+if ($x === 'llms' || $x === 'llmsfull') {
+    $on = seo('seo_llms') === '1' && ($x === 'llms' || seo('seo_llms_full') === '1');
+    if (!$on || setting('robots_index', '1') !== '1') {
+        http_response_code(404);
+        exit;
+    }
+    header('Content-Type: text/plain; charset=utf-8');
+    header('Cache-Control: public, max-age=3600');
+    echo $x === 'llms' ? llms_txt() : llms_full_txt();
     exit;
 }
 if ($x === 'sitemap') {
     header('Content-Type: application/xml; charset=utf-8');
     $site = canonical_base();
     echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">' . "\n";
-    foreach (rows('SELECT slug, updated_at FROM pages WHERE status = 1 ORDER BY sort') as $p) {
+    foreach (rows('SELECT slug, updated_at FROM pages WHERE status = 1 AND noindex = 0 ORDER BY sort') as $p) {
         foreach (LANGS as $l) {
-            echo "<url><loc>" . h($site . ($l === DEFAULT_LANG ? '' : $l . '/') . $p['slug'] . '.html') . "</loc>";
+            echo "<url><loc>" . h($site . ($l === DEFAULT_LANG ? '' : $l . '/') . $p['slug'] . '.html') . "</loc>" . ($p['updated_at'] ? '<lastmod>' . date('Y-m-d', (int)strtotime($p['updated_at'])) . '</lastmod>' : '');
             foreach (LANGS as $l2) {
                 echo '<xhtml:link rel="alternate" hreflang="' . $l2 . '" href="' . h($site . ($l2 === DEFAULT_LANG ? '' : $l2 . '/') . $p['slug'] . '.html') . '"/>';
             }

@@ -22,7 +22,7 @@ function ahead(string $title, string $active = '', string $sub = ''): void
     $u = admin_user();
     $items = [
         ['dash', 'Panel'], ['pages', 'Sayfalar'], ['strings', 'Site metinleri'], ['catalog', 'Ürünler'], ['tubes', 'Private Label tüpler'],
-        ['hero', 'Ana sayfa slider'], ['docs', 'Belgeler / sertifikalar'], ['media', 'Medya'], ['subs', 'Başvurular'], ['sep'], ['settings', 'Ayarlar'], ['users', 'Kullanıcılar'], ['tools', 'Araçlar'],
+        ['hero', 'Ana sayfa slider'], ['docs', 'Belgeler / sertifikalar'], ['media', 'Medya'], ['subs', 'Başvurular'], ['seo', 'SEO & GEO'], ['sep'], ['settings', 'Ayarlar'], ['users', 'Kullanıcılar'], ['tools', 'Araçlar'],
     ];
     $n = new_submissions();
     echo '<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
