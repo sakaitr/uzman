@@ -34,12 +34,19 @@ if ($name === '' || $company === '' || $phone === '' || !filter_var($email, FILT
     json_out(['ok' => false, 'error' => 'invalid'], 422);
 }
 throttle_hit('quote');
-q('INSERT INTO submissions(created_at, lang, name, company, email, phone, category, market, qty, brief, ip, ua) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',
-    [date('Y-m-d H:i:s'), $lang, $name, $company, $email, $phone, $category, $market, $qty, $brief, client_ip(), mb_substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 250)]);
+$at = function (string $k, int $n = 80): string {
+    return mb_substr(preg_replace('/[^\p{L}\p{N}_.\-: \/]/u', '', (string)($_POST[$k] ?? '')), 0, $n);
+};
+$cid = in_array($_POST['a_cid'] ?? '', ['gclid', 'fbclid', 'msclkid'], true) ? $_POST['a_cid'] : '';
+$refHost = strtolower(preg_replace('/[^a-z0-9.\-]/i', '', (string)($_POST['a_ref'] ?? '')));
+[$channel] = classify_channel($at('a_medium'), $at('a_source'), $cid, $refHost, (string)preg_replace('/:\d+$/', '', $_SERVER['HTTP_HOST'] ?? ''));
+q('INSERT INTO submissions(created_at, lang, name, company, email, phone, category, market, qty, brief, ip, ua, utm_source, utm_medium, utm_campaign, utm_term, utm_content, click_id, ref_host, landing, channel) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+    [date('Y-m-d H:i:s'), $lang, $name, $company, $email, $phone, $category, $market, $qty, $brief, client_ip(), mb_substr((string)($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 250),
+     $at('a_source'), $at('a_medium'), $at('a_campaign', 60), $at('a_term', 100), $at('a_content', 100), $cid, $refHost, $at('a_landing', 120), $channel]);
 $id = (int)db()->lastInsertId();
 
 $to = trim((string)setting('notify_email')) ?: (string)setting('email');
-$body = "Yeni teklif / numune talebi (#$id)\n\nAd Soyad : $name\nFirma    : $company\nE-posta  : $email\nTelefon  : $phone\nKategori : $category\nPazar    : $market\nAdet     : $qty\nDil      : $lang\n\nProje:\n$brief\n\n— uzmancosmetic web sitesi";
+$body = "Yeni teklif / numune talebi (#$id)\n\nAd Soyad : $name\nFirma    : $company\nE-posta  : $email\nTelefon  : $phone\nKategori : $category\nPazar    : $market\nAdet     : $qty\nDil      : $lang\nKaynak   : " . ($channel ?: 'direct') . ($at('a_campaign') !== '' ? ' / ' . $at('a_campaign') : '') . "\n\nProje:\n$brief\n\n— uzmancosmetic web sitesi";
 [$ok, $err] = $to !== '' ? mail_send($to, "Yeni talep: $company — $name", $body, $email) : [false, 'alıcı yok'];
 q('UPDATE submissions SET mail_ok = ?, note = ? WHERE id = ?', [$ok ? 1 : 0, $ok ? '' : mb_substr($err, 0, 300), $id]);
 json_out(['ok' => true]);

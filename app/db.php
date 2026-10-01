@@ -78,9 +78,10 @@ function migrate(): void
     CREATE INDEX IF NOT EXISTS idx_throttle ON throttle(kind, ip, ts);
     CREATE INDEX IF NOT EXISTS idx_items_sub ON items(sub_id, sort);
     ");
+    upgrade_steps();
 }
 
-const SCHEMA_VERSION = 2;
+const SCHEMA_VERSION = 3;
 
 /** Default SEO/GEO values for a fresh install of THIS site (client-specific; replace in seed for another client). */
 function seo_seed_defaults(): array
@@ -93,19 +94,67 @@ function seo_seed_defaults(): array
     ];
 }
 
-/** Idempotent schema upgrades for already-installed sites (run on every request, cheap when current). */
+/** All idempotent schema steps (fresh installs and upgrades share them). */
+function upgrade_steps(): void
+{
+    $pdo = db();
+    $has = function (string $table, string $col) use ($pdo): bool {
+        return in_array($col, array_column($pdo->query('PRAGMA table_info(' . $table . ')')->fetchAll(), 'name'), true);
+    };
+    if (!$has('pages', 'noindex')) {
+        $pdo->exec('ALTER TABLE pages ADD COLUMN noindex INTEGER NOT NULL DEFAULT 0');
+    }
+    $pdo->exec('CREATE TABLE IF NOT EXISTS seo_audits (id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT NOT NULL, score INTEGER NOT NULL, data TEXT NOT NULL)');
+    // v3: growth hub (actions, ads, first-party traffic + attribution)
+    foreach (['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'click_id', 'ref_host', 'landing', 'channel'] as $c) {
+        if (!$has('submissions', $c)) {
+            $pdo->exec('ALTER TABLE submissions ADD COLUMN ' . $c . " TEXT NOT NULL DEFAULT ''");
+        }
+    }
+    $pdo->exec("
+    CREATE TABLE IF NOT EXISTS growth_actions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, channel TEXT NOT NULL DEFAULT 'seo', priority TEXT NOT NULL DEFAULT 'med', impact TEXT NOT NULL DEFAULT 'med', effort TEXT NOT NULL DEFAULT 'med',
+        status TEXT NOT NULL DEFAULT 'todo', due TEXT NOT NULL DEFAULT '', owner TEXT NOT NULL DEFAULT '', why TEXT NOT NULL DEFAULT '', steps TEXT NOT NULL DEFAULT '', notes TEXT NOT NULL DEFAULT '', result TEXT NOT NULL DEFAULT '',
+        source TEXT NOT NULL DEFAULT '', campaign_id INTEGER, created_at TEXT, updated_at TEXT, done_at TEXT
+    );
+    CREATE TABLE IF NOT EXISTS growth_log (id INTEGER PRIMARY KEY AUTOINCREMENT, action_id INTEGER NOT NULL REFERENCES growth_actions(id) ON DELETE CASCADE, ts TEXT NOT NULL, who TEXT NOT NULL DEFAULT '', text TEXT NOT NULL DEFAULT '');
+    CREATE TABLE IF NOT EXISTS campaigns (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, platform TEXT NOT NULL DEFAULT 'google', name TEXT NOT NULL, slug TEXT NOT NULL UNIQUE, objective TEXT NOT NULL DEFAULT '', status TEXT NOT NULL DEFAULT 'draft',
+        start TEXT NOT NULL DEFAULT '', end TEXT NOT NULL DEFAULT '', budget REAL NOT NULL DEFAULT 0, landing TEXT NOT NULL DEFAULT 'index', notes TEXT NOT NULL DEFAULT '', created_at TEXT
+    );
+    CREATE TABLE IF NOT EXISTS campaign_metrics (id INTEGER PRIMARY KEY AUTOINCREMENT, campaign_id INTEGER NOT NULL REFERENCES campaigns(id) ON DELETE CASCADE, from_date TEXT NOT NULL, to_date TEXT NOT NULL,
+        spend REAL NOT NULL DEFAULT 0, impressions INTEGER NOT NULL DEFAULT 0, clicks INTEGER NOT NULL DEFAULT 0, conversions INTEGER NOT NULL DEFAULT 0, note TEXT NOT NULL DEFAULT '');
+    CREATE TABLE IF NOT EXISTS visits (day TEXT NOT NULL, slug TEXT NOT NULL, lang TEXT NOT NULL, channel TEXT NOT NULL, source TEXT NOT NULL DEFAULT '', sessions INTEGER NOT NULL DEFAULT 0, views INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (day, slug, lang, channel, source));
+    CREATE INDEX IF NOT EXISTS idx_visits_day ON visits(day);
+    CREATE INDEX IF NOT EXISTS idx_sub_created ON submissions(created_at);
+    ");
+}
+
+/** Add strings that exist in seed.json but not yet in the database (never overwrites edited text). */
+function sync_new_strings(): void
+{
+    $f = UZ_APP . '/seed/seed.json';
+    if (!is_file($f)) {
+        return;
+    }
+    $d = json_decode((string)file_get_contents($f), true);
+    $st = db()->prepare('INSERT OR IGNORE INTO strings(k, lang, v) VALUES(?,?,?)');
+    foreach ($d['strings'] ?? [] as $k => $langs) {
+        foreach ($langs as $l => $v) {
+            $st->execute([$k, $l, $v]);
+        }
+    }
+}
+
+/** Schema upgrades for already-installed sites (run on every request, cheap when current). */
 function maybe_upgrade(): void
 {
     if ((int)setting('schema_version', '1') >= SCHEMA_VERSION) {
         return;
     }
-    $pdo = db();
-    $cols = array_column($pdo->query('PRAGMA table_info(pages)')->fetchAll(), 'name');
-    if (!in_array('noindex', $cols, true)) {
-        $pdo->exec('ALTER TABLE pages ADD COLUMN noindex INTEGER NOT NULL DEFAULT 0');
-    }
-    $pdo->exec('CREATE TABLE IF NOT EXISTS seo_audits (id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT NOT NULL, score INTEGER NOT NULL, data TEXT NOT NULL)');
-    $st = $pdo->prepare('INSERT OR IGNORE INTO settings(k, v) VALUES(?,?)');
+    upgrade_steps();
+    sync_new_strings();
+    $st = db()->prepare('INSERT OR IGNORE INTO settings(k, v) VALUES(?, ?)');
     foreach (seo_seed_defaults() as $k => $v) {
         $st->execute([$k, $v]);
     }

@@ -32,6 +32,24 @@ EXTRA_STRINGS = {
     "download": ml("İndir", "Download", "Télécharger", "تحميل", "Скачать"),
 }
 
+EXTRA_STRINGS.update({
+    "trk_title": ml("Çerez ve ölçüm tercihleri", "Cookie and measurement preferences", "Préférences cookies et mesure", "تفضيلات ملفات تعريف الارتباط والقياس", "Настройки cookie и аналитики"),
+    "trk_text": ml("Siteyi geliştirmek ve reklam performansını ölçmek için, onayınızla analiz ve reklam çerezleri kullanırız. Reddederseniz site sorunsuz çalışmaya devam eder.",
+                   "With your consent we use analytics and advertising cookies to improve the site and measure ad performance. If you decline, the site keeps working normally.",
+                   "Avec votre accord, nous utilisons des cookies d'analyse et publicitaires pour améliorer le site et mesurer les publicités. Si vous refusez, le site fonctionne normalement.",
+                   "بموافقتك نستخدم ملفات تعريف الارتباط التحليلية والإعلانية لتحسين الموقع وقياس أداء الإعلانات. وإذا رفضت يستمر الموقع بالعمل بشكل طبيعي.",
+                   "С вашего согласия мы используем аналитические и рекламные cookie, чтобы улучшать сайт и измерять эффективность рекламы. Если вы откажетесь, сайт продолжит работать как обычно."),
+    "trk_accept": ml("Kabul et", "Accept", "Accepter", "قبول", "Принять"),
+    "trk_reject": ml("Reddet", "Decline", "Refuser", "رفض", "Отклонить"),
+    "trk_more": ml("Ayrıntılar", "Details", "Détails", "التفاصيل", "Подробнее"),
+    "trk_privacy": ml("Bu site, siz onay verirseniz Google Analytics / Google Ads / Meta Pixel gibi analiz ve reklam çerezlerini kullanır. Onayınızı çerez bandından istediğiniz zaman değiştirebilir veya tarayıcınızdan çerezleri silebilirsiniz.",
+                      "If you consent, this site uses analytics and advertising cookies such as Google Analytics, Google Ads and Meta Pixel. You can change your choice at any time or delete cookies in your browser.",
+                      "Avec votre consentement, ce site utilise des cookies d'analyse et publicitaires (Google Analytics, Google Ads, Meta Pixel). Vous pouvez modifier votre choix à tout moment ou supprimer les cookies dans votre navigateur.",
+                      "بموافقتك يستخدم هذا الموقع ملفات تعريف ارتباط تحليلية وإعلانية مثل Google Analytics وGoogle Ads وMeta Pixel. يمكنك تغيير اختيارك في أي وقت أو حذف الملفات من متصفحك.",
+                      "С вашего согласия сайт использует аналитические и рекламные cookie (Google Analytics, Google Ads, Meta Pixel). Вы можете изменить выбор в любой момент или удалить cookie в браузере."),
+    "trk_change": ml("Çerez tercihlerini değiştir", "Change cookie preferences", "Modifier les préférences cookies", "تغيير تفضيلات الكوكيز", "Изменить настройки cookie"),
+})
+
 PAGES = {}
 
 PAGES["process"] = dict(
@@ -232,10 +250,10 @@ PAGES["privacy"] = dict(
                      "تُحفظ بياناتك للمدة التي يتطلبها طلبك. وبموجب المادة 11 من القانون التركي رقم 6698 (KVKK) يمكنك طلب الاطلاع أو التصحيح أو الحذف بمراسلة info@uzmancosmetic.com.",
                      "Ваши данные хранятся столько, сколько требует запрос. В соответствии со статьёй 11 закона Турции № 6698 (KVKK) вы можете запросить доступ, исправление или удаление, написав на info@uzmancosmetic.com.")),
         dict(type="text", band=0, title=ml("Çerezler", "Cookies", "Cookies", "ملفات تعريف الارتباط", "Файлы cookie"),
-             body=ml("Bu site analiz veya reklam çerezi kullanmaz. Yalnızca seçtiğiniz renk temasını tarayıcınızda saklamak için yerel depolama kullanılabilir.",
-                     "This site does not use analytics or advertising cookies. Local storage may be used only to remember the colour theme you choose in your browser.",
-                     "Ce site n'utilise ni cookies d'analyse ni cookies publicitaires. Le stockage local peut servir uniquement à mémoriser le thème de couleur choisi dans votre navigateur.",
-                     "لا يستخدم هذا الموقع ملفات تعريف ارتباط للتحليلات أو الإعلانات. قد يُستخدم التخزين المحلي فقط لحفظ سمة الألوان التي تختارها في متصفحك.",
-                     "Этот сайт не использует аналитические или рекламные cookie. Локальное хранилище может использоваться только для сохранения выбранной цветовой темы в вашем браузере.")),
+             body=ml("Ziyaret sayısı, çerez kullanılmadan ve kişisel veri içermeyen toplu sayaçlarla ölçülür. Tarayıcınızda yalnızca tercihleriniz (ör. çerez onayı, renk teması) saklanabilir. Analiz veya reklam araçları etkinleştirilirse yalnızca onayınızla çalışır.",
+                     "Visits are measured without cookies, using aggregate counters that contain no personal data. Only your preferences (e.g. cookie choice, colour theme) may be stored in your browser. If analytics or advertising tools are enabled, they run only with your consent.",
+                     "Les visites sont mesurées sans cookies, via des compteurs agrégés sans donnée personnelle. Seules vos préférences (choix des cookies, thème de couleur) peuvent être mémorisées dans votre navigateur. Si des outils d'analyse ou de publicité sont activés, ils ne fonctionnent qu'avec votre accord.",
+                     "تُقاس الزيارات دون ملفات تعريف ارتباط وبعدّادات مجمّعة لا تحتوي بيانات شخصية. قد تُحفظ في متصفحك تفضيلاتك فقط (مثل خيار الكوكيز وسمة الألوان). وإذا فُعّلت أدوات التحليل أو الإعلان فلا تعمل إلا بموافقتك.",
+                     "Посещения измеряются без cookie, агрегированными счётчиками без персональных данных. В браузере могут храниться только ваши настройки (выбор cookie, цветовая тема). Если включены аналитические или рекламные инструменты, они работают только с вашего согласия.")),
     ],
 )

@@ -17,8 +17,10 @@ function admin_dash(): void
         }
     }
     $audit = audit_last();
+    $openA = (int)val("SELECT COUNT(*) FROM growth_actions WHERE status IN ('todo','doing')");
     $items = [
         [$audit && $audit['score'] >= 75, 'SEO & GEO skoru', $audit ? 'Son skor ' . $audit['score'] . '/100 (' . h($audit['ts']) . '). ' . count($audit['recs']) . ' öneri bekliyor.' : 'Henüz taranmadı; SEO & GEO sayfasından ilk taramayı başlatın.', 'seo'],
+        [(int)val('SELECT COUNT(*) FROM visits') > 0, 'Ziyaret ölçümü ve büyüme aksiyonları', (int)val('SELECT COUNT(*) FROM visits') > 0 ? $openA . ' açık aksiyon bekliyor.' : 'Ziyaret verisi henüz gelmedi; İzleme ve otomasyon sayfasını kontrol edin.', 'growth'],
         [$docsN > 0, 'Belgeler / sertifikalar', $docsN > 0 ? $docsN . ' belge yayında.' : 'Henüz belge eklenmedi; Kalite sayfası "talep üzerine paylaşılır" notunu gösteriyor. (Eski sitedeki tek sertifika 2012–2015 tarihli ISO 14001:2004 idi; güncel belgelerinizi ekleyin.)', 'docs'],
         [trim((string)setting('whatsapp')) !== '', 'WhatsApp numarası', trim((string)setting('whatsapp')) !== '' ? 'Sağ altta WhatsApp butonu görünüyor.' : 'Girilirse sitede yüzen WhatsApp butonu çıkar (ülke koduyla, örn. 905551112233).', 'settings'],
         [trim((string)setting('smtp_host')) !== '', 'E-posta bildirimi (SMTP)', trim((string)setting('smtp_host')) !== '' ? 'SMTP tanımlı.' : 'Şu an PHP mail() kullanılıyor; teslimat için cPanel e-posta hesabıyla SMTP tanımlamanız önerilir.', 'settings'],

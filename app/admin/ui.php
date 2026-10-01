@@ -22,7 +22,7 @@ function ahead(string $title, string $active = '', string $sub = ''): void
     $u = admin_user();
     $items = [
         ['dash', 'Panel'], ['pages', 'Sayfalar'], ['strings', 'Site metinleri'], ['catalog', 'Ürünler'], ['tubes', 'Private Label tüpler'],
-        ['hero', 'Ana sayfa slider'], ['docs', 'Belgeler / sertifikalar'], ['media', 'Medya'], ['subs', 'Başvurular'], ['seo', 'SEO & GEO'], ['sep'], ['settings', 'Ayarlar'], ['users', 'Kullanıcılar'], ['tools', 'Araçlar'],
+        ['hero', 'Ana sayfa slider'], ['docs', 'Belgeler / sertifikalar'], ['media', 'Medya'], ['subs', 'Başvurular'], ['sep'], ['hdr', 'Büyüme'], ['growth', 'Büyüme panosu'], ['seo', 'SEO & GEO'], ['actions', 'Aksiyonlar'], ['ads', 'Reklamlar'], ['reports', 'Raporlar'], ['tracking', 'İzleme ve otomasyon'], ['sep'], ['settings', 'Ayarlar'], ['users', 'Kullanıcılar'], ['tools', 'Araçlar'],
     ];
     $n = new_submissions();
     echo '<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
@@ -32,6 +32,10 @@ function ahead(string $title, string $active = '', string $sub = ''): void
     foreach ($items as $it) {
         if ($it[0] === 'sep') {
             echo '<div class="sep"></div>';
+            continue;
+        }
+        if ($it[0] === 'hdr') {
+            echo '<div style="padding:4px 12px 6px;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#7f838c">' . h($it[1]) . '</div>';
             continue;
         }
         echo '<a href="' . admin_url($it[0]) . '" class="' . ($active === $it[0] ? 'on' : '') . '">' . h($it[1]) . ($it[0] === 'subs' && $n ? '<span class="badge">' . $n . '</span>' : '') . '</a>';

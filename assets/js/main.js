@@ -149,6 +149,59 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
   }
 
+  /* ---------- Measurement: cookie-less hit beacon, campaign attribution, optional trackers (with consent) ---------- */
+  const cfgEl = document.getElementById('uz-cfg');
+  const CFG = cfgEl ? safe(() => JSON.parse(cfgEl.textContent)) : null;
+  const ATTR_EMPTY = { s: '', m: '', c: '', t: '', x: '', id: '', r: '' };
+  let sess = { ...ATTR_EMPTY, lp: location.pathname }, ft = null, trackLead = () => {};
+  if (CFG) {
+    const qs = new URLSearchParams(location.search);
+    const refHost = safe(() => { const h = new URL(document.referrer).hostname.replace(/^www\./, ''); return h && h !== location.hostname.replace(/^www\./, '') ? h : ''; }) || '';
+    const cur = { s: qs.get('utm_source') || '', m: qs.get('utm_medium') || '', c: qs.get('utm_campaign') || '', t: qs.get('utm_term') || '', x: qs.get('utm_content') || '', id: qs.get('gclid') ? 'gclid' : qs.get('fbclid') ? 'fbclid' : qs.get('msclkid') ? 'msclkid' : '', r: refHost, lp: location.pathname };
+    const signal = !!(cur.s || cur.m || cur.c || cur.id || cur.r);
+    const stored = safe(() => JSON.parse(sessionStorage.getItem('uz-sess')));
+    let isNew = false;
+    if (stored) sess = stored; else { sess = signal ? cur : { ...ATTR_EMPTY, lp: location.pathname }; isNew = true; safe(() => sessionStorage.setItem('uz-sess', JSON.stringify(sess))); }
+    ft = safe(() => JSON.parse(localStorage.getItem('uz-ft')));
+    if (ft && Date.now() - ft.ts > 30 * 864e5) ft = null;
+    if (!ft && signal) { ft = { ...cur, ts: Date.now() }; safe(() => localStorage.setItem('uz-ft', JSON.stringify(ft))); }
+    // privacy-friendly page-view counter (no cookies, no identifiers); respects Do-Not-Track
+    if (CFG.hit && navigator.doNotTrack !== '1' && !safe(() => localStorage.getItem('uz-notrack'))) {
+      const fd = new FormData();
+      fd.append('s', CFG.slug); fd.append('l', CFG.lang); fd.append('n', isNew ? '1' : '0'); fd.append('r', sess.r); fd.append('us', sess.s); fd.append('um', sess.m); fd.append('uc', sess.c); fd.append('c', sess.id);
+      const send = () => { if (!(navigator.sendBeacon && navigator.sendBeacon(CFG.hit, fd))) fetch(CFG.hit, { method: 'POST', body: fd, keepalive: true }).catch(() => {}); };
+      (window.requestIdleCallback || ((f) => setTimeout(f, 1200)))(send);
+    }
+    // optional third-party trackers (GTM / GA4 / Google Ads / Meta Pixel) — started only after consent
+    const hasTrackers = !!(CFG.gtm || CFG.ga4 || CFG.gads || CFG.meta);
+    const loadJs = (src) => { const el = document.createElement('script'); el.async = true; el.src = src; document.head.appendChild(el); };
+    const startTrackers = () => {
+      if (window.__uzTrk) return; window.__uzTrk = 1; window.dataLayer = window.dataLayer || [];
+      if (CFG.gtm) { window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' }); loadJs('https://www.googletagmanager.com/gtm.js?id=' + CFG.gtm); }
+      const gid = CFG.ga4 || CFG.gads;
+      if (gid) { window.gtag = function () { window.dataLayer.push(arguments); }; window.gtag('js', new Date()); if (CFG.ga4) window.gtag('config', CFG.ga4); if (CFG.gads) window.gtag('config', CFG.gads); loadJs('https://www.googletagmanager.com/gtag/js?id=' + gid); }
+      if (CFG.meta) {
+        /* eslint-disable */ !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js'); /* eslint-enable */
+        window.fbq('init', CFG.meta); window.fbq('track', 'PageView');
+      }
+    };
+    trackLead = () => {
+      if (!window.__uzTrk) return;
+      window.dataLayer.push({ event: 'generate_lead' });
+      if (window.gtag) { window.gtag('event', 'generate_lead'); if (CFG.gads && CFG.gadsl) window.gtag('event', 'conversion', { send_to: CFG.gads + '/' + CFG.gadsl }); }
+      if (window.fbq) window.fbq('track', 'Lead');
+    };
+    if (hasTrackers) {
+      const bar = document.getElementById('consentBar');
+      const decided = safe(() => localStorage.getItem('uz-consent'));
+      if (!CFG.consent || decided === 'yes') startTrackers(); else if (bar && !decided) bar.hidden = false;
+      document.querySelectorAll('#consentBar [data-c]').forEach((b) => b.addEventListener('click', () => {
+        safe(() => localStorage.setItem('uz-consent', b.dataset.c)); bar.hidden = true; if (b.dataset.c === 'yes') startTrackers();
+      }));
+      document.querySelectorAll('[data-consent-open]').forEach((b) => b.addEventListener('click', () => { if (bar) bar.hidden = false; }));
+    }
+  }
+
   /* ---------- Forms ---------- */
   document.querySelectorAll('form[data-form]').forEach((form) => {
     const status = form.querySelector('.form-status');
@@ -174,12 +227,16 @@
       const data = new FormData(form);
       data.append('lang', form.dataset.lang || 'tr');
       data.append('elapsed', String(Date.now() - t0));
+      const at = (sess.s || sess.m || sess.c || sess.id || sess.r) ? sess : (ft || sess);
+      data.append('a_source', at.s || ''); data.append('a_medium', at.m || ''); data.append('a_campaign', at.c || ''); data.append('a_term', at.t || ''); data.append('a_content', at.x || '');
+      data.append('a_cid', at.id || ''); data.append('a_ref', at.r || ''); data.append('a_landing', at.lp || location.pathname);
       try {
         data.append('token', await getToken());
         const res = await fetch(form.dataset.action, { method: 'POST', body: data, credentials: 'same-origin' });
         const j = await res.json();
         if (!res.ok || !j.ok) throw new Error(j.error || 'fail');
         status.textContent = form.dataset.ok;
+        trackLead();
         form.reset();
       } catch (err) {
         status.textContent = form.dataset.fail || form.dataset.err;

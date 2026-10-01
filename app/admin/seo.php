@@ -36,8 +36,14 @@ function score_ring(int $s, int $size = 150): string
 function admin_seo(): void
 {
     if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
-        audit_save(audit_run());
-        flash('Tarama tamamlandı.');
+        $na = audit_run();
+        audit_save($na);
+        $v = actions_verify_with_audit($na);
+        if (($_POST['do'] ?? '') === 'to_actions') {
+            flash(actions_from_audit($na) . ' öneri aksiyon panosuna eklendi.');
+            redirect_to('actions');
+        }
+        flash('Tarama tamamlandı.' . ($v ? " $v aksiyon doğrulanıp tamamlandı." : ''));
         redirect_to('seo');
     }
     $a = audit_last();
@@ -53,7 +59,7 @@ function admin_seo(): void
     foreach ($a['cats'] as $k => $s) {
         echo '<div><div style="display:flex;justify-content:space-between;font-size:.85rem"><b>' . h($labels[$k]) . '</b><span style="color:' . score_color((int)$s) . ';font-weight:700">' . $s . '</span></div><div style="height:8px;background:#ece8df;border-radius:6px;margin-top:6px;overflow:hidden"><div style="height:100%;width:' . (int)$s . '%;background:' . score_color((int)$s) . '"></div></div></div>';
     }
-    echo '</div></div><form method="post" style="display:flex;flex-direction:column;gap:8px">' . csrf_field() . '<button class="btn primary">Yeniden tara</button><button type="button" class="btn" onclick="window.print()">Raporu yazdır / PDF</button></form></div>';
+    echo '</div></div><form method="post" style="display:flex;flex-direction:column;gap:8px">' . csrf_field() . '<button class="btn primary">Yeniden tara</button><button class="btn" name="do" value="to_actions">Önerileri aksiyona çevir</button><button type="button" class="btn" onclick="window.print()">Raporu yazdır / PDF</button></form></div>';
     if (count($hist) > 1) {
         $w = 520;
         $h = 56;

@@ -45,6 +45,14 @@ Her kayıtta sayfa önbelleği otomatik temizlenir.
 Panel → **SEO & GEO**. "Yeniden tara" tüm yayındaki sayfaları 5 dilde üretip 35 kontrol yapar (Teknik SEO, İçerik, GEO — yapay zekâ aramaları, Coğrafi/yerel) ve skorla birlikte iyileştirme önerilerini etki sırasına dizer. Hiçbir veri dışarı gönderilmez.
 Ayarlar sekmesindeki bilgilerden her sayfaya JSON-LD (Organization, WebSite, BreadcrumbList, WebPage/FAQPage, ItemList), `/robots.txt`, `/llms.txt`, `/llms-full.txt` ve `sitemap.xml` otomatik üretilir.
 
+## Büyüme merkezi (SEO + GEO + reklam aksiyonları ve raporlama)
+Panel → **Büyüme** grubu:
+- **Büyüme panosu:** son 30 gün ziyaret, başvuru, dönüşüm oranı, yapay zekâdan gelen ziyaret, kanal kırılımı, reklam harcaması, açık aksiyonlar.
+- **Aksiyonlar:** planlandı / yapılıyor / tamamlandı panosu. SEO & GEO önerileri tek tıkla aksiyona dönüşür; **B2B üretici için 24 hazır aksiyon** (Search Console, Google İşletme Profili, Alibaba, LinkedIn, Google Ads, katalog PDF…) kütüphanesi vardır. Tarama bir önerinin çözüldüğünü görünce aksiyonu otomatik "tamamlandı"ya alır. Her aksiyonun hareket geçmişi ve sonuç notu tutulur.
+- **Reklamlar:** kampanya kaydı, her dil için UTM bağlantısı, platformdan girilen harcama/tıklama/dönüşüm, başvuru başı maliyet. UTM'li gelen form başvuruları kampanyaya otomatik bağlanır.
+- **Raporlar:** aylık rapor (önceki ayla karşılaştırma, kanal, sayfa, kampanya, tamamlanan aksiyonlar, SEO skoru), CSV/PDF, e-postayla gönderim.
+- **İzleme ve otomasyon:** çerezsiz kendi ziyaret sayacı (kişisel veri tutmaz, Do-Not-Track'e uyar), isteğe bağlı GTM / GA4 / Google Ads / Meta Pixel (çerez onay bandıyla), cPanel **cron** komutu: haftalık SEO taraması + ayın 1'inde aylık rapor e-postası.
+
 ## Güncelleme (mevcut kurulum)
 Yeni sürümün dosyalarını aynı klasöre çıkarın (`data/` ve `uploads/` korunur). Veritabanı ilk istekte kendini yükseltir (`schema_version`); elle bir şey yapmanız gerekmez.
 

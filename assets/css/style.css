@@ -623,3 +623,15 @@ html { font-variant-numeric: lining-nums; }
 .wa svg { width: 26px; height: 26px; fill: currentColor; }
 [dir="rtl"] .wa { right: auto; left: 22px; }
 @media (max-width: 900px) { .steps.wide .step { grid-template-columns: 64px 1fr; } .split.flip > :first-child { order: 0; } }
+
+/* ---------- consent bar ---------- */
+.consent-bar { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); width: min(920px, calc(100% - 32px)); z-index: 60; display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 18px 22px; background: color-mix(in srgb, var(--surface-2) 96%, transparent); border: 1px solid var(--line-strong, var(--line)); box-shadow: 0 20px 60px var(--shadow); backdrop-filter: blur(10px); }
+.consent-bar[hidden] { display: none; }
+.consent-bar .cb-text { flex: 1 1 380px; font-size: 13.5px; line-height: 1.6; color: var(--muted); }
+.consent-bar .cb-text b { color: var(--text); font-weight: 600; display: block; margin-bottom: 2px; }
+.consent-bar .cb-text p { margin: 0; }
+.consent-bar .cb-text a { color: var(--gold-hi); text-decoration: underline; text-underline-offset: 3px; }
+.consent-bar .cb-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.consent-bar .btn { padding: 12px 22px; font-size: 11.5px; }
+.foot-consent { background: none; border: 0; padding: 0; font: inherit; letter-spacing: inherit; color: var(--muted); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.foot-consent:hover { color: var(--gold-hi); }

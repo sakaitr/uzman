@@ -1224,6 +1224,55 @@
    "fr": "Télécharger",
    "ar": "تحميل",
    "ru": "Скачать"
+  },
+  "trk_title": {
+   "tr": "Çerez ve ölçüm tercihleri",
+   "en": "Cookie and measurement preferences",
+   "fr": "Préférences cookies et mesure",
+   "ar": "تفضيلات ملفات تعريف الارتباط والقياس",
+   "ru": "Настройки cookie и аналитики"
+  },
+  "trk_text": {
+   "tr": "Siteyi geliştirmek ve reklam performansını ölçmek için, onayınızla analiz ve reklam çerezleri kullanırız. Reddederseniz site sorunsuz çalışmaya devam eder.",
+   "en": "With your consent we use analytics and advertising cookies to improve the site and measure ad performance. If you decline, the site keeps working normally.",
+   "fr": "Avec votre accord, nous utilisons des cookies d'analyse et publicitaires pour améliorer le site et mesurer les publicités. Si vous refusez, le site fonctionne normalement.",
+   "ar": "بموافقتك نستخدم ملفات تعريف الارتباط التحليلية والإعلانية لتحسين الموقع وقياس أداء الإعلانات. وإذا رفضت يستمر الموقع بالعمل بشكل طبيعي.",
+   "ru": "С вашего согласия мы используем аналитические и рекламные cookie, чтобы улучшать сайт и измерять эффективность рекламы. Если вы откажетесь, сайт продолжит работать как обычно."
+  },
+  "trk_accept": {
+   "tr": "Kabul et",
+   "en": "Accept",
+   "fr": "Accepter",
+   "ar": "قبول",
+   "ru": "Принять"
+  },
+  "trk_reject": {
+   "tr": "Reddet",
+   "en": "Decline",
+   "fr": "Refuser",
+   "ar": "رفض",
+   "ru": "Отклонить"
+  },
+  "trk_more": {
+   "tr": "Ayrıntılar",
+   "en": "Details",
+   "fr": "Détails",
+   "ar": "التفاصيل",
+   "ru": "Подробнее"
+  },
+  "trk_privacy": {
+   "tr": "Bu site, siz onay verirseniz Google Analytics / Google Ads / Meta Pixel gibi analiz ve reklam çerezlerini kullanır. Onayınızı çerez bandından istediğiniz zaman değiştirebilir veya tarayıcınızdan çerezleri silebilirsiniz.",
+   "en": "If you consent, this site uses analytics and advertising cookies such as Google Analytics, Google Ads and Meta Pixel. You can change your choice at any time or delete cookies in your browser.",
+   "fr": "Avec votre consentement, ce site utilise des cookies d'analyse et publicitaires (Google Analytics, Google Ads, Meta Pixel). Vous pouvez modifier votre choix à tout moment ou supprimer les cookies dans votre navigateur.",
+   "ar": "بموافقتك يستخدم هذا الموقع ملفات تعريف ارتباط تحليلية وإعلانية مثل Google Analytics وGoogle Ads وMeta Pixel. يمكنك تغيير اختيارك في أي وقت أو حذف الملفات من متصفحك.",
+   "ru": "С вашего согласия сайт использует аналитические и рекламные cookie (Google Analytics, Google Ads, Meta Pixel). Вы можете изменить выбор в любой момент или удалить cookie в браузере."
+  },
+  "trk_change": {
+   "tr": "Çerez tercihlerini değiştir",
+   "en": "Change cookie preferences",
+   "fr": "Modifier les préférences cookies",
+   "ar": "تغيير تفضيلات الكوكيز",
+   "ru": "Изменить настройки cookie"
   }
  },
  "categories": [
@@ -3057,11 +3106,11 @@
       "ru": "Файлы cookie"
      },
      "body": {
-      "tr": "Bu site analiz veya reklam çerezi kullanmaz. Yalnızca seçtiğiniz renk temasını tarayıcınızda saklamak için yerel depolama kullanılabilir.",
-      "en": "This site does not use analytics or advertising cookies. Local storage may be used only to remember the colour theme you choose in your browser.",
-      "fr": "Ce site n'utilise ni cookies d'analyse ni cookies publicitaires. Le stockage local peut servir uniquement à mémoriser le thème de couleur choisi dans votre navigateur.",
-      "ar": "لا يستخدم هذا الموقع ملفات تعريف ارتباط للتحليلات أو الإعلانات. قد يُستخدم التخزين المحلي فقط لحفظ سمة الألوان التي تختارها في متصفحك.",
-      "ru": "Этот сайт не использует аналитические или рекламные cookie. Локальное хранилище может использоваться только для сохранения выбранной цветовой темы в вашем браузере."
+      "tr": "Ziyaret sayısı, çerez kullanılmadan ve kişisel veri içermeyen toplu sayaçlarla ölçülür. Tarayıcınızda yalnızca tercihleriniz (ör. çerez onayı, renk teması) saklanabilir. Analiz veya reklam araçları etkinleştirilirse yalnızca onayınızla çalışır.",
+      "en": "Visits are measured without cookies, using aggregate counters that contain no personal data. Only your preferences (e.g. cookie choice, colour theme) may be stored in your browser. If analytics or advertising tools are enabled, they run only with your consent.",
+      "fr": "Les visites sont mesurées sans cookies, via des compteurs agrégés sans donnée personnelle. Seules vos préférences (choix des cookies, thème de couleur) peuvent être mémorisées dans votre navigateur. Si des outils d'analyse ou de publicité sont activés, ils ne fonctionnent qu'avec votre accord.",
+      "ar": "تُقاس الزيارات دون ملفات تعريف ارتباط وبعدّادات مجمّعة لا تحتوي بيانات شخصية. قد تُحفظ في متصفحك تفضيلاتك فقط (مثل خيار الكوكيز وسمة الألوان). وإذا فُعّلت أدوات التحليل أو الإعلان فلا تعمل إلا بموافقتك.",
+      "ru": "Посещения измеряются без cookie, агрегированными счётчиками без персональных данных. В браузере могут храниться только ваши настройки (выбор cookie, цветовая тема). Если включены аналитические или рекламные инструменты, они работают только с вашего согласия."
      }
     }
    ]

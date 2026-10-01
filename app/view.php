@@ -70,6 +70,36 @@ function vbg(string $name, string $opacity = '.5', string $cls = ''): string
     return '<div class="vbg ' . $cls . '" style="--vo:' . h($opacity) . '" aria-hidden="true"><video muted loop playsinline preload="none" poster="' . $A . 'assets/video/' . $name . '.jpg" data-src="' . $A . 'assets/video/' . $name . '.mp4" data-webm="' . $A . 'assets/video/' . $name . '.webm"></video></div>';
 }
 
+/** Third-party measurement IDs configured in admin → İzleme (validated at save time). */
+function trackers(): array
+{
+    return array_filter([
+        'gtm' => (string)setting('trk_gtm', ''), 'ga4' => (string)setting('trk_ga4', ''), 'gads' => (string)setting('trk_gads', ''), 'gadsl' => (string)setting('trk_gads_label', ''), 'meta' => (string)setting('trk_meta', ''),
+    ], 'strlen');
+}
+
+function trackers_on(): bool
+{
+    $t = trackers();
+    return !empty($t['gtm']) || !empty($t['ga4']) || !empty($t['gads']) || !empty($t['meta']);
+}
+
+function measure_cfg_tag(): string
+{
+    $t = trackers();
+    $cfg = ['hit' => setting('trk_first_party', '1') === '1' ? asset_prefix() . 'api/hit.php' : '', 'slug' => $GLOBALS['UZ_SLUG'] ?? '', 'lang' => cur_lang(), 'consent' => setting('trk_consent', '1') === '1'] + $t;
+    return '<script id="uz-cfg" type="application/json">' . json_encode($cfg, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP) . '</script>' . "\n";
+}
+
+function consent_bar_html(): string
+{
+    if (!trackers_on() || setting('trk_consent', '1') !== '1') {
+        return '';
+    }
+    return '<div class="consent-bar" id="consentBar" role="dialog" aria-live="polite" aria-label="' . attr(t('trk_title')) . '" hidden><div class="cb-text"><b>' . t('trk_title') . '</b><p>' . t('trk_text') . ' <a href="' . h(u('privacy')) . '">' . t('trk_more') . '</a></p></div>
+<div class="cb-actions"><button type="button" class="btn" data-c="no"><span>' . t('trk_reject') . '</span></button><button type="button" class="btn btn-solid" data-c="yes"><span>' . t('trk_accept') . '</span></button></div></div>' . "\n";
+}
+
 function nav_pages(string $col, int $value = 1): array
 {
     static $all = null;
@@ -264,10 +294,10 @@ function footer_html(): string
         . ($ig ? '<a href="' . h($ig) . '" rel="noopener">@' . h(trim(parse_url($ig, PHP_URL_PATH) ?: 'uzmancosmetic', '/')) . '</a>' : '') . '</p></div>
     </div>
     <div class="foot-word" aria-hidden="true">UZMAN</div>
-    <div class="foot-bot"><span>' . t('foot_rights') . '</span>' . ($legal ? '<nav class="foot-legal" aria-label="' . attr(t('foot_legal')) . '">' . $legal . '</nav>' : '<span>ÇAYIROVA · KOCAELİ · TÜRKİYE</span>') . '</div>
+    <div class="foot-bot"><span>' . t('foot_rights') . '</span>' . (trackers_on() && setting('trk_consent', '1') === '1' ? '<button type="button" class="foot-consent" data-consent-open>' . t('trk_change') . '</button>' : '') . ($legal ? '<nav class="foot-legal" aria-label="' . attr(t('foot_legal')) . '">' . $legal . '</nav>' : '<span>ÇAYIROVA · KOCAELİ · TÜRKİYE</span>') . '</div>
   </div>
 </footer>
-' . $waBtn . '<script src="' . $A . 'assets/js/main.js?v=' . UZ_VERSION . '" defer></script>
+' . $waBtn . consent_bar_html() . measure_cfg_tag() . '<script src="' . $A . 'assets/js/main.js?v=' . UZ_VERSION . '" defer></script>
 </body>
 </html>
 ';
@@ -721,6 +751,9 @@ function page_custom(array $p): string
     foreach (jd($p['blocks'], []) as $b) {
         $out .= block_html($b);
     }
+    if ($p['slug'] === 'privacy' && trackers_on()) {
+        $out .= '<section class="section"><div class="wrap"><div class="prose rv"><p>' . t('trk_privacy') . '</p></div></div></section>';
+    }
     return $out . ((int)$p['cta'] === 1 ? cta_band() : '');
 }
 
@@ -734,6 +767,7 @@ function page_404(): string
 function render_page(string $lang, string $slug): array
 {
     $GLOBALS['UZ_LANG'] = $lang;
+    $GLOBALS['UZ_SLUG'] = $slug;
     $page = row('SELECT * FROM pages WHERE slug = ? AND status = 1', [$slug]);
     if (!$page) {
         $GLOBALS['UZ_ABS'] = true;

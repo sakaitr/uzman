@@ -20,14 +20,14 @@ function admin_subs(): void
     ahead('Başvurular', 'subs', $total . ' kayıt — iletişim sayfasındaki teklif / numune formundan gelenler');
     echo '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px"><a class="btn sm' . ($f === '' ? ' primary' : '') . '" href="' . admin_url('subs') . '">Tümü</a><a class="btn sm' . ($f === 'new' ? ' primary' : '') . '" href="' . admin_url('subs', ['s' => 'new']) . '">Yeni</a><a class="btn sm' . ($f === 'done' ? ' primary' : '') . '" href="' . admin_url('subs', ['s' => 'done']) . '">İşlendi</a>
 <a class="btn sm" href="' . admin_url('subs_csv') . '">CSV indir</a><form method="post" style="display:inline">' . csrf_field() . '<input type="hidden" name="do" value="read_all"><button class="btn sm">Tümünü işlendi say</button></form></div>
-<div class="card" style="padding:0"><table><thead><tr><th>Tarih</th><th>Firma / kişi</th><th>İlgi</th><th>E-posta / telefon</th><th>Durum</th><th></th></tr></thead><tbody>';
+<div class="card" style="padding:0"><table><thead><tr><th>Tarih</th><th>Firma / kişi</th><th>İlgi</th><th>Kaynak</th><th>E-posta / telefon</th><th>Durum</th><th></th></tr></thead><tbody>';
     foreach ($list as $s) {
-        echo '<tr><td style="white-space:nowrap">' . h($s['created_at']) . '<div class="hint">' . strtoupper(h($s['lang'])) . '</div></td><td><b>' . h($s['company']) . '</b><div class="hint">' . h($s['name']) . '</div></td><td>' . h($s['category']) . '<div class="hint">' . h($s['market']) . '</div></td>
+        echo '<tr><td style="white-space:nowrap">' . h($s['created_at']) . '<div class="hint">' . strtoupper(h($s['lang'])) . '</div></td><td><b>' . h($s['company']) . '</b><div class="hint">' . h($s['name']) . '</div></td><td>' . h($s['category']) . '<div class="hint">' . h($s['market']) . '</div></td><td><span class="pill new">' . h(CHANNEL_LABELS[$s['channel'] ?: 'direct'] ?? $s['channel']) . '</span>' . ($s['utm_campaign'] ? '<div class="hint">' . h($s['utm_campaign']) . '</div>' : '') . '</td>
 <td><a href="mailto:' . h($s['email']) . '">' . h($s['email']) . '</a><div class="hint">' . h($s['phone']) . '</div></td><td><span class="pill ' . ($s['status'] === 'new' ? 'new' : 'ok') . '">' . ($s['status'] === 'new' ? 'Yeni' : 'İşlendi') . '</span>' . ($s['mail_ok'] ? '' : ' <span class="pill warn" title="' . h($s['note']) . '">e-posta gitmedi</span>') . '</td>
 <td class="actions"><a class="btn sm" href="' . admin_url('sub_view', ['id' => $s['id']]) . '">Aç</a></td></tr>';
     }
     if (!$list) {
-        echo '<tr><td colspan="6" class="hint" style="padding:24px">Kayıt yok.</td></tr>';
+        echo '<tr><td colspan="7" class="hint" style="padding:24px">Kayıt yok.</td></tr>';
     }
     echo '</tbody></table></div>';
     $pages = (int)ceil($total / $per);
@@ -66,7 +66,7 @@ function admin_sub_view(): void
         return '<tr><th style="width:170px">' . h($k) . '</th><td>' . $v . '</td></tr>';
     };
     echo '<div class="card"><table><tbody>' . $rowh('Ad Soyad', h($s['name'])) . $rowh('Firma / Marka', h($s['company'])) . $rowh('E-posta', '<a href="mailto:' . h($s['email']) . '">' . h($s['email']) . '</a>') . $rowh('Telefon', '<a href="tel:' . h(preg_replace('/[^0-9+]/', '', $s['phone'])) . '">' . h($s['phone']) . '</a>')
-        . $rowh('Kategori', h($s['category'])) . $rowh('Hedef pazar', h($s['market'])) . $rowh('Tahmini adet', h($s['qty'])) . $rowh('Dil', strtoupper(h($s['lang']))) . $rowh('Proje', nl2br(h($s['brief']))) . $rowh('IP', h($s['ip'])) . '</tbody></table></div>
+        . $rowh('Kategori', h($s['category'])) . $rowh('Hedef pazar', h($s['market'])) . $rowh('Tahmini adet', h($s['qty'])) . $rowh('Dil', strtoupper(h($s['lang']))) . $rowh('Kaynak kanal', h(CHANNEL_LABELS[$s['channel'] ?: 'direct'] ?? $s['channel']) . ($s['utm_source'] ? ' · ' . h($s['utm_source']) . '/' . h($s['utm_medium']) : '') . ($s['utm_campaign'] ? ' · kampanya: ' . h($s['utm_campaign']) : '') . ($s['ref_host'] ? ' · yönlendiren: ' . h($s['ref_host']) : '')) . $rowh('İlk açılış sayfası', h($s['landing'])) . $rowh('Proje', nl2br(h($s['brief']))) . $rowh('IP', h($s['ip'])) . '</tbody></table></div>
 <form method="post" style="display:flex;gap:10px;flex-wrap:wrap">' . csrf_field() . '<button class="btn primary" name="status" value="done">İşlendi olarak işaretle</button><button class="btn" name="status" value="new">Yeni olarak işaretle</button><a class="btn" href="mailto:' . h($s['email']) . '?subject=' . rawurlencode('Uzman Cosmetic — teklif talebiniz') . '">E-posta ile yanıtla</a><a class="btn" href="' . admin_url('subs') . '">Geri</a>
 <button class="btn danger" name="do" value="delete" data-confirm="Başvuru kalıcı olarak silinsin mi?">Sil</button></form>';
     afoot();

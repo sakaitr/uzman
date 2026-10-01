@@ -47,6 +47,8 @@ $routes = [
     'media' => ['media.php', 'admin_media'], 'media_json' => ['media.php', 'admin_media_json'], 'upload' => ['media.php', 'admin_upload'],
     'subs' => ['subs.php', 'admin_subs'], 'sub_view' => ['subs.php', 'admin_sub_view'], 'subs_csv' => ['subs.php', 'admin_subs_csv'],
     'seo' => ['seo.php', 'admin_seo'], 'seo_pages' => ['seo.php', 'admin_seo_pages'], 'seo_settings' => ['seo.php', 'admin_seo_settings'], 'seo_preview' => ['seo.php', 'admin_seo_preview'],
+    'growth' => ['growth.php', 'admin_growth'], 'actions' => ['growth.php', 'admin_actions'], 'action_edit' => ['growth.php', 'admin_action_edit'], 'ads' => ['growth.php', 'admin_ads'], 'ad_edit' => ['growth.php', 'admin_ad_edit'],
+    'reports' => ['growth.php', 'admin_reports'], 'tracking' => ['growth.php', 'admin_tracking'],
     'settings' => ['settings.php', 'admin_settings'], 'users' => ['users.php', 'admin_users'], 'tools' => ['users.php', 'admin_tools'], 'backup' => ['users.php', 'admin_backup'],
 ];
 if (!isset($routes[$a])) {
