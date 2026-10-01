@@ -1,0 +1,12 @@
+---
+# cPanel → Git™ Version Control → "Deploy HEAD Commit". Set DEPLOYPATH to the site folder, e.g.
+#   /home/CPANELUSER/public_html/uzmanp      (demo.agno.com.tr/uzmanp)  or  /home/CPANELUSER/public_html  (live domain)
+# data/ (database) and uploads/ (user uploads) are never touched by a deploy.
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/CPANELUSER/public_html/uzmanp
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -R index.php .htaccess app admin api assets $DEPLOYPATH/
+    - /bin/mkdir -p $DEPLOYPATH/data $DEPLOYPATH/uploads
+    - /bin/cp -n data/.htaccess data/index.php $DEPLOYPATH/data/
+    - /bin/cp -n uploads/.htaccess uploads/index.php $DEPLOYPATH/uploads/

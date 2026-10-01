@@ -1,0 +1,30 @@
+# Uzman Cosmetic CMS — Apache / cPanel
+Options -Indexes
+DirectoryIndex index.php index.html
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# never serve internals
+RewriteRule ^(app|data|tools|build|legacy|\.git|\.agents|\.claude)(/|$) - [F,L]
+RewriteRule \.(sqlite|sqlite-wal|sqlite-shm|md|json|lock)$ - [F,L]
+RewriteRule ^sitemap\.xml$ index.php?x=sitemap [L]
+RewriteRule ^robots\.txt$ index.php?x=robots [L]
+RewriteRule ^(en|fr|ar|ru)/?$ index.php?l=$1&p=index [L,QSA]
+RewriteRule ^(en|fr|ar|ru)/([a-z0-9-]+)\.html$ index.php?l=$1&p=$2 [L,QSA]
+RewriteRule ^([a-z0-9-]+)\.html$ index.php?l=tr&p=$1 [L,QSA]
+</IfModule>
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
+<IfModule mod_headers.c>
+<FilesMatch "\.(webp|jpg|jpeg|png|svg|woff2|mp4|webm|ico)$">
+Header set Cache-Control "public, max-age=2592000"
+</FilesMatch>
+<FilesMatch "\.(css|js)$">
+Header set Cache-Control "public, max-age=86400"
+</FilesMatch>
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>

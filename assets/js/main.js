@@ -10,10 +10,13 @@
     safe(() => localStorage.setItem(THEME_KEY, name));
     document.querySelectorAll('[data-set]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.set === name)));
   };
-  const queryTheme = new URLSearchParams(location.search).get('theme');
-  applyTheme(['noir', 'bordeaux', 'emerald', 'twotone', 'inverse'].includes(queryTheme) ? queryTheme : safe(() => localStorage.getItem(THEME_KEY)) || 'noir');
-
-  applyTheme(root.getAttribute('data-theme'));
+  // Theme: the admin picks the site theme; visitors can only switch when the optional switcher is enabled.
+  const switcher = root.dataset.switcher === '1';
+  const queryTheme = switcher ? new URLSearchParams(location.search).get('theme') : null;
+  const themes = ['noir', 'bordeaux', 'emerald', 'twotone', 'inverse'];
+  const initial = themes.includes(queryTheme) ? queryTheme : (switcher && safe(() => localStorage.getItem(THEME_KEY))) || root.getAttribute('data-theme');
+  if (themes.includes(initial)) root.setAttribute('data-theme', initial);
+  document.querySelectorAll('[data-set]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.set === root.getAttribute('data-theme'))));
   document.querySelectorAll('[data-set]').forEach((b) => b.addEventListener('click', () => applyTheme(b.dataset.set)));
 
   /* ---------- Header behaviour ---------- */
@@ -149,14 +152,39 @@
   /* ---------- Forms ---------- */
   document.querySelectorAll('form[data-form]').forEach((form) => {
     const status = form.querySelector('.form-status');
-    form.addEventListener('submit', (e) => {
+    const btn = form.querySelector('button[type=submit]');
+    const t0 = Date.now();
+    // the signed token is requested as soon as the page loads (the server rejects machine-speed submissions)
+    let tokenP = null, tokenAt = 0;
+    const getToken = () => {
+      if (!tokenP || Date.now() - tokenAt > 3000000) {
+        tokenAt = Date.now();
+        tokenP = fetch(form.dataset.action.replace('quote.php', 'token.php'), { credentials: 'same-origin' }).then((r) => r.json()).then((j) => j.token);
+      }
+      return tokenP;
+    };
+    getToken().catch(() => { tokenP = null; });
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      status.classList.remove('err');
       const bad = [...form.querySelectorAll('[required]')].filter((f) => !f.checkValidity());
       form.querySelectorAll('[required]').forEach((f) => f.setAttribute('aria-invalid', String(bad.includes(f))));
-      if (bad.length) { status.textContent = form.dataset.err; bad[0].focus(); return; }
-      // TODO: backend / e-posta servisi bağlanacak (demo aşamasında yalnızca onay gösterilir)
-      status.textContent = form.dataset.ok;
-      form.reset();
+      if (bad.length) { status.textContent = form.dataset.err; status.classList.add('err'); bad[0].focus(); return; }
+      btn.disabled = true;
+      const data = new FormData(form);
+      data.append('lang', form.dataset.lang || 'tr');
+      data.append('elapsed', String(Date.now() - t0));
+      try {
+        data.append('token', await getToken());
+        const res = await fetch(form.dataset.action, { method: 'POST', body: data, credentials: 'same-origin' });
+        const j = await res.json();
+        if (!res.ok || !j.ok) throw new Error(j.error || 'fail');
+        status.textContent = form.dataset.ok;
+        form.reset();
+      } catch (err) {
+        status.textContent = form.dataset.fail || form.dataset.err;
+        status.classList.add('err');
+      } finally { btn.disabled = false; }
     });
   });
 })();

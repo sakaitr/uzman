@@ -1,22 +1,16 @@
-# Uzman Cosmetic — web sitesi
+# Uzman Cosmetic — web sitesi + yönetim paneli
 
-Statik, çok dilli site (TR kökte; EN/FR/AR/RU alt klasörlerde).
+PHP + SQLite, cPanel'de ek sunucu olmadan çalışır. Kurulum ve panel kullanımı: **[KURULUM.md](KURULUM.md)**.
 
-## İçerik nasıl değişir
-- Metinler: `build/i18n.py` (her anahtar için 5 dil: tr, en, fr, ar, ru)
-- Ürün ağacı ve görsel eşleşmeleri: `build/catalog.py`
-- Sayfa düzeni: `build/build.py`
-- Tasarım / tema: `assets/css/style.css`, davranış: `assets/js/main.js`
-
-Değişiklikten sonra sayfaları yeniden üretin (Python 3 + Pillow gerekir):
-
-    pip install pillow
-    python3 build/build.py
-
-Yeni ürün görseli eklemek için WebP'yi `assets/img/p/` içine koyun ve `catalog.py` içindeki
-ilgili `None` değerini dosya adıyla (uzantısız) değiştirin.
-
-Görseller uzmancosmetic.com'daki mevcut siteden alınmıştır.
+```
+index.php        ön yüz denetleyicisi (sayfalar, sitemap.xml, robots.txt, sayfa önbelleği)
+app/             çekirdek (veritabanı, görünüm, güvenlik, e-posta) + app/admin/ panel modülleri + app/seed/seed.json (varsayılan içerik)
+admin/           yönetim paneli (giriş, kurulum sihirbazı, admin.css/js)
+api/             form uçları (token + teklif/numune talebi)
+assets/          tasarım: css, js, fontlar, görseller, arka plan videoları
+tools/           export_seed.py, make_zip.py, install_cli.php, dev-router.php
+build/           eski statik üretici (referans; canlı sistemde kullanılmaz)
+```
 
 ## Temalar
 `noir` (varsayılan), `bordeaux`, `emerald`, `twotone` (koyu yeşil zemin + bordo), `inverse` (bordo zemin + yeşil).

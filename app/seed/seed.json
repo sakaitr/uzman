@@ -1,0 +1,3092 @@
+{
+ "langs": [
+  "tr",
+  "en",
+  "fr",
+  "ar",
+  "ru"
+ ],
+ "strings": {
+  "top_loc": {
+   "tr": "ÇAYIROVA / KOCAELİ",
+   "en": "ÇAYIROVA / KOCAELI",
+   "fr": "ÇAYIROVA / KOCAELI",
+   "ar": "تشايروفا / قوجه إيلي",
+   "ru": "ЧАЙЫРОВА / КОДЖАЕЛИ"
+  },
+  "top_since": {
+   "tr": "1978'DEN BERİ",
+   "en": "SINCE 1978",
+   "fr": "DEPUIS 1978",
+   "ar": "منذ عام 1978",
+   "ru": "С 1978 ГОДА"
+  },
+  "top_export": {
+   "tr": "80 ÜLKEYE İHRACAT",
+   "en": "EXPORTING TO 80 COUNTRIES",
+   "fr": "EXPORT DANS 80 PAYS",
+   "ar": "نصدّر إلى 80 دولة",
+   "ru": "ЭКСПОРТ В 80 СТРАН"
+  },
+  "brand_sub": {
+   "tr": "COSMETIC · SINCE 1978",
+   "en": "COSMETIC · SINCE 1978",
+   "fr": "COSMETIC · DEPUIS 1978",
+   "ar": "COSMETIC · 1978",
+   "ru": "COSMETIC · С 1978"
+  },
+  "nav_pl": {
+   "tr": "Private Label",
+   "en": "Private Label",
+   "fr": "Private Label",
+   "ar": "العلامة الخاصة",
+   "ru": "Private Label"
+  },
+  "nav_products": {
+   "tr": "Ürünler",
+   "en": "Products",
+   "fr": "Produits",
+   "ar": "المنتجات",
+   "ru": "Продукция"
+  },
+  "nav_about": {
+   "tr": "Kurumsal",
+   "en": "About Us",
+   "fr": "Entreprise",
+   "ar": "من نحن",
+   "ru": "О компании"
+  },
+  "nav_contact": {
+   "tr": "İletişim",
+   "en": "Contact",
+   "fr": "Contact",
+   "ar": "اتصل بنا",
+   "ru": "Контакты"
+  },
+  "nav_quote": {
+   "tr": "Teklif Al",
+   "en": "Get a Quote",
+   "fr": "Demander un devis",
+   "ar": "اطلب عرض سعر",
+   "ru": "Запросить цену"
+  },
+  "aria_menu": {
+   "tr": "Menüyü aç",
+   "en": "Open menu",
+   "fr": "Ouvrir le menu",
+   "ar": "افتح القائمة",
+   "ru": "Открыть меню"
+  },
+  "aria_theme": {
+   "tr": "Renk teması",
+   "en": "Colour theme",
+   "fr": "Thème de couleur",
+   "ar": "سمة الألوان",
+   "ru": "Цветовая тема"
+  },
+  "aria_lang": {
+   "tr": "Dil",
+   "en": "Language",
+   "fr": "Langue",
+   "ar": "اللغة",
+   "ru": "Язык"
+  },
+  "aria_home": {
+   "tr": "Uzman Cosmetic — ana sayfa",
+   "en": "Uzman Cosmetic — home",
+   "fr": "Uzman Cosmetic — accueil",
+   "ar": "Uzman Cosmetic — الصفحة الرئيسية",
+   "ru": "Uzman Cosmetic — главная"
+  },
+  "explore": {
+   "tr": "İncele",
+   "en": "Explore",
+   "fr": "Découvrir",
+   "ar": "استكشف",
+   "ru": "Смотреть"
+  },
+  "skip": {
+   "tr": "İçeriğe geç",
+   "en": "Skip to content",
+   "fr": "Aller au contenu",
+   "ar": "انتقل إلى المحتوى",
+   "ru": "К содержимому"
+  },
+  "soon": {
+   "tr": "Görsel yakında",
+   "en": "Image coming soon",
+   "fr": "Visuel à venir",
+   "ar": "الصورة قريباً",
+   "ru": "Фото скоро"
+  },
+  "all": {
+   "tr": "Tümü",
+   "en": "All",
+   "fr": "Tout",
+   "ar": "الكل",
+   "ru": "Все"
+  },
+  "foot_blurb": {
+   "tr": "1978'de İstanbul'da kurulan Uzman Kozmetik; body care ve home care ürünlerinde fason ve private label üretim yapar.",
+   "en": "Founded in Istanbul in 1978, Uzman Cosmetic manufactures body care and home care products under contract and private label.",
+   "fr": "Fondée à Istanbul en 1978, Uzman Cosmetic fabrique des produits de soin du corps et de parfumerie d'intérieur en sous-traitance et en marque blanche.",
+   "ar": "تأسست أوزمان كوزمتيك في إسطنبول عام 1978، وتصنّع منتجات العناية بالجسم والعناية بالمنزل للعلامات الخاصة وبالتصنيع للغير.",
+   "ru": "Основанная в Стамбуле в 1978 году, Uzman Cosmetic производит средства для ухода за телом и для дома по контракту и под частной маркой."
+  },
+  "foot_discover": {
+   "tr": "Keşfet",
+   "en": "Discover",
+   "fr": "Découvrir",
+   "ar": "اكتشف",
+   "ru": "Разделы"
+  },
+  "foot_products": {
+   "tr": "Ürünler",
+   "en": "Products",
+   "fr": "Produits",
+   "ar": "المنتجات",
+   "ru": "Продукция"
+  },
+  "foot_hq": {
+   "tr": "Merkez & Fabrika",
+   "en": "Head Office & Factory",
+   "fr": "Siège & usine",
+   "ar": "المقر والمصنع",
+   "ru": "Офис и фабрика"
+  },
+  "foot_addr": {
+   "tr": "Şekerpınar Mh. Özbek Sk. No:4<br>Çayırova / Kocaeli, Türkiye",
+   "en": "Şekerpınar Mh. Özbek Sk. No:4<br>Çayırova / Kocaeli, Türkiye",
+   "fr": "Şekerpınar Mh. Özbek Sk. No:4<br>Çayırova / Kocaeli, Turquie",
+   "ar": "Şekerpınar Mh. Özbek Sk. No:4<br>تشايروفا / قوجه إيلي، تركيا",
+   "ru": "Şekerpınar Mh. Özbek Sk. No:4<br>Чайырова / Коджаэли, Турция"
+  },
+  "foot_rights": {
+   "tr": "© 1978 – 2026 UZMAN KOZMETİK. TÜM HAKLARI SAKLIDIR.",
+   "en": "© 1978 – 2026 UZMAN COSMETIC. ALL RIGHTS RESERVED.",
+   "fr": "© 1978 – 2026 UZMAN COSMETIC. TOUS DROITS RÉSERVÉS.",
+   "ar": "© 1978 – 2026 أوزمان كوزمتيك. جميع الحقوق محفوظة.",
+   "ru": "© 1978 – 2026 UZMAN COSMETIC. ВСЕ ПРАВА ЗАЩИЩЕНЫ."
+  },
+  "cat_body": {
+   "tr": "Body Care",
+   "en": "Body Care",
+   "fr": "Soins du corps",
+   "ar": "العناية بالجسم",
+   "ru": "Уход за телом"
+  },
+  "cat_home": {
+   "tr": "Home Care",
+   "en": "Home Care",
+   "fr": "Parfums d'intérieur",
+   "ar": "العناية بالمنزل",
+   "ru": "Уход за домом"
+  },
+  "p_deo": {
+   "tr": "Deodorant",
+   "en": "Deodorant",
+   "fr": "Déodorant",
+   "ar": "مزيل العرق",
+   "ru": "Дезодорант"
+  },
+  "p_rollon": {
+   "tr": "Roll-on",
+   "en": "Roll-on",
+   "fr": "Roll-on",
+   "ar": "رول أون",
+   "ru": "Роликовый дезодорант"
+  },
+  "p_hair": {
+   "tr": "Saç Ürünleri",
+   "en": "Hair Products",
+   "fr": "Soins capillaires",
+   "ar": "منتجات الشعر",
+   "ru": "Средства для волос"
+  },
+  "p_edp": {
+   "tr": "EDP Parfüm",
+   "en": "EDP Perfume",
+   "fr": "Eau de Parfum",
+   "ar": "ماء عطر (EDP)",
+   "ru": "Парфюмерная вода (EDP)"
+  },
+  "p_mist": {
+   "tr": "Body Mist",
+   "en": "Body Mist",
+   "fr": "Brume corporelle",
+   "ar": "بخاخ الجسم",
+   "ru": "Спрей для тела"
+  },
+  "p_bamboo": {
+   "tr": "Bambu Difüzör",
+   "en": "Bamboo Diffuser",
+   "fr": "Diffuseur en bambou",
+   "ar": "موزّع عطور بالخيزران",
+   "ru": "Диффузор с бамбуком"
+  },
+  "p_air": {
+   "tr": "Air Freshener",
+   "en": "Air Freshener",
+   "fr": "Désodorisant d'air",
+   "ar": "معطّر الجو",
+   "ru": "Освежитель воздуха"
+  },
+  "p_room": {
+   "tr": "Room Freshener",
+   "en": "Room Freshener",
+   "fr": "Parfum d'ambiance",
+   "ar": "معطّر الغرف",
+   "ru": "Ароматизатор для помещений"
+  },
+  "p_reed": {
+   "tr": "Reed Diffuser",
+   "en": "Reed Diffuser",
+   "fr": "Diffuseur à roseaux",
+   "ar": "موزّع عطور بالقصب",
+   "ru": "Аромадиффузор"
+  },
+  "h_wax": {
+   "tr": "Wax",
+   "en": "Wax",
+   "fr": "Cire coiffante",
+   "ar": "واكس الشعر",
+   "ru": "Воск"
+  },
+  "h_spray": {
+   "tr": "Saç Spreyi",
+   "en": "Hair Spray",
+   "fr": "Laque",
+   "ar": "سبراي الشعر",
+   "ru": "Лак для волос"
+  },
+  "h_dry": {
+   "tr": "Kuru Şampuan",
+   "en": "Dry Shampoo",
+   "fr": "Shampooing sec",
+   "ar": "شامبو جاف",
+   "ru": "Сухой шампунь"
+  },
+  "h_cond": {
+   "tr": "Saç Kremi",
+   "en": "Conditioner",
+   "fr": "Après-shampooing",
+   "ar": "بلسم الشعر",
+   "ru": "Кондиционер"
+  },
+  "h_powder": {
+   "tr": "Pudra Wax",
+   "en": "Powder Wax",
+   "fr": "Cire en poudre",
+   "ar": "واكس بودرة",
+   "ru": "Пудра-воск"
+  },
+  "sizes": {
+   "tr": "Boyutlar",
+   "en": "Sizes",
+   "fr": "Formats",
+   "ar": "الأحجام",
+   "ru": "Объёмы"
+  },
+  "desc_deo": {
+   "tr": "Yedi ayrı marka altında üretilen deodorant koleksiyonu.",
+   "en": "A deodorant collection produced under seven different brands.",
+   "fr": "Une collection de déodorants fabriquée sous sept marques.",
+   "ar": "مجموعة مزيلات عرق تُنتج تحت سبع علامات مختلفة.",
+   "ru": "Коллекция дезодорантов, выпускаемая под семью разными брендами."
+  },
+  "desc_rollon": {
+   "tr": "Kompakt ve pratik roll-on deodorant.",
+   "en": "Compact, practical roll-on deodorant.",
+   "fr": "Déodorant roll-on compact et pratique.",
+   "ar": "مزيل عرق رول أون عملي وصغير الحجم.",
+   "ru": "Компактный и удобный роликовый дезодорант."
+  },
+  "desc_hair": {
+   "tr": "Wax, sprey, kuru şampuan, saç kremi ve pudra wax.",
+   "en": "Wax, spray, dry shampoo, conditioner and powder wax.",
+   "fr": "Cire, laque, shampooing sec, après-shampooing et cire en poudre.",
+   "ar": "واكس وسبراي وشامبو جاف وبلسم وواكس بودرة.",
+   "ru": "Воск, лак, сухой шампунь, кондиционер и пудра-воск."
+  },
+  "desc_edp": {
+   "tr": "50 ve 100 ml Eau de Parfum seçenekleri.",
+   "en": "Eau de Parfum in 50 and 100 ml.",
+   "fr": "Eau de Parfum en 50 et 100 ml.",
+   "ar": "ماء عطر بحجمي 50 و100 مل.",
+   "ru": "Парфюмерная вода 50 и 100 мл."
+  },
+  "desc_mist": {
+   "tr": "Hafif ve kalıcı body mist serileri.",
+   "en": "Light, long-lasting body mist ranges.",
+   "fr": "Gammes de brumes corporelles légères et tenaces.",
+   "ar": "مجموعات بخاخ جسم خفيفة ودائمة.",
+   "ru": "Лёгкие и стойкие линии спреев для тела."
+  },
+  "desc_bamboo": {
+   "tr": "Bambu çubuklu oda difüzörü.",
+   "en": "Room diffuser with bamboo sticks.",
+   "fr": "Diffuseur d'ambiance à bâtonnets de bambou.",
+   "ar": "موزّع عطور للغرف بأعواد الخيزران.",
+   "ru": "Комнатный диффузор с бамбуковыми палочками."
+  },
+  "desc_air": {
+   "tr": "Gazlı oda spreyi; onlarca koku seçeneği.",
+   "en": "Aerosol room spray in dozens of fragrances.",
+   "fr": "Spray d'ambiance aérosol en de nombreuses fragrances.",
+   "ar": "بخاخ غرف أيروسول بعشرات الروائح.",
+   "ru": "Аэрозольный освежитель воздуха с десятками ароматов."
+  },
+  "desc_room": {
+   "tr": "500 ml likit oda kokusu.",
+   "en": "500 ml liquid room freshener.",
+   "fr": "Parfum d'ambiance liquide de 500 ml.",
+   "ar": "معطّر غرف سائل سعة 500 مل.",
+   "ru": "Жидкий ароматизатор для помещений, 500 мл."
+  },
+  "desc_reed": {
+   "tr": "Çubuklu oda difüzörü; üç boy.",
+   "en": "Reed diffuser in three sizes.",
+   "fr": "Diffuseur à roseaux en trois formats.",
+   "ar": "موزّع عطور بالقصب بثلاثة أحجام.",
+   "ru": "Аромадиффузор с палочками, три объёма."
+  },
+  "hero_l1": {
+   "tr": "Markanızın",
+   "en": "Your brand's",
+   "fr": "La signature",
+   "ar": "توقيعُ",
+   "ru": "Подпись"
+  },
+  "hero_l2": {
+   "tr": "<em>imzası</em>, bizim",
+   "en": "<em>signature</em>, our",
+   "fr": "<em>de votre marque</em>,",
+   "ar": "<em>علامتك</em>،",
+   "ru": "<em>вашего бренда</em> —"
+  },
+  "hero_l3": {
+   "tr": "ustalığımız.",
+   "en": "craftsmanship.",
+   "fr": "notre savoir-faire.",
+   "ar": "وحِرفتُنا.",
+   "ru": "наше мастерство."
+  },
+  "hero_lead": {
+   "tr": "1978'de İstanbul'da kurulan Uzman Kozmetik; body care ve home care ürünlerini 80 ülkeye ihraç eden bir üretici olarak, markanıza özel koleksiyonlar hazırlıyor.",
+   "en": "Founded in Istanbul in 1978, Uzman Cosmetic manufactures body care and home care products for export to 80 countries — and creates collections tailored to your brand.",
+   "fr": "Fondée à Istanbul en 1978, Uzman Cosmetic fabrique des produits de soin du corps et de parfumerie d'intérieur exportés dans 80 pays, et crée des collections sur mesure pour votre marque.",
+   "ar": "تأسست أوزمان كوزمتيك في إسطنبول عام 1978، وهي تصنّع منتجات العناية بالجسم والمنزل وتصدّرها إلى 80 دولة، وتبتكر مجموعات خاصة بعلامتك.",
+   "ru": "Основанная в Стамбуле в 1978 году, Uzman Cosmetic производит средства для ухода за телом и для дома, экспортирует их в 80 стран и создаёт коллекции специально для вашего бренда."
+  },
+  "cta_start": {
+   "tr": "Projenizi Başlatın",
+   "en": "Start Your Project",
+   "fr": "Lancez votre projet",
+   "ar": "ابدأ مشروعك",
+   "ru": "Начните проект"
+  },
+  "m1": {
+   "tr": "1978'den beri",
+   "en": "Since 1978",
+   "fr": "Depuis 1978",
+   "ar": "منذ عام 1978",
+   "ru": "С 1978 года"
+  },
+  "m2": {
+   "tr": "80 ülkeye ihracat",
+   "en": "Exporting to 80 countries",
+   "fr": "Export dans 80 pays",
+   "ar": "تصدير إلى 80 دولة",
+   "ru": "Экспорт в 80 стран"
+  },
+  "m3": {
+   "tr": "60 milyon adet aerosol kapasitesi",
+   "en": "60 million aerosol units capacity",
+   "fr": "Capacité de 60 millions d'aérosols",
+   "ar": "طاقة إنتاج 60 مليون عبوة أيروسول",
+   "ru": "Мощность — 60 млн аэрозолей"
+  },
+  "m4": {
+   "tr": "50+ alüminyum tüp modeli",
+   "en": "50+ aluminium tube models",
+   "fr": "Plus de 50 modèles de tubes aluminium",
+   "ar": "أكثر من 50 طراز أنبوب ألومنيوم",
+   "ru": "50+ моделей алюминиевых баллонов"
+  },
+  "m5": {
+   "tr": "Ar-Ge · Tasarım · Grafik",
+   "en": "R&amp;D · Design · Graphics",
+   "fr": "R&amp;D · Design · Graphisme",
+   "ar": "البحث والتطوير · التصميم · الجرافيك",
+   "ru": "НИОКР · Дизайн · Графика"
+  },
+  "m6": {
+   "tr": "Fason & Private Label",
+   "en": "Contract &amp; Private Label",
+   "fr": "Sous-traitance &amp; Private Label",
+   "ar": "التصنيع للغير والعلامة الخاصة",
+   "ru": "Контрактное производство и Private Label"
+  },
+  "manifesto": {
+   "tr": "İnsan değerlerine, doğanın korunmasına ve müşteri ilişkilerinde <em>güvenilirliğe</em> inanıyoruz. Uluslararası standartlarda teknolojiyle, markanız için <em>dünya standartlarında</em> çözümler üretiyoruz.",
+   "en": "We believe in human values, in protecting nature, and in <em>reliability</em> in every customer relationship. With internationally standard technology, we build solutions for your brand <em>to international standards</em>.",
+   "fr": "Nous croyons aux valeurs humaines, à la protection de la nature et à la <em>fiabilité</em> dans la relation client. Grâce à une technologie aux normes internationales, nous créons pour votre marque des solutions <em>de niveau mondial</em>.",
+   "ar": "نؤمن بالقيم الإنسانية وحماية الطبيعة و<em>الموثوقية</em> في علاقتنا مع العملاء. وبتقنيات وفق المعايير الدولية، نقدّم لعلامتك حلولاً <em>بمستوى عالمي</em>.",
+   "ru": "Мы верим в человеческие ценности, защиту природы и <em>надёжность</em> в отношениях с клиентами. Используя технологии международного уровня, мы создаём для вашего бренда решения <em>мирового класса</em>."
+  },
+  "coll_h2": {
+   "tr": "İki <em>dünya</em>, tek çatı.",
+   "en": "Two <em>worlds</em>, one roof.",
+   "fr": "Deux <em>univers</em>, un seul toit.",
+   "ar": "عالمان <em>تحت</em> سقف واحد.",
+   "ru": "Два <em>мира</em> под одной крышей."
+  },
+  "coll_lead": {
+   "tr": "Kişisel bakımdan ev kokularına; fason ve private label üretim için tam bir ürün ağacı.",
+   "en": "From personal care to home fragrance — a complete product tree for contract and private label manufacturing.",
+   "fr": "Du soin personnel aux parfums d'intérieur : une arborescence complète pour la sous-traitance et la marque blanche.",
+   "ar": "من العناية الشخصية إلى عطور المنزل: شجرة منتجات متكاملة للتصنيع للغير والعلامة الخاصة.",
+   "ru": "От ухода за собой до ароматов для дома — полное древо продукции для контрактного производства и Private Label."
+  },
+  "pl_h2": {
+   "tr": "Fikirden <em>rafa</em>, adım adım.",
+   "en": "From idea to <em>shelf</em>, step by step.",
+   "fr": "De l'idée au <em>rayon</em>, étape par étape.",
+   "ar": "من الفكرة إلى <em>الرف</em>، خطوة بخطوة.",
+   "ru": "От идеи до <em>полки</em>, шаг за шагом."
+  },
+  "pl_lead": {
+   "tr": "Ürün, ambalaj ve tasarım; aynı ekiple, tek noktadan.",
+   "en": "Product, packaging and design — one team, one contact.",
+   "fr": "Produit, packaging et design : une seule équipe, un seul interlocuteur.",
+   "ar": "المنتج والعبوة والتصميم، مع فريق واحد ونقطة تواصل واحدة.",
+   "ru": "Продукт, упаковка и дизайн — одна команда, один контакт."
+  },
+  "pl_btn": {
+   "tr": "Private Label Detayı",
+   "en": "Private Label Details",
+   "fr": "Détails Private Label",
+   "ar": "تفاصيل العلامة الخاصة",
+   "ru": "Подробнее о Private Label"
+  },
+  "s1_t": {
+   "tr": "Ürün & Konsept",
+   "en": "Product & Concept",
+   "fr": "Produit & concept",
+   "ar": "المنتج والمفهوم",
+   "ru": "Продукт и концепция"
+  },
+  "s1_p": {
+   "tr": "Kategori, koku ve hedef pazar birlikte belirlenir.",
+   "en": "Category, fragrance and target market are defined together.",
+   "fr": "La catégorie, la fragrance et le marché cible sont définis ensemble.",
+   "ar": "نحدد معاً الفئة والرائحة والسوق المستهدف.",
+   "ru": "Категория, аромат и целевой рынок определяются совместно."
+  },
+  "s2_t": {
+   "tr": "Ambalaj Seçimi",
+   "en": "Packaging Selection",
+   "fr": "Choix du packaging",
+   "ar": "اختيار العبوة",
+   "ru": "Выбор упаковки"
+  },
+  "s2_p": {
+   "tr": "50'den fazla alüminyum tüp modeli arasından markanıza uygun form seçilir.",
+   "en": "Choose the right shape for your brand from more than 50 aluminium tube models.",
+   "fr": "Choisissez la forme adaptée à votre marque parmi plus de 50 modèles de tubes aluminium.",
+   "ar": "اختر الشكل المناسب لعلامتك من بين أكثر من 50 طراز أنبوب ألومنيوم.",
+   "ru": "Выберите подходящую форму из более чем 50 моделей алюминиевых баллонов."
+  },
+  "s3_t": {
+   "tr": "Ar-Ge, Tasarım & Grafik",
+   "en": "R&amp;D, Design &amp; Graphics",
+   "fr": "R&amp;D, design &amp; graphisme",
+   "ar": "البحث والتطوير والتصميم والجرافيك",
+   "ru": "НИОКР, дизайн и графика"
+  },
+  "s3_p": {
+   "tr": "Kendi Ar-Ge, tasarım ve grafik departmanlarımız ürün ve ambalaj çalışmasını yürütür.",
+   "en": "Our in-house R&amp;D, design and graphics departments handle the product and packaging work.",
+   "fr": "Nos départements R&amp;D, design et graphisme internes prennent en charge le produit et le packaging.",
+   "ar": "تتولى أقسام البحث والتطوير والتصميم والجرافيك لدينا العمل على المنتج والعبوة.",
+   "ru": "Собственные отделы НИОКР, дизайна и графики ведут работу над продуктом и упаковкой."
+  },
+  "s4_t": {
+   "tr": "Üretim",
+   "en": "Production",
+   "fr": "Production",
+   "ar": "الإنتاج",
+   "ru": "Производство"
+  },
+  "s4_p": {
+   "tr": "5.500 m² kapalı alandaki tesisimizde, geniş makine parkuruyla dolum ve paketleme.",
+   "en": "Filling and packaging in our 5,500 m² indoor facility with a wide range of machinery.",
+   "fr": "Remplissage et conditionnement dans notre site couvert de 5 500 m², doté d'un large parc de machines.",
+   "ar": "تعبئة وتغليف في منشأتنا المغلقة البالغة 5500 م² بأسطول واسع من الماكينات.",
+   "ru": "Розлив и упаковка на нашей закрытой площадке в 5 500 м² с широким парком оборудования."
+  },
+  "s5_t": {
+   "tr": "Sevkiyat",
+   "en": "Shipping",
+   "fr": "Expédition",
+   "ar": "الشحن",
+   "ru": "Отгрузка"
+  },
+  "s5_p": {
+   "tr": "Siparişiniz yurt içine ya da yurt dışına gönderilir.",
+   "en": "Your order ships domestically or abroad.",
+   "fr": "Votre commande est expédiée en Turquie ou à l'étranger.",
+   "ar": "يُشحن طلبك داخل تركيا أو إلى الخارج.",
+   "ru": "Ваш заказ отправляется по Турции или за рубеж."
+  },
+  "pw_h2": {
+   "tr": "1980'den beri <em>aerosol</em> ustalığı.",
+   "en": "<em>Aerosol</em> expertise since 1980.",
+   "fr": "Un savoir-faire <em>aérosol</em> depuis 1980.",
+   "ar": "خبرة في <em>الأيروسول</em> منذ عام 1980.",
+   "ru": "Опыт в <em>аэрозолях</em> с 1980 года."
+  },
+  "pw_lead": {
+   "tr": "1980'de basınçlı kaplar kanununa uygun ilk yarı otomatik aerosol makinemizle üretime başladık. Bugün 5.500 m² kapalı alanda, 60 milyon adet aerosol kapasitesine ulaştık.",
+   "en": "In 1980 we began production with our first semi-automatic aerosol machine, compliant with pressure-vessel regulations. Today, in 5,500 m² of indoor space, we have reached a capacity of 60 million aerosol units.",
+   "fr": "En 1980, nous avons lancé la production avec notre première machine aérosol semi-automatique, conforme à la réglementation sur les récipients sous pression. Aujourd'hui, sur 5 500 m² couverts, nous atteignons une capacité de 60 millions d'aérosols.",
+   "ar": "بدأنا الإنتاج عام 1980 بأول ماكينة أيروسول شبه آلية مطابقة لقانون الأوعية المضغوطة. واليوم، في مساحة مغلقة تبلغ 5500 م²، وصلت طاقتنا إلى 60 مليون عبوة أيروسول.",
+   "ru": "В 1980 году мы начали производство на первой полуавтоматической аэрозольной линии, соответствующей закону о сосудах под давлением. Сегодня на закрытой площади 5 500 м² наша мощность достигла 60 млн аэрозолей."
+  },
+  "pw_c1": {
+   "tr": "Son teknoloji dolum sistemine sahip geniş makine parkuru",
+   "en": "A wide machinery park with the latest filling systems",
+   "fr": "Un large parc de machines équipé des derniers systèmes de remplissage",
+   "ar": "أسطول واسع من الماكينات بأحدث أنظمة التعبئة",
+   "ru": "Широкий парк оборудования с современными системами розлива"
+  },
+  "pw_c2": {
+   "tr": "Ar-Ge, tasarım ve grafik departmanları",
+   "en": "R&amp;D, design and graphics departments",
+   "fr": "Départements R&amp;D, design et graphisme",
+   "ar": "أقسام البحث والتطوير والتصميم والجرافيك",
+   "ru": "Отделы НИОКР, дизайна и графики"
+  },
+  "pw_c3": {
+   "tr": "Türkiye'nin tanınmış markalarına fason üretim deneyimi",
+   "en": "Contract manufacturing experience for well-known Turkish brands",
+   "fr": "Expérience de sous-traitance pour des marques turques reconnues",
+   "ar": "خبرة في التصنيع للغير لعلامات تركية معروفة",
+   "ru": "Опыт контрактного производства для известных турецких брендов"
+  },
+  "pw_link": {
+   "tr": "Firmamızı Tanıyın",
+   "en": "Get to Know Us",
+   "fr": "Découvrez l'entreprise",
+   "ar": "تعرّف على شركتنا",
+   "ru": "О компании"
+  },
+  "pw_cap": {
+   "tr": "Aerosol · 60 milyon adet kapasite",
+   "en": "Aerosol · 60 million unit capacity",
+   "fr": "Aérosol · capacité de 60 millions",
+   "ar": "أيروسول · طاقة 60 مليون عبوة",
+   "ru": "Аэрозоли · мощность 60 млн"
+  },
+  "val_h2": {
+   "tr": "Üç <em>ilke</em>.",
+   "en": "Three <em>principles</em>.",
+   "fr": "Trois <em>principes</em>.",
+   "ar": "ثلاثة <em>مبادئ</em>.",
+   "ru": "Три <em>принципа</em>."
+  },
+  "v1_t": {
+   "tr": "İnsan Değerleri",
+   "en": "Human Values",
+   "fr": "Valeurs humaines",
+   "ar": "القيم الإنسانية",
+   "ru": "Человеческие ценности"
+  },
+  "v1_p": {
+   "tr": "Kuruluş ilkelerimizin başında insan değerleri gelir.",
+   "en": "Human values stand first among our founding principles.",
+   "fr": "Les valeurs humaines figurent en tête de nos principes fondateurs.",
+   "ar": "تأتي القيم الإنسانية في صدارة مبادئنا التأسيسية.",
+   "ru": "Человеческие ценности стоят во главе наших основополагающих принципов."
+  },
+  "v2_t": {
+   "tr": "Doğanın Korunması",
+   "en": "Protecting Nature",
+   "fr": "Protection de la nature",
+   "ar": "حماية الطبيعة",
+   "ru": "Защита природы"
+  },
+  "v2_p": {
+   "tr": "Üretimde doğayı koruyan bir yaklaşım.",
+   "en": "An approach to production that protects nature.",
+   "fr": "Une approche de la production qui protège la nature.",
+   "ar": "نهج في الإنتاج يحمي الطبيعة.",
+   "ru": "Подход к производству, бережный к природе."
+  },
+  "v3_t": {
+   "tr": "Güvenilirlik",
+   "en": "Reliability",
+   "fr": "Fiabilité",
+   "ar": "الموثوقية",
+   "ru": "Надёжность"
+  },
+  "v3_p": {
+   "tr": "Müşteri ilişkilerinde güvenilir olmak.",
+   "en": "Being dependable in every customer relationship.",
+   "fr": "Être fiable dans chaque relation client.",
+   "ar": "أن نكون موثوقين في كل علاقة مع العملاء.",
+   "ru": "Быть надёжными в отношениях с каждым клиентом."
+  },
+  "ex_h2": {
+   "tr": "Dünyanın <em>80 ülkesinde</em>.",
+   "en": "In <em>80 countries</em> worldwide.",
+   "fr": "Dans <em>80 pays</em> à travers le monde.",
+   "ar": "في <em>80 دولة</em> حول العالم.",
+   "ru": "В <em>80 странах</em> мира."
+  },
+  "ex_lead": {
+   "tr": "Ürünlerimizi dünya pazarına tanıtmak ve yerleştirmek için her yıl uluslararası fuarlara katılıyoruz.",
+   "en": "We take part in international trade fairs every year to introduce our products to the world market.",
+   "fr": "Nous participons chaque année à des salons internationaux pour faire connaître nos produits sur le marché mondial.",
+   "ar": "نشارك كل عام في المعارض الدولية للتعريف بمنتجاتنا في الأسواق العالمية.",
+   "ru": "Каждый год мы участвуем в международных выставках, чтобы представить продукцию на мировом рынке."
+  },
+  "ex_f1": {
+   "tr": "Merkez",
+   "en": "Headquarters",
+   "fr": "Siège",
+   "ar": "المقر",
+   "ru": "Офис"
+  },
+  "ex_f1s": {
+   "tr": "ÇAYIROVA",
+   "en": "ÇAYIROVA",
+   "fr": "ÇAYIROVA",
+   "ar": "تشايروفا",
+   "ru": "ЧАЙЫРОВА"
+  },
+  "ex_f2": {
+   "tr": "İhracat",
+   "en": "Export",
+   "fr": "Export",
+   "ar": "التصدير",
+   "ru": "Экспорт"
+  },
+  "ex_f2s": {
+   "tr": "80 ÜLKE",
+   "en": "80 COUNTRIES",
+   "fr": "80 PAYS",
+   "ar": "80 دولة",
+   "ru": "80 СТРАН"
+  },
+  "ex_f3": {
+   "tr": "Fuarlar",
+   "en": "Trade Fairs",
+   "fr": "Salons",
+   "ar": "المعارض",
+   "ru": "Выставки"
+  },
+  "ex_f3s": {
+   "tr": "HER YIL",
+   "en": "EVERY YEAR",
+   "fr": "CHAQUE ANNÉE",
+   "ar": "كل عام",
+   "ru": "КАЖДЫЙ ГОД"
+  },
+  "ex_f4": {
+   "tr": "Diller",
+   "en": "Languages",
+   "fr": "Langues",
+   "ar": "اللغات",
+   "ru": "Языки"
+  },
+  "ex_f4s": {
+   "tr": "TR · EN · FR · AR · RU",
+   "en": "TR · EN · FR · AR · RU",
+   "fr": "TR · EN · FR · AR · RU",
+   "ar": "TR · EN · FR · AR · RU",
+   "ru": "TR · EN · FR · AR · RU"
+  },
+  "cta_h2": {
+   "tr": "Koleksiyonunuzu <em>birlikte</em> yazalım.",
+   "en": "Let's write your collection <em>together</em>.",
+   "fr": "Écrivons votre collection <em>ensemble</em>.",
+   "ar": "لنكتب مجموعتك <em>معاً</em>.",
+   "ru": "Создадим вашу коллекцию <em>вместе</em>."
+  },
+  "cta_lead": {
+   "tr": "Projenizi anlatın; ekibimiz numune ve teklif için sizinle iletişime geçsin.",
+   "en": "Tell us about your project and our team will contact you about samples and a quote.",
+   "fr": "Parlez-nous de votre projet ; notre équipe vous contactera pour les échantillons et un devis.",
+   "ar": "أخبرنا عن مشروعك وسيتواصل معك فريقنا بخصوص العينات وعرض السعر.",
+   "ru": "Расскажите о проекте — наша команда свяжется с вами по образцам и стоимости."
+  },
+  "cta_btn": {
+   "tr": "Teklif İsteyin",
+   "en": "Request a Quote",
+   "fr": "Demander un devis",
+   "ar": "اطلب عرض سعر",
+   "ru": "Запросить расчёт"
+  },
+  "pr_h1": {
+   "tr": "Ürün <em>ağacı</em>.",
+   "en": "The product <em>tree</em>.",
+   "fr": "L'<em>arbre</em> des produits.",
+   "ar": "شجرة <em>المنتجات</em>.",
+   "ru": "<em>Древо</em> продукции."
+  },
+  "pr_lead": {
+   "tr": "İki ana grup, onlarca ürün. Her kategorinin ambalaj boyutlarını ve örnek ürünlerini inceleyin.",
+   "en": "Two main groups, dozens of products. Browse the pack sizes and sample products of every category.",
+   "fr": "Deux grands groupes, des dizaines de produits. Découvrez les formats et des exemples de chaque catégorie.",
+   "ar": "مجموعتان رئيسيتان وعشرات المنتجات. تصفّح أحجام العبوات ونماذج المنتجات في كل فئة.",
+   "ru": "Две основные группы и десятки продуктов. Изучите объёмы и образцы в каждой категории."
+  },
+  "bc_h1": {
+   "tr": "<em>Body Care</em> koleksiyonu.",
+   "en": "The <em>Body Care</em> collection.",
+   "fr": "La collection <em>Soins du corps</em>.",
+   "ar": "مجموعة <em>العناية بالجسم</em>.",
+   "ru": "Коллекция <em>Body Care</em>."
+  },
+  "bc_lead": {
+   "tr": "Deodorant, roll-on, saç ürünleri, parfüm ve body mist.",
+   "en": "Deodorant, roll-on, hair products, perfume and body mist.",
+   "fr": "Déodorant, roll-on, soins capillaires, parfum et brume corporelle.",
+   "ar": "مزيل العرق، رول أون، منتجات الشعر، العطور وبخاخ الجسم.",
+   "ru": "Дезодорант, роллер, средства для волос, парфюм и спрей для тела."
+  },
+  "hc_h1": {
+   "tr": "<em>Home Care</em> koleksiyonu.",
+   "en": "The <em>Home Care</em> collection.",
+   "fr": "La collection <em>Parfums d'intérieur</em>.",
+   "ar": "مجموعة <em>العناية بالمنزل</em>.",
+   "ru": "Коллекция <em>Home Care</em>."
+  },
+  "hc_lead": {
+   "tr": "Bambu difüzör, oda spreyleri ve reed diffuser.",
+   "en": "Bamboo diffuser, room sprays and reed diffusers.",
+   "fr": "Diffuseur en bambou, sprays d'ambiance et diffuseurs à roseaux.",
+   "ar": "موزّع الخيزران وبخاخات الغرف وموزّعات القصب.",
+   "ru": "Диффузор с бамбуком, освежители воздуха и аромадиффузоры."
+  },
+  "back_tree": {
+   "tr": "Ürün ağacı",
+   "en": "Product tree",
+   "fr": "Arbre des produits",
+   "ar": "شجرة المنتجات",
+   "ru": "Древо продукции"
+  },
+  "pl_h1": {
+   "tr": "Sizin markanız, <em>bizim</em> atölyemiz.",
+   "en": "Your brand, <em>our</em> atelier.",
+   "fr": "Votre marque, <em>notre</em> atelier.",
+   "ar": "علامتك، <em>وورشتنا</em>.",
+   "ru": "Ваш бренд — <em>наша</em> мастерская."
+  },
+  "pl_page_lead": {
+   "tr": "Body care ve home care ürünlerinde markanıza özel üretim; 50'den fazla alüminyum tüp seçeneğiyle.",
+   "en": "Custom production of body care and home care products for your brand — with more than 50 aluminium tube options.",
+   "fr": "Production sur mesure de soins du corps et de parfums d'intérieur pour votre marque, avec plus de 50 modèles de tubes aluminium.",
+   "ar": "إنتاج مخصص لمنتجات العناية بالجسم والمنزل لعلامتك، مع أكثر من 50 خياراً من أنابيب الألومنيوم.",
+   "ru": "Индивидуальное производство средств для тела и дома для вашего бренда — с более чем 50 вариантами алюминиевых баллонов."
+  },
+  "pl_proc_h2": {
+   "tr": "Beş adım, <em>tek</em> ekip.",
+   "en": "Five steps, <em>one</em> team.",
+   "fr": "Cinq étapes, <em>une</em> équipe.",
+   "ar": "خمس خطوات، <em>فريق</em> واحد.",
+   "ru": "Пять шагов, <em>одна</em> команда."
+  },
+  "pl_proc_lead": {
+   "tr": "Ürünün konseptinden sevkiyatına kadar aynı muhatapla ilerleyin.",
+   "en": "From concept to shipping, work with the same contact.",
+   "fr": "Du concept à l'expédition, avancez avec le même interlocuteur.",
+   "ar": "من المفهوم إلى الشحن، مع جهة اتصال واحدة.",
+   "ru": "От концепции до отгрузки — с одним и тем же контактным лицом."
+  },
+  "tube_h2": {
+   "tr": "50+ <em>tüp</em> modeli",
+   "en": "50+ <em>tube</em> models",
+   "fr": "Plus de 50 <em>modèles</em> de tubes",
+   "ar": "أكثر من 50 طراز <em>أنبوب</em>",
+   "ru": "50+ моделей <em>баллонов</em>"
+  },
+  "tube_lead": {
+   "tr": "Deodorant, body spray, parfüm ve saç bakım ürünleri için; ölçüler milimetre cinsindendir (çap/genişlik × yükseklik).",
+   "en": "For deodorants, body sprays, perfumes and hair care; dimensions in millimetres (diameter/width × height).",
+   "fr": "Pour déodorants, body sprays, parfums et soins capillaires ; dimensions en millimètres (diamètre/largeur × hauteur).",
+   "ar": "لمزيلات العرق وبخاخات الجسم والعطور ومنتجات الشعر؛ الأبعاد بالمليمتر (القطر/العرض × الارتفاع).",
+   "ru": "Для дезодорантов, спреев, парфюма и средств для волос; размеры в миллиметрах (диаметр/ширина × высота)."
+  },
+  "t_round": {
+   "tr": "Yuvarlak",
+   "en": "Round",
+   "fr": "Rond",
+   "ar": "دائري",
+   "ru": "Круглые"
+  },
+  "t_flat": {
+   "tr": "Yassı",
+   "en": "Flat",
+   "fr": "Plat",
+   "ar": "مسطّح",
+   "ru": "Плоские"
+  },
+  "t_ogival": {
+   "tr": "Ogival",
+   "en": "Ogival",
+   "fr": "Ogival",
+   "ar": "أوجيفال",
+   "ru": "Оживальные"
+  },
+  "t_square": {
+   "tr": "Kare Yassı",
+   "en": "Square Flat",
+   "fr": "Plat carré",
+   "ar": "مسطّح مربّع",
+   "ru": "Квадратные плоские"
+  },
+  "t_transfer": {
+   "tr": "Transfer",
+   "en": "Transfer",
+   "fr": "Transfer",
+   "ar": "ترانسفر",
+   "ru": "Transfer"
+  },
+  "t_special": {
+   "tr": "Özel Formlar",
+   "en": "Special Shapes",
+   "fr": "Formes spéciales",
+   "ar": "أشكال خاصة",
+   "ru": "Особые формы"
+  },
+  "ab_h1": {
+   "tr": "Kırk yılı aşkın <em>üretim</em> tecrübesi.",
+   "en": "Over forty years of <em>manufacturing</em> experience.",
+   "fr": "Plus de quarante ans d'expérience de <em>fabrication</em>.",
+   "ar": "أكثر من أربعين عاماً من الخبرة في <em>التصنيع</em>.",
+   "ru": "Более сорока лет <em>производственного</em> опыта."
+  },
+  "ab_lead": {
+   "tr": "1978'de İstanbul'da kurulan Uzman Kozmetik, bugün Çayırova / Kocaeli'deki tesisinde üretim yapıyor.",
+   "en": "Founded in Istanbul in 1978, Uzman Cosmetic now produces at its facility in Çayırova / Kocaeli.",
+   "fr": "Fondée à Istanbul en 1978, Uzman Cosmetic produit aujourd'hui dans son usine de Çayırova / Kocaeli.",
+   "ar": "تأسست أوزمان كوزمتيك في إسطنبول عام 1978، وتنتج اليوم في منشأتها في تشايروفا / قوجه إيلي.",
+   "ru": "Основанная в Стамбуле в 1978 году, Uzman Cosmetic сегодня производит продукцию на фабрике в Чайырове / Коджаэли."
+  },
+  "ab_manifesto": {
+   "tr": "Türkiye'nin tanınmış markalarına fason üretimle başladık; bugün <em>80 ülkeye</em> ihracat yapan bir üretici olarak <em>dünya standartlarında</em> çözümler sunuyoruz.",
+   "en": "We started with contract manufacturing for well-known Turkish brands; today, as a producer exporting to <em>80 countries</em>, we deliver solutions <em>built to international standards</em>.",
+   "fr": "Nous avons débuté par la sous-traitance pour des marques turques reconnues ; aujourd'hui, producteur exportant dans <em>80 pays</em>, nous proposons des solutions <em>de niveau mondial</em>.",
+   "ar": "بدأنا بالتصنيع للغير لعلامات تركية معروفة، واليوم كمصنّع يصدّر إلى <em>80 دولة</em> نقدّم حلولاً <em>بمستوى عالمي</em>.",
+   "ru": "Мы начинали с контрактного производства для известных турецких брендов; сегодня, экспортируя в <em>80 стран</em>, мы предлагаем решения <em>мирового класса</em>."
+  },
+  "ab_journey_h2": {
+   "tr": "İstanbul'dan <em>dünyaya</em>.",
+   "en": "From Istanbul to <em>the world</em>.",
+   "fr": "D'Istanbul au <em>monde</em>.",
+   "ar": "من إسطنبول إلى <em>العالم</em>.",
+   "ru": "Из Стамбула — <em>в мир</em>."
+  },
+  "tl1": {
+   "tr": "Uzman Kozmetik, İstanbul'da kuruldu.",
+   "en": "Uzman Cosmetic was founded in Istanbul.",
+   "fr": "Uzman Cosmetic est fondée à Istanbul.",
+   "ar": "تأسست أوزمان كوزمتيك في إسطنبول.",
+   "ru": "Uzman Cosmetic основана в Стамбуле."
+  },
+  "tl2": {
+   "tr": "Basınçlı kaplar kanununa uygun ilk yarı otomatik aerosol makinesiyle üretime başlandı.",
+   "en": "Production began with the first semi-automatic aerosol machine, compliant with pressure-vessel law.",
+   "fr": "La production démarre avec la première machine aérosol semi-automatique, conforme à la loi sur les récipients sous pression.",
+   "ar": "بدأ الإنتاج بأول ماكينة أيروسول شبه آلية مطابقة لقانون الأوعية المضغوطة.",
+   "ru": "Начато производство на первой полуавтоматической аэрозольной машине, соответствующей закону о сосудах под давлением."
+  },
+  "tl3": {
+   "tr": "Çayırova / Kocaeli'de 5.500 m² kapalı alan, 60 milyon adet aerosol kapasitesi ve 80 ülkeye ihracat.",
+   "en": "5,500 m² of indoor space in Çayırova / Kocaeli, 60 million aerosol unit capacity and exports to 80 countries.",
+   "fr": "5 500 m² couverts à Çayırova / Kocaeli, capacité de 60 millions d'aérosols et exportations vers 80 pays.",
+   "ar": "مساحة مغلقة 5500 م² في تشايروفا / قوجه إيلي، وطاقة 60 مليون عبوة أيروسول، وتصدير إلى 80 دولة.",
+   "ru": "5 500 м² закрытой площади в Чайырове / Коджаэли, мощность 60 млн аэрозолей и экспорт в 80 стран."
+  },
+  "tl_today": {
+   "tr": "Bugün",
+   "en": "Today",
+   "fr": "Aujourd'hui",
+   "ar": "اليوم",
+   "ru": "Сегодня"
+  },
+  "ab_team_h2": {
+   "tr": "Ar-Ge, <em>tasarım</em>, grafik.",
+   "en": "R&amp;D, <em>design</em>, graphics.",
+   "fr": "R&amp;D, <em>design</em>, graphisme.",
+   "ar": "البحث والتطوير، <em>التصميم</em>، الجرافيك.",
+   "ru": "НИОКР, <em>дизайн</em>, графика."
+  },
+  "ab_team_lead": {
+   "tr": "Ürünlerimizin kalitesini artırmak için üç ayrı departman birlikte çalışır. Pazarlama ve satış ekibimiz müşteri memnuniyeti için hizmetinizde.",
+   "en": "Three departments work together to raise the quality of our products. Our marketing and sales teams are at your service for maximum customer satisfaction.",
+   "fr": "Trois départements collaborent pour élever la qualité de nos produits. Nos équipes marketing et commerciales sont à votre service pour une satisfaction client maximale.",
+   "ar": "تعمل ثلاثة أقسام معاً لرفع جودة منتجاتنا، وفريقا التسويق والمبيعات في خدمتكم لتحقيق أقصى رضا للعملاء.",
+   "ru": "Три отдела работают вместе, повышая качество продукции. Команды маркетинга и продаж к вашим услугам для максимальной удовлетворённости клиентов."
+  },
+  "ab_caption": {
+   "tr": "Çayırova · Kocaeli",
+   "en": "Çayırova · Kocaeli",
+   "fr": "Çayırova · Kocaeli",
+   "ar": "تشايروفا · قوجه إيلي",
+   "ru": "Чайырова · Коджаэли"
+  },
+  "ct_h1": {
+   "tr": "Projenizi <em>anlatın</em>.",
+   "en": "Tell us about <em>your project</em>.",
+   "fr": "Parlez-nous de <em>votre projet</em>.",
+   "ar": "أخبرنا عن <em>مشروعك</em>.",
+   "ru": "Расскажите о <em>проекте</em>."
+  },
+  "ct_lead": {
+   "tr": "Projenizi, hedef pazarınızı ve ürün grubunuzu paylaşın; ekibimiz sizinle iletişime geçsin.",
+   "en": "Share your project, target market and product group, and our team will get in touch.",
+   "fr": "Partagez votre projet, votre marché cible et votre gamme de produits ; notre équipe vous contactera.",
+   "ar": "شاركنا مشروعك وسوقك المستهدف ومجموعة المنتجات، وسيتواصل معك فريقنا.",
+   "ru": "Расскажите о проекте, целевом рынке и группе продукции — наша команда свяжется с вами."
+  },
+  "ct_addr": {
+   "tr": "Fabrika & Merkez",
+   "en": "Factory & Head Office",
+   "fr": "Usine & siège",
+   "ar": "المصنع والمقر",
+   "ru": "Фабрика и офис"
+  },
+  "ct_phone": {
+   "tr": "Telefon",
+   "en": "Phone",
+   "fr": "Téléphone",
+   "ar": "الهاتف",
+   "ru": "Телефон"
+  },
+  "ct_fax": {
+   "tr": "Faks",
+   "en": "Fax",
+   "fr": "Fax",
+   "ar": "فاكس",
+   "ru": "Факс"
+  },
+  "ct_email": {
+   "tr": "E-posta",
+   "en": "Email",
+   "fr": "E-mail",
+   "ar": "البريد الإلكتروني",
+   "ru": "Эл. почта"
+  },
+  "ct_social": {
+   "tr": "Sosyal Medya",
+   "en": "Social Media",
+   "fr": "Réseaux sociaux",
+   "ar": "وسائل التواصل",
+   "ru": "Соцсети"
+  },
+  "f_name": {
+   "tr": "Ad Soyad",
+   "en": "Full Name",
+   "fr": "Nom complet",
+   "ar": "الاسم الكامل",
+   "ru": "Имя и фамилия"
+  },
+  "f_name_ph": {
+   "tr": "Adınız ve soyadınız",
+   "en": "Your full name",
+   "fr": "Votre nom complet",
+   "ar": "اسمك الكامل",
+   "ru": "Ваше имя и фамилия"
+  },
+  "f_company": {
+   "tr": "Firma / Marka",
+   "en": "Company / Brand",
+   "fr": "Société / Marque",
+   "ar": "الشركة / العلامة",
+   "ru": "Компания / Бренд"
+  },
+  "f_company_ph": {
+   "tr": "Marka veya firma adı",
+   "en": "Brand or company name",
+   "fr": "Nom de la marque ou de la société",
+   "ar": "اسم العلامة أو الشركة",
+   "ru": "Название бренда или компании"
+  },
+  "f_email": {
+   "tr": "Kurumsal E-posta",
+   "en": "Business Email",
+   "fr": "E-mail professionnel",
+   "ar": "البريد الإلكتروني للعمل",
+   "ru": "Рабочая почта"
+  },
+  "f_phone": {
+   "tr": "Telefon",
+   "en": "Phone",
+   "fr": "Téléphone",
+   "ar": "الهاتف",
+   "ru": "Телефон"
+  },
+  "f_cat": {
+   "tr": "İlgilendiğiniz Kategori",
+   "en": "Category of Interest",
+   "fr": "Catégorie concernée",
+   "ar": "الفئة المهتم بها",
+   "ru": "Интересующая категория"
+  },
+  "f_brief": {
+   "tr": "Proje & Hedefler",
+   "en": "Project & Goals",
+   "fr": "Projet & objectifs",
+   "ar": "المشروع والأهداف",
+   "ru": "Проект и цели"
+  },
+  "f_brief_ph": {
+   "tr": "Örn: Private label deodorant serisi, hedef pazar, tahmini adet…",
+   "en": "E.g. a private label deodorant range, target market, estimated quantity…",
+   "fr": "Ex. : une gamme de déodorants en marque blanche, marché cible, quantité estimée…",
+   "ar": "مثال: مجموعة مزيلات عرق بعلامة خاصة، السوق المستهدف، الكمية التقديرية…",
+   "ru": "Например: линейка дезодорантов под частной маркой, целевой рынок, ориентировочный тираж…"
+  },
+  "f_other": {
+   "tr": "Diğer",
+   "en": "Other",
+   "fr": "Autre",
+   "ar": "أخرى",
+   "ru": "Другое"
+  },
+  "f_pl_tube": {
+   "tr": "Private Label / Alüminyum Tüp",
+   "en": "Private Label / Aluminium Tube",
+   "fr": "Private Label / Tube aluminium",
+   "ar": "العلامة الخاصة / أنبوب ألومنيوم",
+   "ru": "Private Label / Алюминиевый баллон"
+  },
+  "f_submit": {
+   "tr": "Teklif & Numune Talebini İlet",
+   "en": "Send Quote & Sample Request",
+   "fr": "Envoyer la demande",
+   "ar": "إرسال طلب عرض السعر والعينات",
+   "ru": "Отправить запрос"
+  },
+  "f_err": {
+   "tr": "Lütfen işaretli alanları doldurun.",
+   "en": "Please fill in the highlighted fields.",
+   "fr": "Veuillez remplir les champs signalés.",
+   "ar": "يرجى تعبئة الحقول المحددة.",
+   "ru": "Пожалуйста, заполните отмеченные поля."
+  },
+  "f_ok": {
+   "tr": "Talebiniz alındı. Ekibimiz en kısa sürede sizinle iletişime geçecek.",
+   "en": "Your request has been received. Our team will contact you shortly.",
+   "fr": "Votre demande a bien été reçue. Notre équipe vous contactera très prochainement.",
+   "ar": "تم استلام طلبك. سيتواصل معك فريقنا قريباً.",
+   "ru": "Ваш запрос получен. Наша команда свяжется с вами в ближайшее время."
+  },
+  "title_index": {
+   "tr": "Uzman Cosmetic — Markanızın İmzası, Bizim Ustalığımız",
+   "en": "Uzman Cosmetic — Your Brand's Signature, Our Craftsmanship",
+   "fr": "Uzman Cosmetic — La signature de votre marque, notre savoir-faire",
+   "ar": "أوزمان كوزمتيك — توقيع علامتك وحِرفتنا",
+   "ru": "Uzman Cosmetic — Подпись вашего бренда, наше мастерство"
+  },
+  "desc_index": {
+   "tr": "1978'den beri fason ve private label body care ve home care üretimi. Çayırova, Kocaeli. 80 ülkeye ihracat.",
+   "en": "Contract and private label body care and home care manufacturing since 1978. Çayırova, Kocaeli. Exporting to 80 countries.",
+   "fr": "Fabrication sous-traitée et en marque blanche de soins du corps et de parfums d'intérieur depuis 1978. Çayırova, Kocaeli. Export dans 80 pays.",
+   "ar": "تصنيع منتجات العناية بالجسم والمنزل للغير وللعلامات الخاصة منذ 1978. تشايروفا، قوجه إيلي. تصدير إلى 80 دولة.",
+   "ru": "Контрактное производство и Private Label средств для тела и дома с 1978 года. Чайырова, Коджаэли. Экспорт в 80 стран."
+  },
+  "title_products": {
+   "tr": "Ürünler — Uzman Cosmetic",
+   "en": "Products — Uzman Cosmetic",
+   "fr": "Produits — Uzman Cosmetic",
+   "ar": "المنتجات — أوزمان كوزمتيك",
+   "ru": "Продукция — Uzman Cosmetic"
+  },
+  "title_body": {
+   "tr": "Body Care — Uzman Cosmetic",
+   "en": "Body Care — Uzman Cosmetic",
+   "fr": "Soins du corps — Uzman Cosmetic",
+   "ar": "العناية بالجسم — أوزمان كوزمتيك",
+   "ru": "Body Care — Uzman Cosmetic"
+  },
+  "title_home": {
+   "tr": "Home Care — Uzman Cosmetic",
+   "en": "Home Care — Uzman Cosmetic",
+   "fr": "Parfums d'intérieur — Uzman Cosmetic",
+   "ar": "العناية بالمنزل — أوزمان كوزمتيك",
+   "ru": "Home Care — Uzman Cosmetic"
+  },
+  "title_pl": {
+   "tr": "Private Label — Uzman Cosmetic",
+   "en": "Private Label — Uzman Cosmetic",
+   "fr": "Private Label — Uzman Cosmetic",
+   "ar": "العلامة الخاصة — أوزمان كوزمتيك",
+   "ru": "Private Label — Uzman Cosmetic"
+  },
+  "title_about": {
+   "tr": "Kurumsal — Uzman Cosmetic",
+   "en": "About Us — Uzman Cosmetic",
+   "fr": "Entreprise — Uzman Cosmetic",
+   "ar": "من نحن — أوزمان كوزمتيك",
+   "ru": "О компании — Uzman Cosmetic"
+  },
+  "title_contact": {
+   "tr": "İletişim & Teklif — Uzman Cosmetic",
+   "en": "Contact & Quote — Uzman Cosmetic",
+   "fr": "Contact & devis — Uzman Cosmetic",
+   "ar": "اتصل بنا وعرض السعر — أوزمان كوزمتيك",
+   "ru": "Контакты и запрос — Uzman Cosmetic"
+  },
+  "hero_alt": {
+   "tr": "Örnek (konsept) görsel: markasız, siyah ve altın private label ürün seti; deodorant, parfüm, body mist ve oda difüzörü",
+   "en": "Illustrative concept image: an unbranded black and gold private-label set with deodorant, perfume, body mist and reed diffuser",
+   "fr": "Image conceptuelle : ensemble private label sans marque, noir et or, avec déodorant, parfum, brume corporelle et diffuseur d'ambiance",
+   "ar": "صورة توضيحية: مجموعة علامة خاصة بدون علامة تجارية بالأسود والذهبي تضم مزيل عرق وعطراً وبخاخ جسم وموزّع عطور",
+   "ru": "Концептуальное изображение: набор Private Label без бренда в чёрном и золотом — дезодорант, парфюм, спрей для тела и диффузор"
+  },
+  "f_market": {
+   "tr": "Hedef Pazar",
+   "en": "Target Market",
+   "fr": "Marché cible",
+   "ar": "السوق المستهدف",
+   "ru": "Целевой рынок"
+  },
+  "f_market_ph": {
+   "tr": "Örn: Körfez, Avrupa, Afrika",
+   "en": "e.g. Gulf, Europe, Africa",
+   "fr": "Ex. : Golfe, Europe, Afrique",
+   "ar": "مثال: الخليج، أوروبا، أفريقيا",
+   "ru": "Напр.: Залив, Европа, Африка"
+  },
+  "f_qty": {
+   "tr": "Tahmini Adet",
+   "en": "Estimated Quantity",
+   "fr": "Quantité estimée",
+   "ar": "الكمية التقديرية",
+   "ru": "Ориентировочный тираж"
+  },
+  "f_qty_ph": {
+   "tr": "Örn: 10.000 adet",
+   "en": "e.g. 10,000 units",
+   "fr": "Ex. : 10 000 unités",
+   "ar": "مثال: 10,000 قطعة",
+   "ru": "Напр.: 10 000 шт."
+  },
+  "f_consent": {
+   "tr": "<a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\">Aydınlatma metnini</a> okudum; bilgilerimin talebime dönüş için işlenmesini kabul ediyorum.",
+   "en": "I have read the <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\">privacy notice</a> and agree to my details being processed to respond to my request.",
+   "fr": "J'ai lu la <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\">notice de confidentialité</a> et j'accepte le traitement de mes données pour répondre à ma demande.",
+   "ar": "قرأت <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\">إشعار الخصوصية</a> وأوافق على معالجة بياناتي للرد على طلبي.",
+   "ru": "Я прочитал(а) <a href=\"privacy.html\" target=\"_blank\" rel=\"noopener\">уведомление о конфиденциальности</a> и согласен(на) на обработку данных для ответа на запрос."
+  },
+  "f_consent_err": {
+   "tr": "Devam etmek için onay gerekli.",
+   "en": "Your consent is required to continue.",
+   "fr": "Votre accord est nécessaire pour continuer.",
+   "ar": "الموافقة مطلوبة للمتابعة.",
+   "ru": "Для продолжения требуется согласие."
+  },
+  "f_fail": {
+   "tr": "Gönderilemedi. Lütfen tekrar deneyin ya da info@uzmancosmetic.com adresine yazın.",
+   "en": "Could not be sent. Please try again or write to info@uzmancosmetic.com.",
+   "fr": "Envoi impossible. Réessayez ou écrivez à info@uzmancosmetic.com.",
+   "ar": "تعذّر الإرسال. حاول مجدداً أو راسلنا على info@uzmancosmetic.com.",
+   "ru": "Не удалось отправить. Повторите попытку или напишите на info@uzmancosmetic.com."
+  },
+  "foot_legal": {
+   "tr": "Kurumsal",
+   "en": "Company",
+   "fr": "Entreprise",
+   "ar": "الشركة",
+   "ru": "Компания"
+  },
+  "wa_label": {
+   "tr": "WhatsApp ile yazın",
+   "en": "Chat on WhatsApp",
+   "fr": "Écrire sur WhatsApp",
+   "ar": "راسلنا عبر واتساب",
+   "ru": "Написать в WhatsApp"
+  },
+  "docs_empty": {
+   "tr": "Güncel belge ve sertifikalarımız için bizimle iletişime geçin.",
+   "en": "Please contact us for our current documents and certificates.",
+   "fr": "Contactez-nous pour obtenir nos documents et certificats à jour.",
+   "ar": "تواصل معنا للحصول على أحدث وثائقنا وشهاداتنا.",
+   "ru": "Свяжитесь с нами, чтобы получить актуальные документы и сертификаты."
+  },
+  "download": {
+   "tr": "İndir",
+   "en": "Download",
+   "fr": "Télécharger",
+   "ar": "تحميل",
+   "ru": "Скачать"
+  }
+ },
+ "categories": [
+  {
+   "slug": "body",
+   "page": "body-care",
+   "name": {
+    "tr": "Body Care",
+    "en": "Body Care",
+    "fr": "Soins du corps",
+    "ar": "العناية بالجسم",
+    "ru": "Уход за телом"
+   },
+   "sort": 0,
+   "subs": [
+    {
+     "slug": "deo",
+     "name": {
+      "tr": "Deodorant",
+      "en": "Deodorant",
+      "fr": "Déodorant",
+      "ar": "مزيل العرق",
+      "ru": "Дезодорант"
+     },
+     "desc": {
+      "tr": "Yedi ayrı marka altında üretilen deodorant koleksiyonu.",
+      "en": "A deodorant collection produced under seven different brands.",
+      "fr": "Une collection de déodorants fabriquée sous sept marques.",
+      "ar": "مجموعة مزيلات عرق تُنتج تحت سبع علامات مختلفة.",
+      "ru": "Коллекция дезодорантов, выпускаемая под семью разными брендами."
+     },
+     "sizes": [
+      150,
+      200,
+      250
+     ],
+     "art": "aerosol",
+     "sort": 0,
+     "items": [
+      {
+       "cap": "Bonamour",
+       "image": "assets/img/p/bonamour1.webp"
+      },
+      {
+       "cap": "Bonamour",
+       "image": "assets/img/p/bonamour2.webp"
+      },
+      {
+       "cap": "Bonamour",
+       "image": "assets/img/p/bonamour3.webp"
+      },
+      {
+       "cap": "Bonamour",
+       "image": "assets/img/p/bonamour4.webp"
+      },
+      {
+       "cap": "Bonamour",
+       "image": "assets/img/p/bonamour5.webp"
+      },
+      {
+       "cap": "Bonamour",
+       "image": "assets/img/p/bonamour6.webp"
+      },
+      {
+       "cap": "Bonamour",
+       "image": "assets/img/p/bonamour7.webp"
+      },
+      {
+       "cap": "Bonamour",
+       "image": "assets/img/p/bonamour8.webp"
+      },
+      {
+       "cap": "Bonamour",
+       "image": "assets/img/p/bonamour9.webp"
+      },
+      {
+       "cap": "Bonamour",
+       "image": "assets/img/p/bonamour10.webp"
+      },
+      {
+       "cap": "Cremmy",
+       "image": "assets/img/p/cremmy1.webp"
+      },
+      {
+       "cap": "Cremmy",
+       "image": "assets/img/p/cremmy2.webp"
+      },
+      {
+       "cap": "Cremmy",
+       "image": "assets/img/p/cremmy3.webp"
+      },
+      {
+       "cap": "Cremmy",
+       "image": "assets/img/p/cremmy4.webp"
+      },
+      {
+       "cap": "Montagne Black",
+       "image": "assets/img/p/montagneblack1.webp"
+      },
+      {
+       "cap": "Montagne Black",
+       "image": "assets/img/p/montagneblack2.webp"
+      },
+      {
+       "cap": "Montagne Black",
+       "image": "assets/img/p/montagneblack3.webp"
+      },
+      {
+       "cap": "Montagne Black",
+       "image": "assets/img/p/montagneblack4.webp"
+      },
+      {
+       "cap": "Montagne Black",
+       "image": "assets/img/p/montagneblack5.webp"
+      },
+      {
+       "cap": "Montagne Black",
+       "image": "assets/img/p/montagneblack6.webp"
+      },
+      {
+       "cap": "Oriflowers",
+       "image": "assets/img/p/oriflowers1.webp"
+      },
+      {
+       "cap": "Oriflowers",
+       "image": "assets/img/p/oriflowers2.webp"
+      },
+      {
+       "cap": "Oriflowers",
+       "image": "assets/img/p/oriflowers3.webp"
+      },
+      {
+       "cap": "Oriflowers",
+       "image": "assets/img/p/oriflowers4.webp"
+      },
+      {
+       "cap": "Oriflowers",
+       "image": "assets/img/p/oriflowers5.webp"
+      },
+      {
+       "cap": "X Block",
+       "image": "assets/img/p/x-block1.webp"
+      },
+      {
+       "cap": "X Block",
+       "image": "assets/img/p/x-block2.webp"
+      },
+      {
+       "cap": "X Block",
+       "image": "assets/img/p/x-block3.webp"
+      },
+      {
+       "cap": "X Block",
+       "image": "assets/img/p/x-block4.webp"
+      },
+      {
+       "cap": "Camay",
+       "image": "assets/img/p/camay.webp"
+      },
+      {
+       "cap": "Camay",
+       "image": "assets/img/p/camay1.webp"
+      },
+      {
+       "cap": "Camay",
+       "image": "assets/img/p/camay2.webp"
+      },
+      {
+       "cap": "Camay",
+       "image": "assets/img/p/camay3.webp"
+      },
+      {
+       "cap": "Purixima",
+       "image": "assets/img/p/purixima-deo.webp"
+      },
+      {
+       "cap": "Purixima",
+       "image": "assets/img/p/purixima-deo1.webp"
+      },
+      {
+       "cap": "Purixima",
+       "image": "assets/img/p/purixima-deo2.webp"
+      },
+      {
+       "cap": "Purixima",
+       "image": "assets/img/p/purixima-deo3.webp"
+      },
+      {
+       "cap": "Purixima",
+       "image": "assets/img/p/purixima-deo4.webp"
+      }
+     ]
+    },
+    {
+     "slug": "rollon",
+     "name": {
+      "tr": "Roll-on",
+      "en": "Roll-on",
+      "fr": "Roll-on",
+      "ar": "رول أون",
+      "ru": "Роликовый дезодорант"
+     },
+     "desc": {
+      "tr": "Kompakt ve pratik roll-on deodorant.",
+      "en": "Compact, practical roll-on deodorant.",
+      "fr": "Déodorant roll-on compact et pratique.",
+      "ar": "مزيل عرق رول أون عملي وصغير الحجم.",
+      "ru": "Компактный и удобный роликовый дезодорант."
+     },
+     "sizes": [
+      50
+     ],
+     "art": "aerosol",
+     "sort": 1,
+     "items": [
+      {
+       "cap": "Roll-on",
+       "image": "assets/img/p/rollon.webp"
+      }
+     ]
+    },
+    {
+     "slug": "hair",
+     "name": {
+      "tr": "Saç Ürünleri",
+      "en": "Hair Products",
+      "fr": "Soins capillaires",
+      "ar": "منتجات الشعر",
+      "ru": "Средства для волос"
+     },
+     "desc": {
+      "tr": "Wax, sprey, kuru şampuan, saç kremi ve pudra wax.",
+      "en": "Wax, spray, dry shampoo, conditioner and powder wax.",
+      "fr": "Cire, laque, shampooing sec, après-shampooing et cire en poudre.",
+      "ar": "واكس وسبراي وشامبو جاف وبلسم وواكس بودرة.",
+      "ru": "Воск, лак, сухой шампунь, кондиционер и пудра-воск."
+     },
+     "sizes": [],
+     "art": "jar",
+     "sort": 2,
+     "children": [
+      {
+       "name": {
+        "tr": "Wax",
+        "en": "Wax",
+        "fr": "Cire coiffante",
+        "ar": "واكس الشعر",
+        "ru": "Воск"
+       },
+       "items": [
+        {
+         "cap": {
+          "tr": "Wax",
+          "en": "Wax",
+          "fr": "Cire coiffante",
+          "ar": "واكس الشعر",
+          "ru": "Воск"
+         },
+         "image": "assets/img/p/jole.webp"
+        }
+       ]
+      },
+      {
+       "name": {
+        "tr": "Saç Spreyi",
+        "en": "Hair Spray",
+        "fr": "Laque",
+        "ar": "سبراي الشعر",
+        "ru": "Лак для волос"
+       },
+       "items": [
+        {
+         "cap": {
+          "tr": "Saç Spreyi",
+          "en": "Hair Spray",
+          "fr": "Laque",
+          "ar": "سبراي الشعر",
+          "ru": "Лак для волос"
+         },
+         "image": "assets/img/p/sac-spreyi.webp"
+        },
+        {
+         "cap": {
+          "tr": "Saç Spreyi",
+          "en": "Hair Spray",
+          "fr": "Laque",
+          "ar": "سبراي الشعر",
+          "ru": "Лак для волос"
+         },
+         "image": "assets/img/p/sac-spreyi1.webp"
+        },
+        {
+         "cap": {
+          "tr": "Saç Spreyi",
+          "en": "Hair Spray",
+          "fr": "Laque",
+          "ar": "سبراي الشعر",
+          "ru": "Лак для волос"
+         },
+         "image": "assets/img/p/sac-spreyi2.webp"
+        }
+       ]
+      },
+      {
+       "name": {
+        "tr": "Kuru Şampuan",
+        "en": "Dry Shampoo",
+        "fr": "Shampooing sec",
+        "ar": "شامبو جاف",
+        "ru": "Сухой шампунь"
+       },
+       "items": [
+        {
+         "cap": {
+          "tr": "Kuru Şampuan",
+          "en": "Dry Shampoo",
+          "fr": "Shampooing sec",
+          "ar": "شامبو جاف",
+          "ru": "Сухой шампунь"
+         },
+         "image": ""
+        }
+       ]
+      },
+      {
+       "name": {
+        "tr": "Saç Kremi",
+        "en": "Conditioner",
+        "fr": "Après-shampooing",
+        "ar": "بلسم الشعر",
+        "ru": "Кондиционер"
+       },
+       "items": [
+        {
+         "cap": {
+          "tr": "Saç Kremi",
+          "en": "Conditioner",
+          "fr": "Après-shampooing",
+          "ar": "بلسم الشعر",
+          "ru": "Кондиционер"
+         },
+         "image": ""
+        }
+       ]
+      },
+      {
+       "name": {
+        "tr": "Pudra Wax",
+        "en": "Powder Wax",
+        "fr": "Cire en poudre",
+        "ar": "واكس بودرة",
+        "ru": "Пудра-воск"
+       },
+       "items": [
+        {
+         "cap": {
+          "tr": "Pudra Wax",
+          "en": "Powder Wax",
+          "fr": "Cire en poudre",
+          "ar": "واكس بودرة",
+          "ru": "Пудра-воск"
+         },
+         "image": ""
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slug": "edp",
+     "name": {
+      "tr": "EDP Parfüm",
+      "en": "EDP Perfume",
+      "fr": "Eau de Parfum",
+      "ar": "ماء عطر (EDP)",
+      "ru": "Парфюмерная вода (EDP)"
+     },
+     "desc": {
+      "tr": "50 ve 100 ml Eau de Parfum seçenekleri.",
+      "en": "Eau de Parfum in 50 and 100 ml.",
+      "fr": "Eau de Parfum en 50 et 100 ml.",
+      "ar": "ماء عطر بحجمي 50 و100 مل.",
+      "ru": "Парфюмерная вода 50 и 100 мл."
+     },
+     "sizes": [
+      50,
+      100
+     ],
+     "art": "perfume",
+     "sort": 3,
+     "items": [
+      {
+       "cap": "EDP",
+       "image": "assets/img/p/edt1.webp"
+      },
+      {
+       "cap": "EDP",
+       "image": "assets/img/p/edt2.webp"
+      },
+      {
+       "cap": "EDP",
+       "image": "assets/img/p/edt3.webp"
+      },
+      {
+       "cap": "EDP",
+       "image": "assets/img/p/edtparfum.webp"
+      },
+      {
+       "cap": "EDP",
+       "image": "assets/img/p/edtparfum1.webp"
+      },
+      {
+       "cap": "EDP",
+       "image": "assets/img/p/edtparfum2.webp"
+      },
+      {
+       "cap": "EDP",
+       "image": "assets/img/p/edtparfum3.webp"
+      }
+     ]
+    },
+    {
+     "slug": "mist",
+     "name": {
+      "tr": "Body Mist",
+      "en": "Body Mist",
+      "fr": "Brume corporelle",
+      "ar": "بخاخ الجسم",
+      "ru": "Спрей для тела"
+     },
+     "desc": {
+      "tr": "Hafif ve kalıcı body mist serileri.",
+      "en": "Light, long-lasting body mist ranges.",
+      "fr": "Gammes de brumes corporelles légères et tenaces.",
+      "ar": "مجموعات بخاخ جسم خفيفة ودائمة.",
+      "ru": "Лёгкие и стойкие линии спреев для тела."
+     },
+     "sizes": [
+      100,
+      200,
+      250
+     ],
+     "art": "aerosol",
+     "sort": 4,
+     "items": [
+      {
+       "cap": "Oriflowers",
+       "image": "assets/img/p/oriflower-body-mist.webp"
+      },
+      {
+       "cap": "Oriflowers",
+       "image": "assets/img/p/oriflower-body-mist1.webp"
+      },
+      {
+       "cap": "Oriflowers",
+       "image": "assets/img/p/oriflower-body-mist2.webp"
+      },
+      {
+       "cap": "Oriflowers",
+       "image": "assets/img/p/oriflower-body-mist3.webp"
+      },
+      {
+       "cap": "Oriflowers",
+       "image": "assets/img/p/oriflower-body-mist4.webp"
+      },
+      {
+       "cap": "Purixima",
+       "image": "assets/img/p/purixima-body-mist.webp"
+      },
+      {
+       "cap": "Purixima",
+       "image": "assets/img/p/purixima-body-mist1.webp"
+      },
+      {
+       "cap": "Purixima",
+       "image": "assets/img/p/purixima-body-mist2.webp"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "home",
+   "page": "home-care",
+   "name": {
+    "tr": "Home Care",
+    "en": "Home Care",
+    "fr": "Parfums d'intérieur",
+    "ar": "العناية بالمنزل",
+    "ru": "Уход за домом"
+   },
+   "sort": 1,
+   "subs": [
+    {
+     "slug": "bamboo",
+     "name": {
+      "tr": "Bambu Difüzör",
+      "en": "Bamboo Diffuser",
+      "fr": "Diffuseur en bambou",
+      "ar": "موزّع عطور بالخيزران",
+      "ru": "Диффузор с бамбуком"
+     },
+     "desc": {
+      "tr": "Bambu çubuklu oda difüzörü.",
+      "en": "Room diffuser with bamboo sticks.",
+      "fr": "Diffuseur d'ambiance à bâtonnets de bambou.",
+      "ar": "موزّع عطور للغرف بأعواد الخيزران.",
+      "ru": "Комнатный диффузор с бамбуковыми палочками."
+     },
+     "sizes": [],
+     "art": "diffuser",
+     "sort": 0,
+     "items": [
+      {
+       "cap": {
+        "tr": "Bambu Difüzör",
+        "en": "Bamboo Diffuser",
+        "fr": "Diffuseur en bambou",
+        "ar": "موزّع عطور بالخيزران",
+        "ru": "Диффузор с бамбуком"
+       },
+       "image": ""
+      }
+     ]
+    },
+    {
+     "slug": "air",
+     "name": {
+      "tr": "Air Freshener",
+      "en": "Air Freshener",
+      "fr": "Désodorisant d'air",
+      "ar": "معطّر الجو",
+      "ru": "Освежитель воздуха"
+     },
+     "desc": {
+      "tr": "Gazlı oda spreyi; onlarca koku seçeneği.",
+      "en": "Aerosol room spray in dozens of fragrances.",
+      "fr": "Spray d'ambiance aérosol en de nombreuses fragrances.",
+      "ar": "بخاخ غرف أيروسول بعشرات الروائح.",
+      "ru": "Аэрозольный освежитель воздуха с десятками ароматов."
+     },
+     "sizes": [
+      260,
+      400
+     ],
+     "art": "aerosol",
+     "sort": 1,
+     "items": [
+      {
+       "cap": "Anti Tobacco",
+       "image": "assets/img/p/air-antitobacco.webp"
+      },
+      {
+       "cap": "Anti",
+       "image": "assets/img/p/air-anti.webp"
+      },
+      {
+       "cap": "Apple Cinnamon",
+       "image": "assets/img/p/air-apple.webp"
+      },
+      {
+       "cap": "Apple",
+       "image": "assets/img/p/air-appleg.webp"
+      },
+      {
+       "cap": "Bubble Gum",
+       "image": "assets/img/p/air-bubble.webp"
+      },
+      {
+       "cap": "Chocolate",
+       "image": "assets/img/p/air-chocolate.webp"
+      },
+      {
+       "cap": "Jasmine",
+       "image": "assets/img/p/air-jasmine.webp"
+      },
+      {
+       "cap": "Lilac",
+       "image": "assets/img/p/air-lilac.webp"
+      },
+      {
+       "cap": "Lily of the Valley",
+       "image": "assets/img/p/air-lily.webp"
+      },
+      {
+       "cap": "Patchouli",
+       "image": "assets/img/p/air-patchouli.webp"
+      },
+      {
+       "cap": "Pomegranate",
+       "image": "assets/img/p/air-pommegranade.webp"
+      },
+      {
+       "cap": "Raspberry",
+       "image": "assets/img/p/air-raspberry.webp"
+      },
+      {
+       "cap": "Red Rose",
+       "image": "assets/img/p/air-redrose.webp"
+      },
+      {
+       "cap": "Magic Fresh Air",
+       "image": "assets/img/p/air-magic-fresh-air.webp"
+      },
+      {
+       "cap": "Magic Fresh Air",
+       "image": "assets/img/p/air-magic-fresh-air1.webp"
+      },
+      {
+       "cap": "Magic Fresh Air",
+       "image": "assets/img/p/air-magic-fresh-air2.webp"
+      },
+      {
+       "cap": "Magic Fresh Air",
+       "image": "assets/img/p/air-magic-fresh-air3.webp"
+      }
+     ]
+    },
+    {
+     "slug": "room",
+     "name": {
+      "tr": "Room Freshener",
+      "en": "Room Freshener",
+      "fr": "Parfum d'ambiance",
+      "ar": "معطّر الغرف",
+      "ru": "Ароматизатор для помещений"
+     },
+     "desc": {
+      "tr": "500 ml likit oda kokusu.",
+      "en": "500 ml liquid room freshener.",
+      "fr": "Parfum d'ambiance liquide de 500 ml.",
+      "ar": "معطّر غرف سائل سعة 500 مل.",
+      "ru": "Жидкий ароматизатор для помещений, 500 мл."
+     },
+     "sizes": [
+      500
+     ],
+     "art": "aerosol",
+     "sort": 2,
+     "items": [
+      {
+       "cap": "Room Freshener",
+       "image": "assets/img/p/oda-spreyi-fresh.webp"
+      },
+      {
+       "cap": "Room Freshener",
+       "image": "assets/img/p/oda-spreyi-fresh1.webp"
+      },
+      {
+       "cap": "Room Freshener",
+       "image": "assets/img/p/oda-spreyi-fresh2.webp"
+      },
+      {
+       "cap": "Room Freshener",
+       "image": "assets/img/p/oda-spreyi-fresh3.webp"
+      }
+     ]
+    },
+    {
+     "slug": "reed",
+     "name": {
+      "tr": "Reed Diffuser",
+      "en": "Reed Diffuser",
+      "fr": "Diffuseur à roseaux",
+      "ar": "موزّع عطور بالقصب",
+      "ru": "Аромадиффузор"
+     },
+     "desc": {
+      "tr": "Çubuklu oda difüzörü; üç boy.",
+      "en": "Reed diffuser in three sizes.",
+      "fr": "Diffuseur à roseaux en trois formats.",
+      "ar": "موزّع عطور بالقصب بثلاثة أحجام.",
+      "ru": "Аромадиффузор с палочками, три объёма."
+     },
+     "sizes": [
+      50,
+      110,
+      150
+     ],
+     "art": "diffuser",
+     "sort": 3,
+     "items": [
+      {
+       "cap": "Air Magic",
+       "image": "assets/img/p/reed-diffuser.webp"
+      },
+      {
+       "cap": "Air Magic",
+       "image": "assets/img/p/reed-diffuser1.webp"
+      },
+      {
+       "cap": "Air Magic",
+       "image": "assets/img/p/reed-diffuser2.webp"
+      },
+      {
+       "cap": "Air Magic",
+       "image": "assets/img/p/reed-diffuser3.webp"
+      },
+      {
+       "cap": "Air Magic",
+       "image": "assets/img/p/reed-diffuser4.webp"
+      },
+      {
+       "cap": "Air Magic",
+       "image": "assets/img/p/reed-diffuser5.webp"
+      },
+      {
+       "cap": "Air Magic",
+       "image": "assets/img/p/reed-diffuser6.webp"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "pl_groups": {
+  "round": {
+   "tr": "Yuvarlak",
+   "en": "Round",
+   "fr": "Rond",
+   "ar": "دائري",
+   "ru": "Круглые"
+  },
+  "flat": {
+   "tr": "Yassı",
+   "en": "Flat",
+   "fr": "Plat",
+   "ar": "مسطّح",
+   "ru": "Плоские"
+  },
+  "ogival": {
+   "tr": "Ogival",
+   "en": "Ogival",
+   "fr": "Ogival",
+   "ar": "أوجيفال",
+   "ru": "Оживальные"
+  },
+  "square": {
+   "tr": "Kare Yassı",
+   "en": "Square Flat",
+   "fr": "Plat carré",
+   "ar": "مسطّح مربّع",
+   "ru": "Квадратные плоские"
+  },
+  "transfer": {
+   "tr": "Transfer",
+   "en": "Transfer",
+   "fr": "Transfer",
+   "ar": "ترانسفر",
+   "ru": "Transfer"
+  },
+  "special": {
+   "tr": "Özel Formlar",
+   "en": "Special Shapes",
+   "fr": "Formes spéciales",
+   "ar": "أشكال خاصة",
+   "ru": "Особые формы"
+  }
+ },
+ "pl_models": [
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø35 × 88 mm",
+   "image": "assets/img/pl/round35x88.webp",
+   "sort": 0
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø35 × 115 mm",
+   "image": "assets/img/pl/round35x115.webp",
+   "sort": 1
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø35 × 125 mm",
+   "image": "assets/img/pl/round35x125.webp",
+   "sort": 2
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø35 × 150 mm",
+   "image": "assets/img/pl/round35x150.webp",
+   "sort": 3
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø45 × 125 mm",
+   "image": "assets/img/pl/round45x125.webp",
+   "sort": 4
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø45 × 160 mm",
+   "image": "assets/img/pl/round45x160.webp",
+   "sort": 5
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø45 × 165 mm",
+   "image": "assets/img/pl/round45x165.webp",
+   "sort": 6
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø45 × 170 mm",
+   "image": "assets/img/pl/round45x170.webp",
+   "sort": 7
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø45 × 190 mm",
+   "image": "assets/img/pl/round45x190.webp",
+   "sort": 8
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø50 × 130 mm",
+   "image": "assets/img/pl/round50x130.webp",
+   "sort": 9
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø50 × 135 mm",
+   "image": "assets/img/pl/round50x135.webp",
+   "sort": 10
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø50 × 148 mm",
+   "image": "assets/img/pl/round50x148.webp",
+   "sort": 11
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø50 × 156 mm",
+   "image": "assets/img/pl/round50x156.webp",
+   "sort": 12
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø50 × 175 mm",
+   "image": "assets/img/pl/round50x175.webp",
+   "sort": 13
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø50 × 190 mm",
+   "image": "assets/img/pl/round50x190.webp",
+   "sort": 14
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø53 × 110 mm",
+   "image": "assets/img/pl/round53x110.webp",
+   "sort": 15
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø53 × 125 mm",
+   "image": "assets/img/pl/round53x125.webp",
+   "sort": 16
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø53 × 140 mm",
+   "image": "assets/img/pl/round53x140.webp",
+   "sort": 17
+  },
+  {
+   "grp": "round",
+   "label": "Round",
+   "dims": "Ø53 × 205 mm",
+   "image": "assets/img/pl/round53x205.webp",
+   "sort": 18
+  },
+  {
+   "grp": "flat",
+   "label": "Flat",
+   "dims": "45 × 105 mm",
+   "image": "assets/img/pl/flat45x105.webp",
+   "sort": 19
+  },
+  {
+   "grp": "flat",
+   "label": "Flat",
+   "dims": "50 × 130 mm",
+   "image": "assets/img/pl/flat50x130.webp",
+   "sort": 20
+  },
+  {
+   "grp": "flat",
+   "label": "Flat",
+   "dims": "50 × 175 mm",
+   "image": "assets/img/pl/flat50x175.webp",
+   "sort": 21
+  },
+  {
+   "grp": "flat",
+   "label": "Flat Curved",
+   "dims": "53 × 110 mm",
+   "image": "assets/img/pl/flatbogumlu53x110.webp",
+   "sort": 22
+  },
+  {
+   "grp": "flat",
+   "label": "Flat Curved",
+   "dims": "53 × 140 mm",
+   "image": "assets/img/pl/flatbogumlu53x140.webp",
+   "sort": 23
+  },
+  {
+   "grp": "flat",
+   "label": "Flat Curved",
+   "dims": "53 × 160 mm",
+   "image": "assets/img/pl/flatbogumlu53x160.webp",
+   "sort": 24
+  },
+  {
+   "grp": "ogival",
+   "label": "Diamond Ogival",
+   "dims": "53 × 140 mm",
+   "image": "assets/img/pl/diamondogival53x140.webp",
+   "sort": 25
+  },
+  {
+   "grp": "ogival",
+   "label": "Ogival",
+   "dims": "45 × 155 mm",
+   "image": "assets/img/pl/ogival45x155.webp",
+   "sort": 26
+  },
+  {
+   "grp": "ogival",
+   "label": "Ogival",
+   "dims": "45 × 190 mm",
+   "image": "assets/img/pl/ogival45x190.webp",
+   "sort": 27
+  },
+  {
+   "grp": "ogival",
+   "label": "Oval Ogival",
+   "dims": "45 × 150 mm",
+   "image": "assets/img/pl/ovalogival45x150.webp",
+   "sort": 28
+  },
+  {
+   "grp": "ogival",
+   "label": "Oval Ogival",
+   "dims": "45 × 156 mm",
+   "image": "assets/img/pl/ovalogival45x156.webp",
+   "sort": 29
+  },
+  {
+   "grp": "ogival",
+   "label": "Oval Ogival",
+   "dims": "45 × 190 mm",
+   "image": "assets/img/pl/ovalogival45x190.webp",
+   "sort": 30
+  },
+  {
+   "grp": "ogival",
+   "label": "Oval Ogival",
+   "dims": "50 × 148 mm",
+   "image": "assets/img/pl/ovalogival50x148.webp",
+   "sort": 31
+  },
+  {
+   "grp": "ogival",
+   "label": "Super Ogival",
+   "dims": "45 × 130 mm",
+   "image": "assets/img/pl/superogival45x130.webp",
+   "sort": 32
+  },
+  {
+   "grp": "square",
+   "label": "Square Flat",
+   "dims": "45 × 148 mm",
+   "image": "assets/img/pl/squareflat45x148.webp",
+   "sort": 33
+  },
+  {
+   "grp": "square",
+   "label": "Square Flat",
+   "dims": "45 × 150 mm",
+   "image": "assets/img/pl/squareflat45x150.webp",
+   "sort": 34
+  },
+  {
+   "grp": "square",
+   "label": "Square Flat",
+   "dims": "45 × 190 mm",
+   "image": "assets/img/pl/squareflat45x190.webp",
+   "sort": 35
+  },
+  {
+   "grp": "transfer",
+   "label": "Transfer",
+   "dims": "45 × 115 mm",
+   "image": "assets/img/pl/transfer45x115.webp",
+   "sort": 36
+  },
+  {
+   "grp": "transfer",
+   "label": "Transfer",
+   "dims": "45 × 190 mm",
+   "image": "assets/img/pl/transfer45x190.webp",
+   "sort": 37
+  },
+  {
+   "grp": "transfer",
+   "label": "Transfer",
+   "dims": "50 × 190 mm",
+   "image": "assets/img/pl/transfer50x190.webp",
+   "sort": 38
+  },
+  {
+   "grp": "transfer",
+   "label": "Transfer",
+   "dims": "53 × 110 mm",
+   "image": "assets/img/pl/transfer53x110.webp",
+   "sort": 39
+  },
+  {
+   "grp": "transfer",
+   "label": "Transfer",
+   "dims": "53 × 120 mm",
+   "image": "assets/img/pl/transfer53x120.webp",
+   "sort": 40
+  },
+  {
+   "grp": "transfer",
+   "label": "Transfer",
+   "dims": "53 × 155 mm",
+   "image": "assets/img/pl/transfer53x155.webp",
+   "sort": 41
+  },
+  {
+   "grp": "transfer",
+   "label": "Transfer",
+   "dims": "53 × 160 mm",
+   "image": "assets/img/pl/transfer53x160.webp",
+   "sort": 42
+  },
+  {
+   "grp": "transfer",
+   "label": "Transfer",
+   "dims": "53 × 173 mm",
+   "image": "assets/img/pl/transfer53x173.webp",
+   "sort": 43
+  },
+  {
+   "grp": "special",
+   "label": "A Type",
+   "dims": "",
+   "image": "assets/img/pl/a-type.webp",
+   "sort": 44
+  },
+  {
+   "grp": "special",
+   "label": "B Type",
+   "dims": "",
+   "image": "assets/img/pl/b-type.webp",
+   "sort": 45
+  },
+  {
+   "grp": "special",
+   "label": "Diamond Flat",
+   "dims": "53 × 140 mm",
+   "image": "assets/img/pl/diamondflat53x140.webp",
+   "sort": 46
+  },
+  {
+   "grp": "special",
+   "label": "Diamond Flat",
+   "dims": "53 × 150 mm",
+   "image": "assets/img/pl/diamondflat53x150.webp",
+   "sort": 47
+  },
+  {
+   "grp": "special",
+   "label": "Elong Fant Round",
+   "dims": "Ø53 × 150 mm",
+   "image": "assets/img/pl/elongfantround53x150.webp",
+   "sort": 48
+  },
+  {
+   "grp": "special",
+   "label": "Elong Fant Round",
+   "dims": "Ø53 × 150 mm (A)",
+   "image": "assets/img/pl/elongfantround53x150a.webp",
+   "sort": 49
+  },
+  {
+   "grp": "special",
+   "label": "Elong Fant Round",
+   "dims": "Ø53 × 150 mm (B)",
+   "image": "assets/img/pl/elongfantround53x150b.webp",
+   "sort": 50
+  },
+  {
+   "grp": "special",
+   "label": "Fuel",
+   "dims": "53 × 115 mm",
+   "image": "assets/img/pl/fuel53x115.webp",
+   "sort": 51
+  },
+  {
+   "grp": "special",
+   "label": "Half Moon",
+   "dims": "50 × 156 mm",
+   "image": "assets/img/pl/halfmoon50x156.webp",
+   "sort": 52
+  },
+  {
+   "grp": "special",
+   "label": "New Smart",
+   "dims": "45 × 150 mm",
+   "image": "assets/img/pl/newsmart45x150.webp",
+   "sort": 53
+  },
+  {
+   "grp": "special",
+   "label": "Wave",
+   "dims": "50 × 160 mm",
+   "image": "assets/img/pl/wave50x160.webp",
+   "sort": 54
+  }
+ ],
+ "hero": [
+  {
+   "image": "assets/img/h/hero-set-a.webp",
+   "label": "A Type · Flat Curved · New Smart",
+   "sort": 0
+  },
+  {
+   "image": "assets/img/h/hero-newsmart.webp",
+   "label": "New Smart",
+   "sort": 1
+  },
+  {
+   "image": "assets/img/h/hero-flatcurved-l.webp",
+   "label": "Flat Curved L",
+   "sort": 2
+  },
+  {
+   "image": "assets/img/h/hero-set-b.webp",
+   "label": "Flat Curved L · A Type · Round",
+   "sort": 3
+  },
+  {
+   "image": "assets/img/h/hero-round.webp",
+   "label": "Round",
+   "sort": 4
+  }
+ ],
+ "pages": [
+  {
+   "slug": "index",
+   "type": "home",
+   "sort": 0,
+   "in_nav": 0,
+   "in_footer": 0,
+   "status": 1
+  },
+  {
+   "slug": "private-label",
+   "type": "private-label",
+   "sort": 10,
+   "in_nav": 1,
+   "in_footer": 1,
+   "status": 1
+  },
+  {
+   "slug": "products",
+   "type": "products",
+   "sort": 20,
+   "in_nav": 1,
+   "in_footer": 1,
+   "status": 1
+  },
+  {
+   "slug": "body-care",
+   "type": "category",
+   "sort": 21,
+   "in_nav": 0,
+   "in_footer": 0,
+   "status": 1
+  },
+  {
+   "slug": "home-care",
+   "type": "category",
+   "sort": 22,
+   "in_nav": 0,
+   "in_footer": 0,
+   "status": 1
+  },
+  {
+   "slug": "about",
+   "type": "about",
+   "sort": 80,
+   "in_nav": 1,
+   "in_footer": 1,
+   "status": 1
+  },
+  {
+   "slug": "contact",
+   "type": "contact",
+   "sort": 90,
+   "in_nav": 1,
+   "in_footer": 1,
+   "status": 1
+  },
+  {
+   "slug": "process",
+   "type": "custom",
+   "sort": 30,
+   "in_nav": 1,
+   "in_footer": 1,
+   "status": 1,
+   "title": {
+    "tr": "Süreç",
+    "en": "Our Process",
+    "fr": "Notre processus",
+    "ar": "مراحل العمل",
+    "ru": "Процесс работы"
+   },
+   "meta": {
+    "tr": "Brief'ten sevkiyata private label üretim süreci: koku ve formül, numune, ambalaj, üretim, kalite kontrol ve ihracat.",
+    "en": "The private label process from brief to shipment: fragrance and formula, samples, packaging, production, quality control and export.",
+    "fr": "Le processus marque blanche du brief à l'expédition : parfum et formule, échantillons, packaging, production, contrôle qualité et export.",
+    "ar": "مراحل التصنيع للعلامات الخاصة من الطلب حتى الشحن: العطر والتركيبة والعينات والتغليف والإنتاج ومراقبة الجودة والتصدير.",
+    "ru": "Процесс производства под частной маркой от брифа до отгрузки: аромат и формула, образцы, упаковка, производство, контроль качества и экспорт."
+   },
+   "h1": {
+    "tr": "Fikirden raflara, <em>yedi adımda</em>.",
+    "en": "From idea to shelf, <em>in seven steps</em>.",
+    "fr": "De l'idée au rayon, <em>en sept étapes</em>.",
+    "ar": "من الفكرة إلى الرف، <em>في سبع خطوات</em>.",
+    "ru": "От идеи до полки — <em>за семь шагов</em>."
+   },
+   "lead": {
+    "tr": "Her proje bir brief ile başlar. Aşağıdaki akış, markanızın ürününün nasıl şekillendiğini ve her aşamada sizden ne beklediğimizi gösterir.",
+    "en": "Every project starts with a brief. The flow below shows how your product takes shape and what we need from you at each stage.",
+    "fr": "Chaque projet commence par un brief. Le déroulé ci-dessous montre comment votre produit prend forme et ce que nous attendons de vous à chaque étape.",
+    "ar": "يبدأ كل مشروع بطلب واضح. يوضح المسار أدناه كيف يتشكّل منتج علامتك وما نحتاجه منك في كل مرحلة.",
+    "ru": "Каждый проект начинается с брифа. Схема ниже показывает, как формируется продукт вашего бренда и что нам нужно от вас на каждом этапе."
+   },
+   "cta": 1,
+   "blocks": [
+    {
+     "type": "steps",
+     "title": {
+      "tr": "",
+      "en": "",
+      "fr": "",
+      "ar": "",
+      "ru": ""
+     },
+     "lead": {
+      "tr": "",
+      "en": "",
+      "fr": "",
+      "ar": "",
+      "ru": ""
+     },
+     "items": [
+      {
+       "title": {
+        "tr": "Brief ve planlama",
+        "en": "Brief and planning",
+        "fr": "Brief et planification",
+        "ar": "الطلب والتخطيط",
+        "ru": "Бриф и планирование"
+       },
+       "text": {
+        "tr": "Markanızı, hedef pazarınızı, ürün tipini ve tahmini adetleri birlikte netleştiririz. Pazara göre etiket ve mevzuat ihtiyaçlarını bu aşamada belirleriz.",
+        "en": "We define your brand, target market, product type and estimated quantities together. Label and regulatory needs for the market are set at this stage.",
+        "fr": "Nous définissons ensemble votre marque, votre marché cible, le type de produit et les quantités estimées. Les besoins d'étiquetage et de réglementation sont fixés dès cette étape.",
+        "ar": "نحدد معاً علامتك وسوقك المستهدف ونوع المنتج والكميات التقديرية، ونحدد في هذه المرحلة متطلبات الملصقات واللوائح حسب السوق.",
+        "ru": "Мы вместе определяем бренд, целевой рынок, тип продукта и ориентировочные тиражи. Требования к маркировке и регулированию для рынка уточняются на этом этапе."
+       }
+      },
+      {
+       "title": {
+        "tr": "Koku ve formül",
+        "en": "Fragrance and formula",
+        "fr": "Parfum et formule",
+        "ar": "العطر والتركيبة",
+        "ru": "Аромат и формула"
+       },
+       "text": {
+        "tr": "Ar-Ge ekibimizle ürününüzün koku ve formül yönünü belirleriz; ürün grubuna göre seçenekleri birlikte değerlendiririz.",
+        "en": "With our R&amp;D team we define the fragrance and formula direction of your product and review the options for your product group together.",
+        "fr": "Avec notre équipe R&amp;D, nous définissons l'orientation du parfum et de la formule et étudions ensemble les options pour votre gamme.",
+        "ar": "نحدد مع فريق البحث والتطوير توجّه العطر والتركيبة، ونراجع معاً الخيارات المناسبة لفئة منتجك.",
+        "ru": "Вместе с командой R&amp;D мы определяем направление аромата и формулы и обсуждаем варианты для вашей продуктовой группы."
+       }
+      },
+      {
+       "title": {
+        "tr": "Numune ve onay",
+        "en": "Sample and approval",
+        "fr": "Échantillon et validation",
+        "ar": "العينة والاعتماد",
+        "ru": "Образец и утверждение"
+       },
+       "text": {
+        "tr": "Numune hazırlanır ve size iletilir. Onayınız olmadan üretime geçilmez.",
+        "en": "A sample is prepared and sent to you. Production does not start without your approval.",
+        "fr": "Un échantillon est préparé et vous est envoyé. La production ne démarre pas sans votre validation.",
+        "ar": "يُحضَّر نموذج ويُرسل إليك، ولا يبدأ الإنتاج قبل موافقتك.",
+        "ru": "Образец готовится и отправляется вам. Производство не начинается без вашего утверждения."
+       }
+      },
+      {
+       "title": {
+        "tr": "Ambalaj ve baskı",
+        "en": "Packaging and printing",
+        "fr": "Packaging et impression",
+        "ar": "التغليف والطباعة",
+        "ru": "Упаковка и печать"
+       },
+       "text": {
+        "tr": "50'den fazla alüminyum tüp modeli arasından formu seçersiniz; renk, kapak ve logo baskısını belirleriz. Tasarım ve grafik ekibimiz dosya hazırlığında destek olur.",
+        "en": "You choose a form from over 50 aluminium tube models; we set colour, cap and logo printing. Our design and graphics team supports artwork preparation.",
+        "fr": "Vous choisissez une forme parmi plus de 50 modèles de tubes en aluminium ; nous définissons couleur, bouchon et impression du logo. Notre équipe design et graphisme vous aide pour les fichiers.",
+        "ar": "تختار الشكل من بين أكثر من 50 موديل من الأنابيب المعدنية، ونحدد اللون والغطاء وطباعة الشعار. ويدعمك فريق التصميم والغرافيك في تجهيز الملفات.",
+        "ru": "Вы выбираете форму из более чем 50 моделей алюминиевых туб; мы определяем цвет, колпачок и печать логотипа. Команда дизайна и графики помогает с подготовкой макетов."
+       }
+      },
+      {
+       "title": {
+        "tr": "Üretim ve dolum",
+        "en": "Production and filling",
+        "fr": "Production et remplissage",
+        "ar": "الإنتاج والتعبئة",
+        "ru": "Производство и розлив"
+       },
+       "text": {
+        "tr": "Onaylı numuneye uygun olarak aerosol ve diğer hatlarda üretim ve dolum yapılır; paketleme tamamlanır.",
+        "en": "Production and filling take place on the aerosol and other lines in line with the approved sample, followed by packing.",
+        "fr": "La production et le remplissage sont réalisés sur les lignes aérosol et autres conformément à l'échantillon validé, puis le conditionnement.",
+        "ar": "يتم الإنتاج والتعبئة على خطوط الأيروسول وغيرها وفق العينة المعتمدة، ثم التغليف.",
+        "ru": "Производство и розлив выполняются на аэрозольных и других линиях в соответствии с утверждённым образцом, затем упаковка."
+       }
+      },
+      {
+       "title": {
+        "tr": "Kalite kontrol",
+        "en": "Quality control",
+        "fr": "Contrôle qualité",
+        "ar": "مراقبة الجودة",
+        "ru": "Контроль качества"
+       },
+       "text": {
+        "tr": "Ürünler, sevkiyattan önce onaylı numuneye ve belirlenen özelliklere göre kontrol edilir.",
+        "en": "Products are checked against the approved sample and agreed specifications before shipment.",
+        "fr": "Les produits sont contrôlés par rapport à l'échantillon validé et aux spécifications convenues avant l'expédition.",
+        "ar": "تُفحص المنتجات قبل الشحن وفق العينة المعتمدة والمواصفات المتفق عليها.",
+        "ru": "Перед отгрузкой продукция проверяется на соответствие утверждённому образцу и согласованным спецификациям."
+       }
+      },
+      {
+       "title": {
+        "tr": "Sevkiyat ve ihracat",
+        "en": "Shipping and export",
+        "fr": "Expédition et export",
+        "ar": "الشحن والتصدير",
+        "ru": "Отгрузка и экспорт"
+       },
+       "text": {
+        "tr": "Paletleme, ihracat evrakları ve nakliye koordinasyonu için yanınızdayız; 80 ülkeye ihracat deneyimiyle.",
+        "en": "We support palletising, export documents and freight coordination, backed by experience exporting to 80 countries.",
+        "fr": "Nous vous accompagnons pour la palettisation, les documents d'export et la coordination du transport, forts de notre expérience d'export dans 80 pays.",
+        "ar": "نرافقك في التشبيك على المنصات ووثائق التصدير وتنسيق الشحن، بخبرة تصدير إلى 80 دولة.",
+        "ru": "Мы поможем с паллетированием, экспортными документами и координацией перевозки — опираясь на опыт экспорта в 80 стран."
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "facility",
+   "type": "custom",
+   "sort": 40,
+   "in_nav": 0,
+   "in_footer": 2,
+   "status": 1,
+   "title": {
+    "tr": "Tesis ve Kapasite",
+    "en": "Facility and Capacity",
+    "fr": "Site et capacité",
+    "ar": "المصنع والطاقة الإنتاجية",
+    "ru": "Производство и мощности"
+   },
+   "meta": {
+    "tr": "Çayırova / Kocaeli'deki Uzman Kozmetik tesisi: 60 milyon adet aerosol kapasitesi, Ar-Ge, tasarım ve grafik departmanları.",
+    "en": "Uzman Cosmetic's facility in Çayırova / Kocaeli: 60 million aerosol units capacity, R&D, design and graphics departments.",
+    "fr": "Le site d'Uzman Cosmetic à Çayırova / Kocaeli : capacité de 60 millions d'aérosols, départements R&D, design et graphisme.",
+    "ar": "مصنع أوزمان كوزمتيك في تشايروفا / قوجه إيلي: طاقة 60 مليون عبوة أيروسول وأقسام البحث والتطوير والتصميم والغرافيك.",
+    "ru": "Предприятие Uzman Cosmetic в Чайырова / Коджаэли: мощность 60 млн аэрозолей, отделы R&D, дизайна и графики."
+   },
+   "h1": {
+    "tr": "Üretimin <em>merkezi</em>.",
+    "en": "The <em>heart</em> of production.",
+    "fr": "Le <em>cœur</em> de la production.",
+    "ar": "<em>قلب</em> الإنتاج.",
+    "ru": "<em>Сердце</em> производства."
+   },
+   "lead": {
+    "tr": "Çayırova / Kocaeli'deki tesisimizde aerosol dolum, paketleme ve ürün geliştirme aynı çatı altında yürür.",
+    "en": "At our Çayırova / Kocaeli facility, aerosol filling, packing and product development run under one roof.",
+    "fr": "Sur notre site de Çayırova / Kocaeli, le remplissage aérosol, le conditionnement et le développement produit se font sous un même toit.",
+    "ar": "في منشأتنا بتشايروفا / قوجه إيلي تتم تعبئة الأيروسول والتغليف وتطوير المنتجات تحت سقف واحد.",
+    "ru": "На нашем предприятии в Чайырова / Коджаэли аэрозольный розлив, упаковка и разработка продуктов работают под одной крышей."
+   },
+   "cta": 1,
+   "blocks": [
+    {
+     "type": "text",
+     "band": 0,
+     "title": {
+      "tr": "1980'den bugüne",
+      "en": "From 1980 to today",
+      "fr": "De 1980 à aujourd'hui",
+      "ar": "من 1980 حتى اليوم",
+      "ru": "С 1980 года до сегодня"
+     },
+     "body": {
+      "tr": "1980'de basınçlı kaplar kanununa uygun ilk yarı otomatik aerosol makinemizle küçük bir atölyede üretime başladık. Bugün Ar-Ge, tasarım ve grafik departmanlarımızla, 60 milyon adet aerosol üretim kapasitesine sahip tesisimizden 80 ülkeye ihracat yapıyoruz.",
+      "en": "In 1980 we began production in a small workshop with our first semi-automatic aerosol machine, compliant with pressure-vessel regulations. Today, with our R&amp;D, design and graphics departments, we export to 80 countries from a facility with a capacity of 60 million aerosol units.",
+      "fr": "En 1980, nous avons démarré la production dans un petit atelier avec notre première machine aérosol semi-automatique, conforme à la réglementation sur les récipients sous pression. Aujourd'hui, avec nos départements R&amp;D, design et graphisme, nous exportons dans 80 pays depuis un site d'une capacité de 60 millions d'aérosols.",
+      "ar": "بدأنا الإنتاج عام 1980 في ورشة صغيرة بأول ماكينة أيروسول شبه آلية مطابقة لقانون الأوعية المضغوطة. واليوم، بأقسام البحث والتطوير والتصميم والغرافيك، نصدّر إلى 80 دولة من منشأة طاقتها 60 مليون عبوة أيروسول.",
+      "ru": "В 1980 году мы начали производство в небольшой мастерской на первой полуавтоматической аэрозольной машине, соответствующей нормам для сосудов под давлением. Сегодня, с отделами R&amp;D, дизайна и графики, мы экспортируем в 80 стран с предприятия мощностью 60 млн аэрозолей."
+     }
+    },
+    {
+     "type": "cards",
+     "title": {
+      "tr": "Tek çatı altında",
+      "en": "Under one roof",
+      "fr": "Sous un même toit",
+      "ar": "تحت سقف واحد",
+      "ru": "Под одной крышей"
+     },
+     "items": [
+      {
+       "title": {
+        "tr": "Aerosol dolum",
+        "en": "Aerosol filling",
+        "fr": "Remplissage aérosol",
+        "ar": "تعبئة الأيروسول",
+        "ru": "Аэрозольный розлив"
+       },
+       "text": {
+        "tr": "Deodorant, vücut spreyi, oda spreyi ve saç spreyi gibi aerosol ürünlerde dolum hattı.",
+        "en": "Filling lines for aerosol products such as deodorant, body spray, room spray and hair spray.",
+        "fr": "Lignes de remplissage pour les aérosols : déodorant, spray corporel, spray d'ambiance et laque.",
+        "ar": "خطوط تعبئة لمنتجات الأيروسول مثل مزيل العرق وبخاخ الجسم ومعطر الجو وبخاخ الشعر.",
+        "ru": "Линии розлива аэрозольной продукции: дезодорант, спрей для тела, освежитель воздуха и лак для волос."
+       }
+      },
+      {
+       "title": {
+        "tr": "Ar-Ge",
+        "en": "R&amp;D",
+        "fr": "R&amp;D",
+        "ar": "البحث والتطوير",
+        "ru": "R&amp;D"
+       },
+       "text": {
+        "tr": "Formül ve koku geliştirme, numune çalışmaları.",
+        "en": "Formula and fragrance development, sample work.",
+        "fr": "Développement de formules et de parfums, travail sur les échantillons.",
+        "ar": "تطوير التركيبات والعطور وأعمال العينات.",
+        "ru": "Разработка формул и ароматов, работа с образцами."
+       }
+      },
+      {
+       "title": {
+        "tr": "Tasarım ve grafik",
+        "en": "Design and graphics",
+        "fr": "Design et graphisme",
+        "ar": "التصميم والغرافيك",
+        "ru": "Дизайн и графика"
+       },
+       "text": {
+        "tr": "Ambalaj, etiket ve baskı dosyalarının hazırlanması.",
+        "en": "Preparation of packaging, label and print artwork.",
+        "fr": "Préparation des fichiers de packaging, d'étiquettes et d'impression.",
+        "ar": "تجهيز ملفات التغليف والملصقات والطباعة.",
+        "ru": "Подготовка макетов упаковки, этикеток и печати."
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "quality",
+   "type": "custom",
+   "sort": 50,
+   "in_nav": 0,
+   "in_footer": 2,
+   "status": 1,
+   "title": {
+    "tr": "Kalite ve Belgeler",
+    "en": "Quality and Certificates",
+    "fr": "Qualité et certificats",
+    "ar": "الجودة والشهادات",
+    "ru": "Качество и сертификаты"
+   },
+   "meta": {
+    "tr": "Uzman Kozmetik'te kalite anlayışı, belgeler ve sertifikalar.",
+    "en": "Quality approach, documents and certificates at Uzman Cosmetic.",
+    "fr": "Approche qualité, documents et certificats chez Uzman Cosmetic.",
+    "ar": "نهج الجودة والوثائق والشهادات لدى أوزمان كوزمتيك.",
+    "ru": "Подход к качеству, документы и сертификаты Uzman Cosmetic."
+   },
+   "h1": {
+    "tr": "Kalite, <em>güvenin</em> temeli.",
+    "en": "Quality is the <em>basis</em> of trust.",
+    "fr": "La qualité, <em>socle</em> de la confiance.",
+    "ar": "الجودة <em>أساس</em> الثقة.",
+    "ru": "Качество — <em>основа</em> доверия."
+   },
+   "lead": {
+    "tr": "Uluslararası standartlara uygun teknolojiyle, müşteri ilişkilerinde güvenilirliği en önemli kriter olarak benimsiyoruz.",
+    "en": "With technology in line with international standards, we treat reliability in customer relationships as our most important criterion.",
+    "fr": "Avec une technologie conforme aux normes internationales, nous faisons de la fiabilité dans la relation client notre critère le plus important.",
+    "ar": "بتقنيات وفق المعايير الدولية، نعتبر الموثوقية في علاقتنا مع العملاء أهم معيار لدينا.",
+    "ru": "Используя технологии, соответствующие международным стандартам, мы считаем надёжность в отношениях с клиентами главным критерием."
+   },
+   "cta": 1,
+   "blocks": [
+    {
+     "type": "text",
+     "band": 0,
+     "title": {
+      "tr": "Yaklaşımımız",
+      "en": "Our approach",
+      "fr": "Notre approche",
+      "ar": "نهجنا",
+      "ru": "Наш подход"
+     },
+     "body": {
+      "tr": "1980'den bu yana basınçlı kaplar mevzuatına uygun üretim yapıyoruz. Her projede onaylı numuneyi referans alır, ürünleri sevkiyattan önce kontrol ederiz.",
+      "en": "Since 1980 we have produced in compliance with pressure-vessel regulations. In every project we take the approved sample as the reference and check products before shipment.",
+      "fr": "Depuis 1980, nous produisons conformément à la réglementation sur les récipients sous pression. Dans chaque projet, l'échantillon validé sert de référence et les produits sont contrôlés avant expédition.",
+      "ar": "ننتج منذ عام 1980 وفق لوائح الأوعية المضغوطة. في كل مشروع نعتمد العينة المعتمدة مرجعاً ونفحص المنتجات قبل الشحن.",
+      "ru": "С 1980 года мы производим продукцию в соответствии с нормами для сосудов под давлением. В каждом проекте эталоном служит утверждённый образец, а продукция проверяется перед отгрузкой."
+     }
+    },
+    {
+     "type": "certs",
+     "title": {
+      "tr": "Belgeler ve sertifikalar",
+      "en": "Documents and certificates",
+      "fr": "Documents et certificats",
+      "ar": "الوثائق والشهادات",
+      "ru": "Документы и сертификаты"
+     }
+    }
+   ]
+  },
+  {
+   "slug": "faq",
+   "type": "custom",
+   "sort": 60,
+   "in_nav": 0,
+   "in_footer": 2,
+   "status": 1,
+   "title": {
+    "tr": "Sıkça Sorulan Sorular",
+    "en": "FAQ",
+    "fr": "FAQ",
+    "ar": "الأسئلة الشائعة",
+    "ru": "Вопросы и ответы"
+   },
+   "meta": {
+    "tr": "Private label üretim, numune, ambalaj ve ihracat hakkında sık sorulan sorular.",
+    "en": "Frequently asked questions about private label production, samples, packaging and export.",
+    "fr": "Questions fréquentes sur la production en marque blanche, les échantillons, le packaging et l'export.",
+    "ar": "أسئلة شائعة حول التصنيع للعلامات الخاصة والعينات والتغليف والتصدير.",
+    "ru": "Частые вопросы о производстве под частной маркой, образцах, упаковке и экспорте."
+   },
+   "h1": {
+    "tr": "Merak <em>edilenler</em>.",
+    "en": "Good <em>questions</em>.",
+    "fr": "Vos <em>questions</em>.",
+    "ar": "<em>أسئلتكم</em>.",
+    "ru": "Ваши <em>вопросы</em>."
+   },
+   "lead": {
+    "tr": "Projenize başlamadan önce en sık sorulan soruların yanıtları.",
+    "en": "Answers to the questions we hear most before a project starts.",
+    "fr": "Les réponses aux questions les plus fréquentes avant le lancement d'un projet.",
+    "ar": "إجابات عن الأسئلة الأكثر شيوعاً قبل بدء المشروع.",
+    "ru": "Ответы на самые частые вопросы перед стартом проекта."
+   },
+   "cta": 1,
+   "blocks": [
+    {
+     "type": "faq",
+     "title": {
+      "tr": "",
+      "en": "",
+      "fr": "",
+      "ar": "",
+      "ru": ""
+     },
+     "items": [
+      {
+       "q": {
+        "tr": "Private label üretim nasıl işler?",
+        "en": "How does private label production work?",
+        "fr": "Comment fonctionne la production en marque blanche ?",
+        "ar": "كيف يعمل التصنيع للعلامات الخاصة؟",
+        "ru": "Как устроено производство под частной маркой?"
+       },
+       "a": {
+        "tr": "Siz markanızı ve ürün fikrinizi paylaşırsınız; biz formül, ambalaj, baskı ve üretimi yürütürüz. Adımları Süreç sayfasında görebilirsiniz.",
+        "en": "You share your brand and product idea; we handle formula, packaging, printing and production. You can see the steps on the Process page.",
+        "fr": "Vous nous confiez votre marque et votre idée de produit ; nous gérons formule, packaging, impression et production. Les étapes sont détaillées sur la page Processus.",
+        "ar": "تشاركنا علامتك وفكرة المنتج ونتولى نحن التركيبة والتغليف والطباعة والإنتاج. يمكنك الاطلاع على الخطوات في صفحة مراحل العمل.",
+        "ru": "Вы делитесь брендом и идеей продукта, а мы берём на себя формулу, упаковку, печать и производство. Этапы описаны на странице «Процесс»."
+       }
+      },
+      {
+       "q": {
+        "tr": "Hangi ürün gruplarında üretim yapıyorsunuz?",
+        "en": "Which product groups do you manufacture?",
+        "fr": "Quelles gammes fabriquez-vous ?",
+        "ar": "ما فئات المنتجات التي تصنّعونها؟",
+        "ru": "Какие группы продукции вы производите?"
+       },
+       "a": {
+        "tr": "Body care: deodorant, roll-on, saç ürünleri, EDP parfüm ve vücut spreyi. Home care: bambu difüzör, oda ve ortam spreyi, çubuklu difüzör.",
+        "en": "Body care: deodorant, roll-on, hair products, EDP perfume and body mist. Home care: bamboo diffuser, room and air freshener, reed diffuser.",
+        "fr": "Soin du corps : déodorant, roll-on, produits capillaires, parfum EDP et brume corporelle. Maison : diffuseur bambou, spray d'ambiance, diffuseur à bâtonnets.",
+        "ar": "العناية بالجسم: مزيل العرق، رول أون، منتجات الشعر، عطر EDP وبخاخ الجسم. العناية بالمنزل: موزّع الخيزران، معطرات الجو والغرف، موزّع القصب.",
+        "ru": "Уход за телом: дезодорант, роллон, средства для волос, парфюм EDP и мист для тела. Для дома: бамбуковый диффузор, освежители воздуха, диффузор с палочками."
+       }
+      },
+      {
+       "q": {
+        "tr": "Logomu ürüne bastırabilir miyim?",
+        "en": "Can my logo be printed on the product?",
+        "fr": "Mon logo peut-il être imprimé sur le produit ?",
+        "ar": "هل يمكن طباعة شعاري على المنتج؟",
+        "ru": "Можно ли напечатать мой логотип на продукте?"
+       },
+       "a": {
+        "tr": "Evet. Alüminyum tüp modellerinde renk, kapak ve logo baskısını markanıza göre belirleriz; tasarım ekibimiz dosya hazırlığında destek olur.",
+        "en": "Yes. On our aluminium tube models we set colour, cap and logo printing to match your brand, and our design team helps with artwork.",
+        "fr": "Oui. Sur nos modèles de tubes en aluminium, couleur, bouchon et impression du logo sont définis selon votre marque ; notre équipe design vous aide pour les fichiers.",
+        "ar": "نعم. في موديلات الأنابيب المعدنية نحدد اللون والغطاء وطباعة الشعار وفق علامتك، ويساعدك فريق التصميم في تجهيز الملفات.",
+        "ru": "Да. На моделях алюминиевых туб цвет, колпачок и печать логотипа подбираются под ваш бренд, а дизайн-команда помогает с макетами."
+       }
+      },
+      {
+       "q": {
+        "tr": "Numune alabilir miyim?",
+        "en": "Can I get a sample?",
+        "fr": "Puis-je obtenir un échantillon ?",
+        "ar": "هل يمكنني الحصول على عينة؟",
+        "ru": "Можно ли получить образец?"
+       },
+       "a": {
+        "tr": "Evet. Numune hazırlanır ve onayınız alınmadan üretime geçilmez. Talebinizi iletişim sayfasındaki formdan gönderebilirsiniz.",
+        "en": "Yes. A sample is prepared and production never starts without your approval. Send your request through the form on the contact page.",
+        "fr": "Oui. Un échantillon est préparé et la production ne démarre jamais sans votre validation. Envoyez votre demande via le formulaire de la page contact.",
+        "ar": "نعم. يُحضَّر نموذج ولا يبدأ الإنتاج دون موافقتك. أرسل طلبك عبر النموذج في صفحة اتصل بنا.",
+        "ru": "Да. Образец готовится, а производство не начинается без вашего утверждения. Отправьте запрос через форму на странице контактов."
+       }
+      },
+      {
+       "q": {
+        "tr": "Minimum sipariş adedi ve teslim süresi nedir?",
+        "en": "What are the minimum order quantity and lead time?",
+        "fr": "Quels sont le minimum de commande et le délai ?",
+        "ar": "ما الحد الأدنى للطلب ومدة التسليم؟",
+        "ru": "Каков минимальный заказ и срок поставки?"
+       },
+       "a": {
+        "tr": "Ürün tipine, ambalaja ve baskıya göre değişir. Projenizi paylaşın, net bir plan ve teklif hazırlayalım.",
+        "en": "They depend on the product type, packaging and printing. Share your project and we will prepare a clear plan and quote.",
+        "fr": "Ils dépendent du type de produit, du packaging et de l'impression. Partagez votre projet et nous préparerons un plan et un devis précis.",
+        "ar": "تختلف حسب نوع المنتج والتغليف والطباعة. شاركنا مشروعك لنعدّ لك خطة وعرض سعر واضحين.",
+        "ru": "Зависят от типа продукта, упаковки и печати. Расскажите о проекте, и мы подготовим чёткий план и коммерческое предложение."
+       }
+      },
+      {
+       "q": {
+        "tr": "Hangi ülkelere ihracat yapıyorsunuz?",
+        "en": "Which countries do you export to?",
+        "fr": "Vers quels pays exportez-vous ?",
+        "ar": "إلى أي دول تصدّرون؟",
+        "ru": "В какие страны вы экспортируете?"
+       },
+       "a": {
+        "tr": "80 ülkeye ihracat yapıyoruz. Paletleme, ihracat evrakları ve nakliye koordinasyonunda destek veriyoruz.",
+        "en": "We export to 80 countries and support palletising, export documents and freight coordination.",
+        "fr": "Nous exportons dans 80 pays et vous accompagnons pour la palettisation, les documents d'export et la coordination du transport.",
+        "ar": "نصدّر إلى 80 دولة وندعمك في التشبيك والوثائق وتنسيق الشحن.",
+        "ru": "Мы экспортируем в 80 стран и помогаем с паллетированием, экспортными документами и координацией перевозки."
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "privacy",
+   "type": "custom",
+   "sort": 70,
+   "in_nav": 0,
+   "in_footer": 2,
+   "status": 1,
+   "title": {
+    "tr": "Gizlilik ve KVKK",
+    "en": "Privacy Notice",
+    "fr": "Confidentialité",
+    "ar": "إشعار الخصوصية",
+    "ru": "Конфиденциальность"
+   },
+   "meta": {
+    "tr": "Kişisel verilerin korunması aydınlatma metni.",
+    "en": "Privacy notice on the processing of personal data.",
+    "fr": "Notice d'information sur le traitement des données personnelles.",
+    "ar": "إشعار حول معالجة البيانات الشخصية.",
+    "ru": "Уведомление об обработке персональных данных."
+   },
+   "h1": {
+    "tr": "Gizlilik ve <em>kişisel veriler</em>.",
+    "en": "Privacy and <em>personal data</em>.",
+    "fr": "Confidentialité et <em>données personnelles</em>.",
+    "ar": "الخصوصية و<em>البيانات الشخصية</em>.",
+    "ru": "Конфиденциальность и <em>персональные данные</em>."
+   },
+   "lead": {
+    "tr": "Bu metin, iletişim ve teklif formları aracılığıyla paylaştığınız bilgilerin nasıl işlendiğini açıklar.",
+    "en": "This notice explains how the details you share through our contact and quote forms are processed.",
+    "fr": "Cette notice explique comment les informations transmises via nos formulaires de contact et de devis sont traitées.",
+    "ar": "يوضح هذا الإشعار كيفية معالجة المعلومات التي تشاركها عبر نماذج الاتصال وطلب العروض.",
+    "ru": "В этом уведомлении объясняется, как обрабатываются данные, которые вы передаёте через формы контактов и запроса предложения."
+   },
+   "cta": 0,
+   "blocks": [
+    {
+     "type": "text",
+     "band": 0,
+     "title": {
+      "tr": "Veri sorumlusu",
+      "en": "Data controller",
+      "fr": "Responsable du traitement",
+      "ar": "المسؤول عن البيانات",
+      "ru": "Оператор данных"
+     },
+     "body": {
+      "tr": "Uzman Kozmetik Kimya San. ve Dış Tic. Ltd. Şti. — Şekerpınar Mh. Özbek Sk. No:4, Çayırova / Kocaeli. E-posta: info@uzmancosmetic.com",
+      "en": "Uzman Kozmetik Kimya San. ve Dış Tic. Ltd. Şti. — Şekerpınar Mh. Özbek Sk. No:4, Çayırova / Kocaeli, Türkiye. Email: info@uzmancosmetic.com",
+      "fr": "Uzman Kozmetik Kimya San. ve Dış Tic. Ltd. Şti. — Şekerpınar Mh. Özbek Sk. No:4, Çayırova / Kocaeli, Turquie. E-mail : info@uzmancosmetic.com",
+      "ar": "Uzman Kozmetik Kimya San. ve Dış Tic. Ltd. Şti. — Şekerpınar Mh. Özbek Sk. No:4، تشايروفا / قوجه إيلي، تركيا. البريد: info@uzmancosmetic.com",
+      "ru": "Uzman Kozmetik Kimya San. ve Dış Tic. Ltd. Şti. — Şekerpınar Mh. Özbek Sk. No:4, Чайырова / Коджаэли, Турция. E-mail: info@uzmancosmetic.com"
+     }
+    },
+    {
+     "type": "text",
+     "band": 0,
+     "title": {
+      "tr": "İşlenen veriler ve amaç",
+      "en": "Data processed and purpose",
+      "fr": "Données traitées et finalité",
+      "ar": "البيانات المعالجة والغرض",
+      "ru": "Обрабатываемые данные и цель"
+     },
+     "body": {
+      "tr": "Formlarda paylaştığınız ad soyad, firma, e-posta, telefon ve proje bilgileri yalnızca talebinize yanıt vermek, teklif ve numune sürecini yürütmek amacıyla işlenir. Bilgileriniz yurt içinde ve yurt dışında bulunan iş ortaklarına satış amacıyla aktarılmaz.",
+      "en": "The name, company, email, phone and project details you share in our forms are processed only to respond to your request and to run the quote and sample process. Your details are not sold or passed on to third parties for marketing.",
+      "fr": "Le nom, la société, l'e-mail, le téléphone et les informations de projet saisis dans nos formulaires ne sont traités que pour répondre à votre demande et gérer le devis et les échantillons. Vos données ne sont ni vendues ni transmises à des tiers à des fins commerciales.",
+      "ar": "تُعالج بيانات الاسم والشركة والبريد والهاتف وتفاصيل المشروع التي تشاركها في النماذج فقط للرد على طلبك وإدارة عرض السعر والعينات. لا تُباع بياناتك ولا تُنقل لأطراف ثالثة لأغراض تسويقية.",
+      "ru": "Имя, компания, e-mail, телефон и сведения о проекте, указанные в формах, обрабатываются только для ответа на запрос и ведения процесса расчёта и образцов. Ваши данные не продаются и не передаются третьим лицам в маркетинговых целях."
+     }
+    },
+    {
+     "type": "text",
+     "band": 0,
+     "title": {
+      "tr": "Saklama süresi ve haklarınız",
+      "en": "Retention and your rights",
+      "fr": "Conservation et vos droits",
+      "ar": "مدة الاحتفاظ وحقوقك",
+      "ru": "Срок хранения и ваши права"
+     },
+     "body": {
+      "tr": "Bilgileriniz, talebinizin gerektirdiği süre boyunca saklanır. 6698 sayılı KVKK'nın 11. maddesi kapsamında bilgilerinize erişme, düzeltme veya silme talebinde bulunabilirsiniz; bunun için info@uzmancosmetic.com adresine yazmanız yeterlidir.",
+      "en": "Your details are kept for as long as your request requires. Under Article 11 of Turkish Law No. 6698 (KVKK) you may request access, correction or deletion by writing to info@uzmancosmetic.com.",
+      "fr": "Vos données sont conservées aussi longtemps que votre demande l'exige. En vertu de l'article 11 de la loi turque n° 6698 (KVKK), vous pouvez demander l'accès, la rectification ou la suppression en écrivant à info@uzmancosmetic.com.",
+      "ar": "تُحفظ بياناتك للمدة التي يتطلبها طلبك. وبموجب المادة 11 من القانون التركي رقم 6698 (KVKK) يمكنك طلب الاطلاع أو التصحيح أو الحذف بمراسلة info@uzmancosmetic.com.",
+      "ru": "Ваши данные хранятся столько, сколько требует запрос. В соответствии со статьёй 11 закона Турции № 6698 (KVKK) вы можете запросить доступ, исправление или удаление, написав на info@uzmancosmetic.com."
+     }
+    },
+    {
+     "type": "text",
+     "band": 0,
+     "title": {
+      "tr": "Çerezler",
+      "en": "Cookies",
+      "fr": "Cookies",
+      "ar": "ملفات تعريف الارتباط",
+      "ru": "Файлы cookie"
+     },
+     "body": {
+      "tr": "Bu site analiz veya reklam çerezi kullanmaz. Yalnızca seçtiğiniz renk temasını tarayıcınızda saklamak için yerel depolama kullanılabilir.",
+      "en": "This site does not use analytics or advertising cookies. Local storage may be used only to remember the colour theme you choose in your browser.",
+      "fr": "Ce site n'utilise ni cookies d'analyse ni cookies publicitaires. Le stockage local peut servir uniquement à mémoriser le thème de couleur choisi dans votre navigateur.",
+      "ar": "لا يستخدم هذا الموقع ملفات تعريف ارتباط للتحليلات أو الإعلانات. قد يُستخدم التخزين المحلي فقط لحفظ سمة الألوان التي تختارها في متصفحك.",
+      "ru": "Этот сайт не использует аналитические или рекламные cookie. Локальное хранилище может использоваться только для сохранения выбранной цветовой темы в вашем браузере."
+     }
+    }
+   ]
+  }
+ ],
+ "fan": {
+  "body": [
+   "assets/img/p/montagneblack3.webp",
+   "assets/img/p/edt3.webp",
+   "assets/img/p/oriflower-body-mist1.webp"
+  ],
+  "home": [
+   "assets/img/p/reed-diffuser1.webp",
+   "assets/img/p/air-lilac.webp",
+   "assets/img/p/oda-spreyi-fresh1.webp"
+  ]
+ },
+ "about_fan": [
+  "assets/img/p/x-block1.webp",
+  "assets/img/p/montagneblack2.webp",
+  "assets/img/p/x-block3.webp"
+ ],
+ "pw_fan": [
+  "assets/img/p/montagneblack3.webp",
+  "assets/img/p/montagneblack6.webp",
+  "assets/img/p/camay.webp"
+ ]
+}

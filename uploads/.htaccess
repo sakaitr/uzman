@@ -1,0 +1,9 @@
+# uploaded files are static only — never execute scripts here
+Options -Indexes -ExecCGI
+<FilesMatch "\.(php|phtml|phar|pl|py|cgi|sh)(\.|$)">
+Require all denied
+</FilesMatch>
+<IfModule mod_php.c>
+php_flag engine off
+</IfModule>
+RemoveHandler .php .phtml

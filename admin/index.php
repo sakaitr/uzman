@@ -1,0 +1,55 @@
+<?php
+/** Admin panel front controller (Turkish UI). */
+declare(strict_types=1);
+require __DIR__ . '/../app/bootstrap.php';
+require UZ_APP . '/security.php';
+require UZ_APP . '/auth.php';
+require UZ_APP . '/install.php';
+require UZ_APP . '/upload.php';
+require UZ_APP . '/mail.php';
+require UZ_APP . '/admin/ui.php';
+
+header('X-Frame-Options: SAMEORIGIN');
+header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: same-origin');
+header('Cache-Control: no-store');
+
+$a = (string)($_GET['a'] ?? 'dash');
+
+// ---------------------------------------------------------------- first-run setup
+if (!is_installed()) {
+    require UZ_APP . '/admin/setup.php';
+    admin_setup();
+    exit;
+}
+
+start_session();
+if ($a === 'logout') {
+    $_SESSION = [];
+    session_destroy();
+    header('Location: index.php?a=login');
+    exit;
+}
+if (!admin_user()) {
+    require UZ_APP . '/admin/login.php';
+    admin_login_page();
+    exit;
+}
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
+    csrf_check();
+}
+
+$routes = [
+    'dash' => ['dash.php', 'admin_dash'], 'pages' => ['pages.php', 'admin_pages'], 'page_edit' => ['pages.php', 'admin_page_edit'], 'page_new' => ['pages.php', 'admin_page_new'],
+    'strings' => ['strings.php', 'admin_strings'], 'catalog' => ['catalog.php', 'admin_catalog'], 'cat_edit' => ['catalog.php', 'admin_cat_edit'], 'sub_edit' => ['catalog.php', 'admin_sub_edit'],
+    'tubes' => ['lists.php', 'admin_tubes'], 'hero' => ['lists.php', 'admin_hero'], 'docs' => ['lists.php', 'admin_docs'],
+    'media' => ['media.php', 'admin_media'], 'media_json' => ['media.php', 'admin_media_json'], 'upload' => ['media.php', 'admin_upload'],
+    'subs' => ['subs.php', 'admin_subs'], 'sub_view' => ['subs.php', 'admin_sub_view'], 'subs_csv' => ['subs.php', 'admin_subs_csv'],
+    'settings' => ['settings.php', 'admin_settings'], 'users' => ['users.php', 'admin_users'], 'tools' => ['users.php', 'admin_tools'], 'backup' => ['users.php', 'admin_backup'],
+];
+if (!isset($routes[$a])) {
+    http_response_code(404);
+    $a = 'dash';
+}
+require UZ_APP . '/admin/' . $routes[$a][0];
+$routes[$a][1]();

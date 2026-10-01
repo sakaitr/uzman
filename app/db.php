@@ -1,0 +1,168 @@
+<?php
+declare(strict_types=1);
+
+function db(): PDO
+{
+    static $pdo = null;
+    if ($pdo === null) {
+        $dir = data_dir();
+        if (!is_dir($dir)) {
+            @mkdir($dir, 0775, true);
+        }
+        $pdo = new PDO('sqlite:' . $dir . '/site.sqlite');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $pdo->exec('PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000;');
+    }
+    return $pdo;
+}
+
+function q(string $sql, array $params = []): PDOStatement
+{
+    $st = db()->prepare($sql);
+    $st->execute($params);
+    return $st;
+}
+
+function rows(string $sql, array $params = []): array
+{
+    return q($sql, $params)->fetchAll();
+}
+
+function row(string $sql, array $params = []): ?array
+{
+    $r = q($sql, $params)->fetch();
+    return $r === false ? null : $r;
+}
+
+function val(string $sql, array $params = [])
+{
+    $r = q($sql, $params)->fetchColumn();
+    return $r === false ? null : $r;
+}
+
+function migrate(): void
+{
+    $pdo = db();
+    $pdo->exec("
+    CREATE TABLE IF NOT EXISTS settings (k TEXT PRIMARY KEY, v TEXT NOT NULL DEFAULT '');
+    CREATE TABLE IF NOT EXISTS strings (k TEXT NOT NULL, lang TEXT NOT NULL, v TEXT NOT NULL DEFAULT '', PRIMARY KEY (k, lang));
+    CREATE TABLE IF NOT EXISTS pages (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, slug TEXT NOT NULL UNIQUE, type TEXT NOT NULL DEFAULT 'custom',
+        status INTEGER NOT NULL DEFAULT 1, in_nav INTEGER NOT NULL DEFAULT 0, in_footer INTEGER NOT NULL DEFAULT 0, sort INTEGER NOT NULL DEFAULT 100,
+        title TEXT NOT NULL DEFAULT '{}', meta TEXT NOT NULL DEFAULT '{}', h1 TEXT NOT NULL DEFAULT '{}', lead TEXT NOT NULL DEFAULT '{}',
+        cta INTEGER NOT NULL DEFAULT 1, blocks TEXT NOT NULL DEFAULT '[]', updated_at TEXT
+    );
+    CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY AUTOINCREMENT, slug TEXT NOT NULL UNIQUE, page TEXT NOT NULL, name TEXT NOT NULL DEFAULT '{}', sort INTEGER NOT NULL DEFAULT 0);
+    CREATE TABLE IF NOT EXISTS subcats (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, cat_id INTEGER NOT NULL REFERENCES categories(id) ON DELETE CASCADE, parent_id INTEGER,
+        slug TEXT NOT NULL DEFAULT '', name TEXT NOT NULL DEFAULT '{}', desc TEXT NOT NULL DEFAULT '{}', sizes TEXT NOT NULL DEFAULT '',
+        art TEXT NOT NULL DEFAULT 'aerosol', sort INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE TABLE IF NOT EXISTS items (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, sub_id INTEGER NOT NULL REFERENCES subcats(id) ON DELETE CASCADE,
+        cap TEXT NOT NULL DEFAULT '', image TEXT NOT NULL DEFAULT '', sort INTEGER NOT NULL DEFAULT 0, active INTEGER NOT NULL DEFAULT 1
+    );
+    CREATE TABLE IF NOT EXISTS pl_models (id INTEGER PRIMARY KEY AUTOINCREMENT, grp TEXT NOT NULL, label TEXT NOT NULL DEFAULT '', dims TEXT NOT NULL DEFAULT '', image TEXT NOT NULL DEFAULT '', sort INTEGER NOT NULL DEFAULT 0, active INTEGER NOT NULL DEFAULT 1);
+    CREATE TABLE IF NOT EXISTS pl_groups (slug TEXT PRIMARY KEY, name TEXT NOT NULL DEFAULT '{}', sort INTEGER NOT NULL DEFAULT 0);
+    CREATE TABLE IF NOT EXISTS hero_slides (id INTEGER PRIMARY KEY AUTOINCREMENT, image TEXT NOT NULL, label TEXT NOT NULL DEFAULT '', sort INTEGER NOT NULL DEFAULT 0, active INTEGER NOT NULL DEFAULT 1);
+    CREATE TABLE IF NOT EXISTS docs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL DEFAULT '{}', note TEXT NOT NULL DEFAULT '{}', file TEXT NOT NULL DEFAULT '', image TEXT NOT NULL DEFAULT '', sort INTEGER NOT NULL DEFAULT 0, active INTEGER NOT NULL DEFAULT 1);
+    CREATE TABLE IF NOT EXISTS media (id INTEGER PRIMARY KEY AUTOINCREMENT, path TEXT NOT NULL UNIQUE, name TEXT NOT NULL DEFAULT '', mime TEXT NOT NULL DEFAULT '', w INTEGER DEFAULT 0, h INTEGER DEFAULT 0, size INTEGER DEFAULT 0, created_at TEXT);
+    CREATE TABLE IF NOT EXISTS submissions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, created_at TEXT NOT NULL, lang TEXT, name TEXT, company TEXT, email TEXT, phone TEXT,
+        category TEXT, market TEXT, qty TEXT, brief TEXT, ip TEXT, ua TEXT, status TEXT NOT NULL DEFAULT 'new', mail_ok INTEGER NOT NULL DEFAULT 0, note TEXT NOT NULL DEFAULT ''
+    );
+    CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL UNIQUE, name TEXT NOT NULL DEFAULT '', pass_hash TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'admin', created_at TEXT, last_login TEXT);
+    CREATE TABLE IF NOT EXISTS throttle (id INTEGER PRIMARY KEY AUTOINCREMENT, kind TEXT NOT NULL, ip TEXT NOT NULL, ts INTEGER NOT NULL);
+    CREATE INDEX IF NOT EXISTS idx_throttle ON throttle(kind, ip, ts);
+    CREATE INDEX IF NOT EXISTS idx_items_sub ON items(sub_id, sort);
+    ");
+}
+
+/** Import design content from app/seed/seed.json (only into empty tables). */
+function seed_import(): void
+{
+    $f = UZ_APP . '/seed/seed.json';
+    if (!is_file($f)) {
+        throw new RuntimeException('seed.json missing');
+    }
+    $d = json_decode((string)file_get_contents($f), true);
+    $pdo = db();
+    $pdo->beginTransaction();
+    try {
+        if (!val('SELECT COUNT(*) FROM strings')) {
+            $st = $pdo->prepare('INSERT OR IGNORE INTO strings(k, lang, v) VALUES(?,?,?)');
+            foreach ($d['strings'] as $k => $langs) {
+                foreach ($langs as $l => $v) {
+                    $st->execute([$k, $l, $v]);
+                }
+            }
+        }
+        if (!val('SELECT COUNT(*) FROM pages')) {
+            $st = $pdo->prepare('INSERT INTO pages(slug,type,status,in_nav,in_footer,sort,title,meta,h1,lead,cta,blocks,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)');
+            foreach ($d['pages'] as $p) {
+                $st->execute([$p['slug'], $p['type'], $p['status'], $p['in_nav'], $p['in_footer'], $p['sort'], je($p['title'] ?? new stdClass()), je($p['meta'] ?? new stdClass()),
+                    je($p['h1'] ?? new stdClass()), je($p['lead'] ?? new stdClass()), $p['cta'] ?? 1, je($p['blocks'] ?? []), date('Y-m-d H:i:s')]);
+            }
+        }
+        if (!val('SELECT COUNT(*) FROM categories')) {
+            $cs = $pdo->prepare('INSERT INTO categories(slug,page,name,sort) VALUES(?,?,?,?)');
+            $ss = $pdo->prepare('INSERT INTO subcats(cat_id,parent_id,slug,name,desc,sizes,art,sort) VALUES(?,?,?,?,?,?,?,?)');
+            $is = $pdo->prepare('INSERT INTO items(sub_id,cap,image,sort) VALUES(?,?,?,?)');
+            foreach ($d['categories'] as $c) {
+                $cs->execute([$c['slug'], $c['page'], je($c['name']), $c['sort']]);
+                $cid = (int)$pdo->lastInsertId();
+                foreach ($c['subs'] as $s) {
+                    $ss->execute([$cid, null, $s['slug'], je($s['name']), je($s['desc']), implode(',', $s['sizes']), $s['art'], $s['sort']]);
+                    $sid = (int)$pdo->lastInsertId();
+                    $n = 0;
+                    foreach ($s['items'] ?? [] as $it) {
+                        $is->execute([$sid, is_array($it['cap']) ? je($it['cap']) : $it['cap'], $it['image'], $n++]);
+                    }
+                    foreach ($s['children'] ?? [] as $ci => $ch) {
+                        $ss->execute([$cid, $sid, '', je($ch['name']), '{}', '', $s['art'], $ci]);
+                        $chid = (int)$pdo->lastInsertId();
+                        $n = 0;
+                        foreach ($ch['items'] as $it) {
+                            $is->execute([$chid, is_array($it['cap']) ? je($it['cap']) : $it['cap'], $it['image'], $n++]);
+                        }
+                    }
+                }
+            }
+        }
+        if (!val('SELECT COUNT(*) FROM pl_groups')) {
+            $st = $pdo->prepare('INSERT INTO pl_groups(slug,name,sort) VALUES(?,?,?)');
+            $i = 0;
+            foreach ($d['pl_groups'] as $slug => $name) {
+                $st->execute([$slug, je($name), $i++]);
+            }
+            $st = $pdo->prepare('INSERT INTO pl_models(grp,label,dims,image,sort) VALUES(?,?,?,?,?)');
+            foreach ($d['pl_models'] as $m) {
+                $st->execute([$m['grp'], $m['label'], $m['dims'], $m['image'], $m['sort']]);
+            }
+        }
+        if (!val('SELECT COUNT(*) FROM hero_slides')) {
+            $st = $pdo->prepare('INSERT INTO hero_slides(image,label,sort) VALUES(?,?,?)');
+            foreach ($d['hero'] as $h) {
+                $st->execute([$h['image'], $h['label'], $h['sort']]);
+            }
+        }
+        $defaults = [
+            'site_name' => 'Uzman Cosmetic', 'company_legal' => 'Uzman Kozmetik Kimya San. ve Dış Tic. Ltd. Şti.',
+            'phone1' => '+90 262 658 00 99', 'phone2' => '+90 262 658 03 99', 'fax' => '+90 262 658 03 20',
+            'email' => 'info@uzmancosmetic.com', 'instagram' => 'https://www.instagram.com/uzmancosmetic/', 'whatsapp' => '',
+            'site_url' => '', 'theme' => 'noir', 'theme_switcher' => '0', 'notify_email' => 'info@uzmancosmetic.com',
+            'smtp_host' => '', 'smtp_port' => '587', 'smtp_user' => '', 'smtp_pass' => '', 'smtp_secure' => 'tls', 'mail_from' => '',
+            'fan_body' => je($d['fan']['body']), 'fan_home' => je($d['fan']['home']), 'fan_pw' => je($d['pw_fan']), 'fan_about' => je($d['about_fan']),
+            'hero_video' => '1', 'robots_index' => '1',
+        ];
+        $st = $pdo->prepare('INSERT OR IGNORE INTO settings(k,v) VALUES(?,?)');
+        foreach ($defaults as $k => $v) {
+            $st->execute([$k, (string)$v]);
+        }
+        $pdo->commit();
+    } catch (Throwable $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+}
