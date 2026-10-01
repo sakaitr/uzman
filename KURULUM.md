@@ -53,6 +53,12 @@ Panel → **Büyüme** grubu:
 - **Raporlar:** aylık rapor (önceki ayla karşılaştırma, kanal, sayfa, kampanya, tamamlanan aksiyonlar, SEO skoru), CSV/PDF, e-postayla gönderim.
 - **İzleme ve otomasyon:** çerezsiz kendi ziyaret sayacı (kişisel veri tutmaz, Do-Not-Track'e uyar), isteğe bağlı GTM / GA4 / Google Ads / Meta Pixel (çerez onay bandıyla), cPanel **cron** komutu: haftalık SEO taraması + ayın 1'inde aylık rapor e-postası.
 
+## Marka ve görünüm (beyaz etiket)
+Panel → **Marka ve görünüm**: marka adı (üst menü, alt bilgi, sekme başlığı), **logo** ve **renk paleti** panelden yönetilir; başka bir müşteriye geçmek için dosya düzenlemek gerekmez.
+- **Logo:** PNG/JPG/WebP/SVG yükleyin. Şeffaf PNG/SVG en iyisidir; opak görsellerde arka plan otomatik ayıklanır. İki biçim: temanın vurgu rengiyle boyanan tek renk (varsayılan) ya da orijinal renkler. Favicon ve uygulama ikonu otomatik üretilir (SVG yüklenirse favicon için PNG gerekir).
+- **Renkler:** 10 hazır palet (koyu ve açık) ya da 4 renk seçerek özel palet (zemin, yazı, vurgu, ikinci vurgu). Ara tonlar otomatik türetilir, erişilebilirlik (kontrast) kontrolü canlı gösterilir. Açık zeminli paletlerde arka plan videoları gizlenir. Yönetim paneli de marka vurgu rengine ve adına uyar.
+- Yazı tipleri bu sürümde sabittir.
+
 ## Güncelleme (mevcut kurulum)
 Yeni sürümün dosyalarını aynı klasöre çıkarın (`data/` ve `uploads/` korunur). Veritabanı ilk istekte kendini yükseltir (`schema_version`); elle bir şey yapmanız gerekmez.
 

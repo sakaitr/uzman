@@ -28,7 +28,7 @@ function admin_setup(): void
     }
     echo '<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Kurulum — Uzman Yönetim</title>
 <link rel="stylesheet" href="../assets/css/fonts.css"><link rel="stylesheet" href="admin.css?v=' . UZ_VERSION . '"></head><body><div class="login"><div class="card" style="width:min(520px,100%)">
-<h1>Kurulum</h1><p class="sub">Uzman Cosmetic site yönetimi — ilk çalıştırma</p>' . ($err ? '<div class="flash err">' . h($err) . '</div>' : '') . '<ul class="check-list" style="margin-bottom:18px">';
+<h1>Kurulum</h1><p class="sub">Site yönetimi — ilk çalıştırma</p>' . ($err ? '<div class="flash err">' . h($err) . '</div>' : '') . '<ul class="check-list" style="margin-bottom:18px">';
     foreach ($req as $k => $v) {
         echo '<li><span class="dot' . ($v ? ' ok' : '') . '"></span><span>' . h($k) . ($v ? '' : ' — <b style="color:#b3382c">gerekli</b>') . '</span></li>';
     }

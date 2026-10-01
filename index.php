@@ -73,7 +73,7 @@ header('Referrer-Policy: strict-origin-when-cross-origin');
 if ($status === 200) {
     $etag = '"' . md5($html) . '"';
     header('ETag: ' . $etag);
-    header('Cache-Control: public, max-age=300');
+    header('Cache-Control: public, max-age=0, must-revalidate');
     if (($_SERVER['HTTP_IF_NONE_MATCH'] ?? '') === $etag) {
         http_response_code(304);
         exit;

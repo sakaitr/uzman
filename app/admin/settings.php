@@ -23,8 +23,6 @@ function admin_settings(): void
         $ig = post_str('instagram', 200);
         set_setting('instagram', preg_match('#^https?://#', $ig) || $ig === '' ? $ig : 'https://www.instagram.com/' . ltrim($ig, '@/'));
         set_setting('whatsapp', preg_replace('/\D/', '', post_str('whatsapp', 30)));
-        $theme = post_str('theme', 20);
-        set_setting('theme', isset(THEMES[$theme]) ? $theme : 'noir');
         foreach (['theme_switcher', 'hero_video', 'robots_index'] as $k) {
             set_setting($k, ($_POST[$k] ?? '0') === '1' ? '1' : '0');
         }
@@ -55,11 +53,7 @@ function admin_settings(): void
     echo '<div class="card"><h2>Firma ve iletişim</h2><div class="grid g2">' . field('Site adı', 'site_name', $v('site_name')) . field('Resmi unvan', 'company_legal', $v('company_legal')) . field('Telefon 1', 'phone1', $v('phone1')) . field('Telefon 2', 'phone2', $v('phone2'))
         . field('Faks', 'fax', $v('fax')) . field('Genel e-posta (sitede görünür)', 'email', $v('email'), 'email') . field('Instagram adresi', 'instagram', $v('instagram'), 'text', 'Örn: https://www.instagram.com/uzmancosmetic/')
         . field('WhatsApp numarası', 'whatsapp', $v('whatsapp'), 'text', 'Ülke koduyla, boşluksuz: 905551112233 — doluysa sağ altta yüzen buton çıkar.') . '</div></div>';
-    echo '<div class="card"><h2>Görünüm</h2><div class="field" style="max-width:380px"><label class="l">Site teması</label><select name="theme">';
-    foreach (THEMES as $k => $t) {
-        echo '<option value="' . $k . '"' . ($v('theme') === $k ? ' selected' : '') . '>' . h($t[0]) . '</option>';
-    }
-    echo '</select></div>' . checkbox('theme_switcher', $v('theme_switcher') === '1', 'Ziyaretçilere tema değiştirici göster (yalnızca değerlendirme için; yayında kapalı önerilir)')
+    echo '<div class="card"><h2>Görünüm</h2><p class="hint" style="margin-top:-8px">Marka adı, logo ve renk paleti için <a href="' . admin_url('brand') . '">Marka ve görünüm</a> sayfasını kullanın.</p>' . checkbox('theme_switcher', $v('theme_switcher') === '1', 'Ziyaretçilere tema değiştirici göster (yalnızca değerlendirme için; yayında kapalı önerilir)')
         . checkbox('hero_video', $v('hero_video') !== '0', 'Arka plan videolarını göster') . '</div>';
     echo '<div class="card"><h2>Ana sayfa ve sayfa görselleri</h2><p class="hint" style="margin-top:-8px">Kartlarda yelpaze şeklinde duran üçlü ürün görselleri. Hero slider için <a href="' . admin_url('hero') . '">Ana sayfa slider</a> bölümünü kullanın.</p><div class="grid g2">';
     foreach ($fanKeys as $fk => $label) {

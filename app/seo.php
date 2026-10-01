@@ -190,6 +190,9 @@ function ld_org(string $lang): array
         $o['legalName'] = seo('seo_legal') ?: setting('company_legal');
     }
     $logo = seo('seo_logo');
+    if ($logo === '' || $logo === 'assets/img/apple-touch-icon.png') {
+        $logo = brand_path('brand_apple') ?: $logo;
+    }
     if ($logo !== '' && is_file(UZ_ROOT . '/' . $logo)) {
         [$w, $h] = img_size($logo);
         $o['logo'] = ['@type' => 'ImageObject', 'url' => abs_url($logo)] + ($w ? ['width' => $w, 'height' => $h] : []);

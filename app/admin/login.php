@@ -12,9 +12,9 @@ function admin_login_page(): void
             exit;
         }
     }
-    echo '<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Giriş — Uzman Yönetim</title>
-<link rel="stylesheet" href="../assets/css/fonts.css"><link rel="stylesheet" href="admin.css?v=' . UZ_VERSION . '"></head><body><div class="login"><div class="card">
-<h1>Uzman Cosmetic</h1><p class="sub">Yönetim paneli</p>' . ($err ? '<div class="flash err">' . h($err) . '</div>' : '') . '
+    echo '<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Giriş — ' . h(brand_word()) . ' Yönetim</title>
+<link rel="stylesheet" href="../assets/css/fonts.css"><link rel="stylesheet" href="admin.css?v=' . UZ_VERSION . '">' . admin_brand_css() . '</head><body><div class="login"><div class="card">
+<h1>' . h(setting('site_name', brand_word())) . '</h1><p class="sub">Yönetim paneli</p>' . ($err ? '<div class="flash err">' . h($err) . '</div>' : '') . '
 <form method="post" autocomplete="on">' . csrf_field() . '
 <div class="field"><label class="l" for="u">Kullanıcı adı</label><input type="text" id="u" name="username" autocomplete="username" autofocus required></div>
 <div class="field"><label class="l" for="p">Şifre</label><input type="password" id="p" name="password" autocomplete="current-password" required></div>

@@ -111,3 +111,19 @@ details.fold > .inner { padding: 16px; }
 .strrow:last-child { border-bottom: 0; }
 .strrow code { font-size: .74rem; color: var(--muted); word-break: break-all; }
 @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } .side { position: static; height: auto; } .g2, .g3, .g4 { grid-template-columns: 1fr; } .strrow { grid-template-columns: 1fr; } }
+
+/* brand page */
+.preset { text-align: left; border: 2px solid var(--line); background: #fff; border-radius: 12px; padding: 12px; cursor: pointer; font: inherit; display: flex; flex-direction: column; gap: 8px; }
+.preset:hover { border-color: var(--gold); }
+.preset.on { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(160,122,60,.18); }
+.preset .sw { display: flex; height: 34px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(0,0,0,.08); }
+.preset .sw i { flex: 1; }
+.preset small { color: var(--muted); }
+.bp { border-radius: 12px; padding: 20px; background: var(--bg); color: var(--text); border: 1px solid var(--line-strong); min-height: 190px; }
+.bp-h { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; letter-spacing: .12em; font-size: .85rem; color: var(--text); }
+.bp-logo { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-hi), var(--gold) 55%, var(--gold-lo)); }
+.bp h4 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.7rem; line-height: 1.1; font-weight: 500; margin: 0 0 8px; }
+.bp p { margin: 0 0 14px; color: var(--muted); font-size: .9rem; } .bp em { color: var(--gold-hi); font-style: italic; }
+.bp-b { display: flex; gap: 10px; }
+.bp-solid { padding: 8px 16px; border-radius: 2px; background: linear-gradient(135deg, var(--gold-hi), var(--gold), var(--gold-lo)); color: var(--on-gold); font-weight: 600; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
+.bp-out { padding: 7px 16px; border: 1px solid var(--line-strong); color: var(--text); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }

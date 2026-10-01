@@ -85,5 +85,36 @@
     const ar = e.target.closest('[data-addrow]');
     if (ar) { e.preventDefault(); const t = document.getElementById(ar.dataset.addrow); document.getElementById(ar.dataset.into).insertAdjacentHTML('beforeend', t.innerHTML.replace(/__N__/g, String(++uid))); showLang(lang); markEmpty(); dirty = true; }
   });
+
+  /* ---- brand colour preview (mirrors app/brand.php derivation) ---- */
+  const bf = document.getElementById('brandForm');
+  if (bf) {
+    const rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+    const hex = (c) => '#' + c.map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('');
+    const mix = (a, b, t) => { const x = rgb(a), y = rgb(b); return hex(x.map((v, i) => v + (y[i] - v) * t)); };
+    const lum = (h) => { const c = rgb(h).map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
+    const ratio = (a, b) => { const l1 = lum(a), l2 = lum(b); return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05); };
+    const shift = (h, dl) => {
+      let [r, g, b] = rgb(h).map((v) => v / 255); const mx = Math.max(r, g, b), mn = Math.min(r, g, b); let l = (mx + mn) / 2; const d = mx - mn; let hh = 0, sat = 0;
+      if (d > 0) { sat = d / (1 - Math.abs(2 * l - 1)); hh = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; hh *= 60; if (hh < 0) hh += 360; }
+      l = Math.max(0.04, Math.min(0.96, l + dl)); const c = (1 - Math.abs(2 * l - 1)) * sat, x = c * (1 - Math.abs((hh / 60) % 2 - 1)), m = l - c / 2;
+      const t = hh < 60 ? [c, x, 0] : hh < 120 ? [x, c, 0] : hh < 180 ? [0, c, x] : hh < 240 ? [0, x, c] : hh < 300 ? [x, 0, c] : [c, 0, x];
+      return hex(t.map((v) => (v + m) * 255));
+    };
+    const rgba = (h, a) => { const [r, g, b] = rgb(h); return `rgba(${r},${g},${b},${a})`; };
+    const prev = document.getElementById('brandPrev'), tb = document.querySelector('#brandContrast tbody');
+    const upd = () => {
+      const v = {}; bf.querySelectorAll('[data-seed]').forEach((i) => { v[i.dataset.seed] = i.value; const c = bf.querySelector(`[data-hex="${i.dataset.seed}"]`); if (c) c.textContent = i.value; });
+      const on2 = bf.querySelector('[data-seed-on]').checked; const ac2 = on2 ? v.accent2 : v.accent;
+      const light = lum(v.bg) >= 0.35;
+      const hi = light ? shift(v.accent, -0.05) : shift(v.accent, 0.14), lo = shift(v.accent, -0.18);
+      const onG = ratio(v.accent, '#14100a') >= ratio(v.accent, '#ffffff') ? '#14100a' : '#ffffff';
+      const t = { '--bg': v.bg, '--text': v.text, '--muted': mix(v.text, v.bg, 0.36), '--gold': v.accent, '--gold-hi': hi, '--gold-lo': lo, '--on-gold': onG, '--line-strong': rgba(v.accent, light ? 0.52 : 0.38), '--line': rgba(v.accent, light ? 0.24 : 0.16) };
+      Object.entries(t).forEach(([k, val]) => prev.style.setProperty(k, val));
+      const rows = [['Yazı / zemin', ratio(v.text, v.bg), 4.5], ['Soluk yazı / zemin', ratio(t['--muted'], v.bg), 4.5], ['Bağlantı & vurgu yazısı / zemin', ratio(hi, v.bg), 4.5], ['Vurgu / zemin (çizgi, ikon)', ratio(v.accent, v.bg), 3], ['Düğme yazısı / vurgu', ratio(onG, v.accent), 4.5]];
+      tb.innerHTML = rows.map(([l, r, m]) => `<tr><td>${l}</td><td style="text-align:right">${r.toFixed(2)}:1</td><td style="width:110px;text-align:right"><span class="pill ${r >= m ? 'ok' : 'warn'}">${r >= m ? 'Uygun' : 'Düşük (' + m + ')'}</span></td></tr>`).join('');
+    };
+    bf.addEventListener('input', upd); upd();
+  }
   $$('form[data-guard]').forEach((f) => f.addEventListener('submit', () => { dirty = false; }));
 })();

@@ -143,8 +143,12 @@ function head(string $slug, string $title, string $desc, bool $noindex = false, 
     $lang = cur_lang();
     $A = asset_prefix();
     $site = canonical_base();
-    $theme = THEMES[setting('theme', 'noir')] ?? THEMES['noir'];
-    $themeKey = isset(THEMES[setting('theme', 'noir')]) ? setting('theme', 'noir') : 'noir';
+    $themeKey = brand_theme();
+    $seeds = brand_active_seeds();
+    $theme = [null, $themeKey === 'custom' ? $seeds['bg'] : (THEMES[$themeKey][1] ?? '#0b0c0e')];
+    $tone = brand_is_light($seeds) ? 'light' : 'dark';
+    $favicon = brand_path('brand_favicon') ?: 'assets/img/favicon.png';
+    $apple = brand_path('brand_apple') ?: 'assets/img/apple-touch-icon.png';
     $switcher = setting('theme_switcher', '0') === '1';
     $alt = '';
     foreach (LANGS as $l) {
@@ -160,7 +164,7 @@ function head(string $slug, string $title, string $desc, bool $noindex = false, 
         ? "<script>try{var s=new URLSearchParams(location.search).get('theme')||localStorage.getItem('uzman-theme');if(['noir','bordeaux','emerald','twotone','inverse'].indexOf(s)>-1)document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>\n"
         : '';
     return '<!DOCTYPE html>
-<html lang="' . $lang . '" dir="' . (in_array($lang, RTL_LANGS, true) ? 'rtl' : 'ltr') . '" class="no-js" data-theme="' . $themeKey . '" data-switcher="' . ($switcher ? '1' : '0') . '">
+<html lang="' . $lang . '" dir="' . (in_array($lang, RTL_LANGS, true) ? 'rtl' : 'ltr') . '" class="no-js" data-theme="' . $themeKey . '" data-tone="' . $tone . '" data-switcher="' . ($switcher ? '1' : '0') . '">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -171,7 +175,7 @@ function head(string $slug, string $title, string $desc, bool $noindex = false, 
 ' . $alt . '
 ' . preload_fonts($A) . '<link rel="stylesheet" href="' . $A . 'assets/css/fonts.css">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="' . h(setting('site_name', 'Uzman Cosmetic')) . '">
+<meta property="og:site_name" content="' . h(setting('site_name', 'Site')) . '">
 <meta property="og:title" content="' . $ti . '">
 <meta property="og:description" content="' . $d . '">
 <meta property="og:image" content="' . h(abs_url(seo('seo_og_image') ?: 'assets/img/og.jpg')) . '">
@@ -180,9 +184,10 @@ function head(string $slug, string $title, string $desc, bool $noindex = false, 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="' . $ti . '">
 <meta name="twitter:image" content="' . h(abs_url(seo('seo_og_image') ?: 'assets/img/og.jpg')) . '">
-<link rel="icon" type="image/png" href="' . $A . 'assets/img/favicon.png">
-<link rel="apple-touch-icon" href="' . $A . 'assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="' . h($A . $favicon) . '">
+<link rel="apple-touch-icon" href="' . h($A . $apple) . '">
 <link rel="stylesheet" href="' . $A . 'assets/css/style.css?v=' . UZ_VERSION . '">
+' . brand_css() . '
 ' . $verify . $themeScript . $extra . '</head>
 <body data-page="' . h($slug) . '">
 <a class="skip" href="#main">' . t('skip') . '</a>
@@ -239,7 +244,7 @@ function header_html(string $slug): string
   <div class="wrap navbar">
     <a href="' . h(u('index')) . '" class="brand" aria-label="' . attr(t('aria_home')) . '">
       <span class="brand-logo" aria-hidden="true"></span>
-      <span class="brand-name">UZMAN<span class="brand-sub">' . t('brand_sub') . '</span></span>
+      <span class="brand-name">' . h(brand_word()) . '<span class="brand-sub">' . t('brand_sub') . '</span></span>
     </a>
     <nav class="nav">' . $nav . '</nav>
     <div class="nav-right">
@@ -284,17 +289,17 @@ function footer_html(): string
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <a href="' . h(u('index')) . '" class="brand" style="margin-bottom:24px"><span class="brand-logo lg" aria-hidden="true"></span><span class="brand-name">UZMAN<span class="brand-sub">COSMETIC</span></span></a>
+        <a href="' . h(u('index')) . '" class="brand" style="margin-bottom:24px"><span class="brand-logo lg" aria-hidden="true"></span><span class="brand-name">' . h(brand_word()) . '<span class="brand-sub">' . h(brand_sub_foot()) . '</span></span></a>
         <p style="max-width:38ch">' . t('foot_blurb') . '</p>
       </div>
       <div><h3>' . t('foot_discover') . '</h3><ul>' . $disc . '</ul></div>
       <div><h3>' . t('foot_products') . '</h3><ul>' . $prods . '</ul></div>
       <div><h3>' . t('foot_hq') . '</h3><p>' . t('foot_addr') . '<br>' . ($ph ? '<a href="' . h(tel_href($ph)) . '" dir="ltr">' . h($ph) . '</a><br>' : '')
         . ($email ? '<a href="mailto:' . h($email) . '">' . h($email) . '</a><br>' : '')
-        . ($ig ? '<a href="' . h($ig) . '" rel="noopener">@' . h(trim(parse_url($ig, PHP_URL_PATH) ?: 'uzmancosmetic', '/')) . '</a>' : '') . '</p></div>
+        . ($ig ? '<a href="' . h($ig) . '" rel="noopener">@' . h(trim(parse_url($ig, PHP_URL_PATH) ?: '', '/')) . '</a>' : '') . '</p></div>
     </div>
-    <div class="foot-word" aria-hidden="true">UZMAN</div>
-    <div class="foot-bot"><span>' . t('foot_rights') . '</span>' . (trackers_on() && setting('trk_consent', '1') === '1' ? '<button type="button" class="foot-consent" data-consent-open>' . t('trk_change') . '</button>' : '') . ($legal ? '<nav class="foot-legal" aria-label="' . attr(t('foot_legal')) . '">' . $legal . '</nav>' : '<span>ÇAYIROVA · KOCAELİ · TÜRKİYE</span>') . '</div>
+    <div class="foot-word" aria-hidden="true">' . h(brand_foot_word()) . '</div>
+    <div class="foot-bot"><span>' . t('foot_rights') . (trim((string)setting('foot_line', '')) !== '' ? ' &nbsp;·&nbsp; ' . h(setting('foot_line', '')) : '') . '</span>' . (trackers_on() && setting('trk_consent', '1') === '1' ? '<button type="button" class="foot-consent" data-consent-open>' . t('trk_change') . '</button>' : '') . ($legal ? '<nav class="foot-legal" aria-label="' . attr(t('foot_legal')) . '">' . $legal . '</nav>' : '') . '</div>
   </div>
 </footer>
 ' . $waBtn . consent_bar_html() . measure_cfg_tag() . '<script src="' . $A . 'assets/js/main.js?v=' . UZ_VERSION . '" defer></script>
@@ -649,7 +654,7 @@ function page_contact(): string
     <div><h2>' . t('ct_addr') . '</h2><p>' . t('foot_addr') . '</p></div>
     <div><h2>' . t('ct_phone') . '</h2>' . $phones . '</div>
     <div><h2>' . t('ct_email') . '</h2><a href="mailto:' . h($email) . '">' . h($email) . '</a></div>
-    <div style="border-bottom:1px solid var(--line)"><h2>' . t('ct_social') . '</h2><a href="' . h($ig) . '" rel="noopener">@' . h(trim(parse_url($ig, PHP_URL_PATH) ?: 'uzmancosmetic', '/')) . '</a></div>
+    <div style="border-bottom:1px solid var(--line)"><h2>' . t('ct_social') . '</h2><a href="' . h($ig) . '" rel="noopener">@' . h(trim(parse_url($ig, PHP_URL_PATH) ?: '', '/')) . '</a></div>
   </aside>
   <form class="form-card rv" data-form data-action="' . h($A) . 'api/quote.php" data-lang="' . cur_lang() . '" data-err="' . attr(t('f_err')) . '" data-ok="' . attr(t('f_ok')) . '" data-fail="' . attr(t('f_fail')) . '" novalidate style="--d:.1s">
     <div class="grid-2">
@@ -771,14 +776,14 @@ function render_page(string $lang, string $slug): array
     $page = row('SELECT * FROM pages WHERE slug = ? AND status = 1', [$slug]);
     if (!$page) {
         $GLOBALS['UZ_ABS'] = true;
-        $html = head('404', t('title_index'), '', true) . '<div class="site-header scrolled" id="siteHeader"><div class="wrap navbar"><a href="' . h(base_url()) . '" class="brand"><span class="brand-logo" aria-hidden="true"></span><span class="brand-name">UZMAN<span class="brand-sub">COSMETIC</span></span></a></div></div><main id="main">'
+        $html = head('404', t('title_index'), '', true) . '<div class="site-header scrolled" id="siteHeader"><div class="wrap navbar"><a href="' . h(base_url()) . '" class="brand"><span class="brand-logo" aria-hidden="true"></span><span class="brand-name">' . h(brand_word()) . '<span class="brand-sub">' . h(brand_sub_foot()) . '</span></span></a></div></div><main id="main">'
             . page_404() . '</main><script src="' . h(base_url()) . 'assets/js/main.js" defer></script></body></html>';
         $GLOBALS['UZ_ABS'] = false;
         return [404, $html];
     }
     $type = $page['type'];
     if ($type === 'custom') {
-        $title = ml(jd($page['title'])) . ' — ' . setting('site_name', 'Uzman Cosmetic');
+        $title = ml(jd($page['title'])) . ' — ' . setting('site_name', 'Site');
         $desc = ml(jd($page['meta'])) ?: plain(ml(jd($page['lead'])));
         $body = page_custom($page);
     } else {

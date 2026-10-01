@@ -81,12 +81,13 @@ function migrate(): void
     upgrade_steps();
 }
 
-const SCHEMA_VERSION = 3;
+const SCHEMA_VERSION = 4;
 
 /** Default SEO/GEO values for a fresh install of THIS site (client-specific; replace in seed for another client). */
 function seo_seed_defaults(): array
 {
     return [
+        'brand_word' => 'UZMAN', 'brand_foot_sub' => 'COSMETIC', 'foot_line' => 'ÇAYIROVA · KOCAELİ · TÜRKİYE',
         'seo_org_name' => 'Uzman Cosmetic', 'seo_legal' => 'Uzman Kozmetik Kimya San. ve Dış Tic. Ltd. Şti.', 'seo_logo' => 'assets/img/apple-touch-icon.png', 'seo_founded' => '1978',
         'seo_street' => 'Şekerpınar Mh. Özbek Sk. No:4', 'seo_city' => 'Çayırova', 'seo_region' => 'Kocaeli', 'seo_country' => 'TR',
         'seo_knows' => "Private label cosmetics manufacturing\nAerosol deodorant\nBody mist\nEau de parfum\nRoom freshener\nReed diffuser\nAluminium aerosol bottles",

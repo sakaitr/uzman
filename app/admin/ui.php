@@ -17,18 +17,42 @@ function new_submissions(): int
     return (int)val("SELECT COUNT(*) FROM submissions WHERE status = 'new'");
 }
 
+/** Admin chrome follows the brand: accent colour, name and logo. */
+function admin_brand_css(): string
+{
+    $ac = brand_active_seeds()['accent'];
+    $dark = $ac;
+    for ($i = 0; $i < 8 && contrast_ratio($dark, '#ffffff') < 3.6; $i++) {
+        $dark = hsl_shift($dark, -0.04);
+    }
+    $light = $ac;
+    for ($i = 0; $i < 8 && contrast_ratio($light, '#14161a') < 5; $i++) {
+        $light = hsl_shift($light, 0.05);
+    }
+    return '<style>:root{--gold:' . $dark . ';--gold-2:' . $light . '}</style>';
+}
+
+function admin_brand_mark(): string
+{
+    $mask = brand_path('brand_logo_mask');
+    if ($mask !== '') {
+        return '<i style="border:0;background:var(--gold-2);-webkit-mask:url(../' . h($mask) . ') center/contain no-repeat;mask:url(../' . h($mask) . ') center/contain no-repeat"></i>';
+    }
+    return '<i>' . h(mb_substr(brand_word(), 0, 1)) . '</i>';
+}
+
 function ahead(string $title, string $active = '', string $sub = ''): void
 {
     $u = admin_user();
     $items = [
         ['dash', 'Panel'], ['pages', 'Sayfalar'], ['strings', 'Site metinleri'], ['catalog', 'Ürünler'], ['tubes', 'Private Label tüpler'],
-        ['hero', 'Ana sayfa slider'], ['docs', 'Belgeler / sertifikalar'], ['media', 'Medya'], ['subs', 'Başvurular'], ['sep'], ['hdr', 'Büyüme'], ['growth', 'Büyüme panosu'], ['seo', 'SEO & GEO'], ['actions', 'Aksiyonlar'], ['ads', 'Reklamlar'], ['reports', 'Raporlar'], ['tracking', 'İzleme ve otomasyon'], ['sep'], ['settings', 'Ayarlar'], ['users', 'Kullanıcılar'], ['tools', 'Araçlar'],
+        ['hero', 'Ana sayfa slider'], ['docs', 'Belgeler / sertifikalar'], ['media', 'Medya'], ['subs', 'Başvurular'], ['sep'], ['hdr', 'Büyüme'], ['growth', 'Büyüme panosu'], ['seo', 'SEO & GEO'], ['actions', 'Aksiyonlar'], ['ads', 'Reklamlar'], ['reports', 'Raporlar'], ['tracking', 'İzleme ve otomasyon'], ['sep'], ['brand', 'Marka ve görünüm'], ['settings', 'Ayarlar'], ['users', 'Kullanıcılar'], ['tools', 'Araçlar'],
     ];
     $n = new_submissions();
     echo '<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
-<meta name="csrf" content="' . h(csrf_token()) . '"><title>' . h($title) . ' — Uzman Yönetim</title>
-<link rel="stylesheet" href="../assets/css/fonts.css"><link rel="stylesheet" href="admin.css?v=' . UZ_VERSION . '"></head><body>
-<div class="layout"><aside class="side"><a class="brand" href="' . admin_url('dash') . '"><i>U</i>UZMAN</a><nav>';
+<meta name="csrf" content="' . h(csrf_token()) . '"><title>' . h($title) . ' — ' . h(brand_word()) . ' Yönetim</title>
+<link rel="stylesheet" href="../assets/css/fonts.css"><link rel="stylesheet" href="admin.css?v=' . UZ_VERSION . '">' . admin_brand_css() . '<link rel="icon" href="../' . h(brand_path('brand_favicon') ?: 'assets/img/favicon.png') . '"></head><body>
+<div class="layout"><aside class="side"><a class="brand" href="' . admin_url('dash') . '">' . admin_brand_mark() . h(brand_word()) . '</a><nav>';
     foreach ($items as $it) {
         if ($it[0] === 'sep') {
             echo '<div class="sep"></div>';
