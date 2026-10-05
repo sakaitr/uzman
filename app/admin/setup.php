@@ -18,7 +18,7 @@ function admin_setup(): void
             $err = $pe;
         } else {
             try {
-                install_site($user, $pw, trim((string)($_POST['name'] ?? '')) ?: 'Yönetici');
+                install_site($user, $pw, trim((string)($_POST['name'] ?? '')) ?: 'Yönetici', filter_var(trim((string)($_POST['email'] ?? '')), FILTER_VALIDATE_EMAIL) ?: '');
                 header('Location: index.php?a=login');
                 exit;
             } catch (Throwable $e) {
@@ -35,6 +35,7 @@ function admin_setup(): void
     echo '</ul>';
     if ($ok) {
         echo '<form method="post"><div class="field"><label class="l">Adınız</label><input type="text" name="name" value="' . h($_POST['name'] ?? '') . '"></div>
+<div class="field"><label class="l">E-posta (şifre sıfırlama için)</label><input type="email" name="email" value="' . h($_POST['email'] ?? '') . '" autocomplete="email"></div>
 <div class="field"><label class="l">Yönetici kullanıcı adı</label><input type="text" name="username" value="' . h($_POST['username'] ?? '') . '" autocomplete="username" required></div>
 <div class="field"><label class="l">Şifre (en az 10 karakter, harf + rakam)</label><input type="password" name="password" autocomplete="new-password" required></div>
 <div class="field"><label class="l">Şifre (tekrar)</label><input type="password" name="password2" autocomplete="new-password" required></div>

@@ -81,7 +81,7 @@ function migrate(): void
     upgrade_steps();
 }
 
-const SCHEMA_VERSION = 4;
+const SCHEMA_VERSION = 5;
 
 /** Default SEO/GEO values for a fresh install of THIS site (client-specific; replace in seed for another client). */
 function seo_seed_defaults(): array
@@ -105,6 +105,9 @@ function upgrade_steps(): void
     if (!$has('pages', 'noindex')) {
         $pdo->exec('ALTER TABLE pages ADD COLUMN noindex INTEGER NOT NULL DEFAULT 0');
     }
+    if (!$has('users', 'email')) {
+        $pdo->exec("ALTER TABLE users ADD COLUMN email TEXT NOT NULL DEFAULT ''");
+    }
     $pdo->exec('CREATE TABLE IF NOT EXISTS seo_audits (id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT NOT NULL, score INTEGER NOT NULL, data TEXT NOT NULL)');
     // v3: growth hub (actions, ads, first-party traffic + attribution)
     foreach (['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'click_id', 'ref_host', 'landing', 'channel'] as $c) {
@@ -126,6 +129,9 @@ function upgrade_steps(): void
     CREATE TABLE IF NOT EXISTS campaign_metrics (id INTEGER PRIMARY KEY AUTOINCREMENT, campaign_id INTEGER NOT NULL REFERENCES campaigns(id) ON DELETE CASCADE, from_date TEXT NOT NULL, to_date TEXT NOT NULL,
         spend REAL NOT NULL DEFAULT 0, impressions INTEGER NOT NULL DEFAULT 0, clicks INTEGER NOT NULL DEFAULT 0, conversions INTEGER NOT NULL DEFAULT 0, note TEXT NOT NULL DEFAULT '');
     CREATE TABLE IF NOT EXISTS visits (day TEXT NOT NULL, slug TEXT NOT NULL, lang TEXT NOT NULL, channel TEXT NOT NULL, source TEXT NOT NULL DEFAULT '', sessions INTEGER NOT NULL DEFAULT 0, views INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (day, slug, lang, channel, source));
+    CREATE TABLE IF NOT EXISTS activity (id INTEGER PRIMARY KEY AUTOINCREMENT, ts TEXT NOT NULL, who TEXT NOT NULL DEFAULT '', route TEXT NOT NULL DEFAULT '', text TEXT NOT NULL DEFAULT '', ip TEXT NOT NULL DEFAULT '');
+    CREATE TABLE IF NOT EXISTS password_resets (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, token_hash TEXT NOT NULL, expires INTEGER NOT NULL, used INTEGER NOT NULL DEFAULT 0);
+    CREATE TABLE IF NOT EXISTS redirects (id INTEGER PRIMARY KEY AUTOINCREMENT, from_slug TEXT NOT NULL UNIQUE, to_url TEXT NOT NULL, hits INTEGER NOT NULL DEFAULT 0, created_at TEXT);
     CREATE INDEX IF NOT EXISTS idx_visits_day ON visits(day);
     CREATE INDEX IF NOT EXISTS idx_sub_created ON submissions(created_at);
     ");
@@ -238,7 +244,7 @@ function seed_import(): void
             'site_url' => '', 'theme' => 'noir', 'theme_switcher' => '0', 'notify_email' => 'info@uzmancosmetic.com',
             'smtp_host' => '', 'smtp_port' => '587', 'smtp_user' => '', 'smtp_pass' => '', 'smtp_secure' => 'tls', 'mail_from' => '',
             'fan_body' => je($d['fan']['body']), 'fan_home' => je($d['fan']['home']), 'fan_pw' => je($d['pw_fan']), 'fan_about' => je($d['about_fan']),
-            'hero_video' => '1', 'robots_index' => '1', 'schema_version' => (string)SCHEMA_VERSION,
+            'hero_video' => '1', 'robots_index' => '0', 'schema_version' => (string)SCHEMA_VERSION,
         ] + seo_seed_defaults();
         $st = $pdo->prepare('INSERT OR IGNORE INTO settings(k,v) VALUES(?,?)');
         foreach ($defaults as $k => $v) {

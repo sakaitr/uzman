@@ -383,9 +383,13 @@ function admin_reports(): void
     $ym = preg_match('/^\d{4}-\d{2}$/', (string)($_GET['m'] ?? '')) ? $_GET['m'] : date('Y-m');
     if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST' && ($_POST['do'] ?? '') === 'mail') {
         $r = growth_report($ym);
-        $to = trim((string)setting('notify_email')) ?: (string)setting('email');
-        [$ok, $err] = mail_send($to, setting('site_name', 'Site') . ' — büyüme raporu (' . $ym . ')', report_text($r));
-        $ok ? flash('Rapor e-postayla gönderildi: ' . $to) : flash('Gönderilemedi: ' . $err, 'err');
+        $sent = [];
+        $fail = '';
+        foreach (notify_recipients() as $to) {
+            [$ok, $err] = mail_send($to, setting('site_name', 'Site') . ' — büyüme raporu (' . $ym . ')', report_text($r));
+            $ok ? $sent[] = $to : $fail = $err;
+        }
+        $sent ? flash('Rapor e-postayla gönderildi: ' . implode(', ', $sent)) : flash('Gönderilemedi: ' . ($fail ?: 'alıcı yok'), 'err');
         redirect_to('reports', ['m' => $ym]);
     }
     $r = growth_report($ym);
@@ -394,19 +398,19 @@ function admin_reports(): void
         header('Content-Disposition: attachment; filename="buyume-raporu-' . $ym . '.csv"');
         $o = fopen('php://output', 'w');
         fwrite($o, "\xEF\xBB\xBF");
-        fputcsv($o, ['Kanal', 'Oturum', 'Görüntüleme', 'Başvuru']);
+        csv_put($o, ['Kanal', 'Oturum', 'Görüntüleme', 'Başvuru']);
         foreach ($r['cur']['by'] as $b) {
-            fputcsv($o, [CHANNEL_LABELS[$b['channel']] ?? $b['channel'], $b['s'], $b['v'], $r['cur']['leads_by'][$b['channel']] ?? 0]);
+            csv_put($o, [CHANNEL_LABELS[$b['channel']] ?? $b['channel'], $b['s'], $b['v'], $r['cur']['leads_by'][$b['channel']] ?? 0]);
         }
-        fputcsv($o, []);
-        fputcsv($o, ['Kampanya', 'Harcama', 'Tıklama', 'Başvuru', 'Başvuru başı']);
+        csv_put($o, []);
+        csv_put($o, ['Kampanya', 'Harcama', 'Tıklama', 'Başvuru', 'Başvuru başı']);
         foreach ($r['camps'] as $s) {
-            fputcsv($o, [$s['campaign']['name'], $s['spend'], $s['clicks'], $s['best_leads'], round($s['cpl'], 2)]);
+            csv_put($o, [$s['campaign']['name'], $s['spend'], $s['clicks'], $s['best_leads'], round($s['cpl'], 2)]);
         }
-        fputcsv($o, []);
-        fputcsv($o, ['Tamamlanan aksiyon', 'Kanal', 'Tarih', 'Sonuç']);
+        csv_put($o, []);
+        csv_put($o, ['Tamamlanan aksiyon', 'Kanal', 'Tarih', 'Sonuç']);
         foreach ($r['done'] as $a) {
-            fputcsv($o, [$a['title'], GROWTH_CHANNELS[$a['channel']] ?? '', substr((string)$a['done_at'], 0, 10), $a['result']]);
+            csv_put($o, [$a['title'], GROWTH_CHANNELS[$a['channel']] ?? '', substr((string)$a['done_at'], 0, 10), $a['result']]);
         }
         fclose($o);
         return;
@@ -420,7 +424,7 @@ function admin_reports(): void
         echo '<option value="' . $v . '"' . ($v === $ym ? ' selected' : '') . '>' . $v . '</option>';
     }
     echo '</select><a class="btn sm" href="' . admin_url('reports', ['m' => $ym, 'csv' => 1]) . '">CSV indir</a><button type="button" class="btn sm" onclick="window.print()">Yazdır / PDF</button></form>';
-    echo '<form method="post" style="margin:-4px 0 16px">' . csrf_field() . '<input type="hidden" name="do" value="mail"><button class="btn sm">Bu raporu e-postayla gönder</button> <span class="hint">→ ' . h(setting('notify_email') ?: setting('email')) . '</span></form>';
+    echo '<form method="post" style="margin:-4px 0 16px">' . csrf_field() . '<input type="hidden" name="do" value="mail"><button class="btn sm">Bu raporu e-postayla gönder</button> <span class="hint">→ ' . h(implode(', ', notify_recipients())) . '</span></form>';
     echo '<div class="grid g4" style="margin-bottom:20px">' . kpi('Ziyaret (oturum)', num($c['sessions']), delta_html($c['sessions'], $p['sessions']) . ' önceki aya göre') . kpi('Form başvurusu', (string)$c['leads'], delta_html($c['leads'], $p['leads']) . ' önceki aya göre')
         . kpi('Yapay zekâdan gelen', num($r['ai']), delta_html($r['ai'], $r['ai_prev']) . ' önceki aya göre') . kpi('SEO & GEO skoru', $r['seo']['end'] !== null ? (string)$r['seo']['end'] : '—', $r['seo']['start'] !== null && $r['seo']['end'] !== null ? 'ay başı ' . $r['seo']['start'] . ' → ay sonu ' . $r['seo']['end'] : 'tarama yok') . '</div>';
     echo '<div class="grid g2"><div class="card"><h2>Kanal kırılımı</h2>' . channel_bars($c) . '</div><div class="card"><h2>En çok görüntülenen sayfalar</h2><table><tbody>';

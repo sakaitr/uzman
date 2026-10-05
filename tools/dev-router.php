@@ -7,6 +7,7 @@ if ($prefix !== '' && strpos($path, $prefix) === 0) { $path = substr($path, strl
 if ($path !== '/' && is_dir($root . $path) && is_file(rtrim($root . $path, '/') . '/index.php') && !preg_match('#^/(app|data|tools|build)(/|$)#', $path)) {
     $path = rtrim($path, '/') . '/index.php';
 }
+if (preg_match('#/\.#', $path)) { http_response_code(403); exit('forbidden'); }
 if ($path !== '/' && is_file($root . $path) && !preg_match('#^/(app|data|tools|build)/#', $path)) {
     if (substr($path, -4) === '.php') { chdir(dirname($root . $path)); $_SERVER['SCRIPT_NAME'] = $prefix . $path; require $root . $path; return true; }
     return false;

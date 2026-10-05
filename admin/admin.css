@@ -127,3 +127,11 @@ details.fold > .inner { padding: 16px; }
 .bp-b { display: flex; gap: 10px; }
 .bp-solid { padding: 8px 16px; border-radius: 2px; background: linear-gradient(135deg, var(--gold-hi), var(--gold), var(--gold-lo)); color: var(--on-gold); font-weight: 600; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
 .bp-out { padding: 7px 16px; border: 1px solid var(--line-strong); color: var(--text); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; }
+
+@media (max-width: 960px) {
+  .layout > * { min-width: 0; }
+  main.content { overflow-x: hidden; }
+  .card { overflow-x: auto; }
+  .card table { min-width: 520px; }
+  .pagehead { align-items: flex-start; }
+}

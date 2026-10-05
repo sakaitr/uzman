@@ -140,3 +140,53 @@ function img_size(string $path): array
     }
     return $c[$path];
 }
+
+function log_activity(string $text, string $route = ''): void
+{
+    try {
+        $u = function_exists('admin_user') ? admin_user() : null;
+        q('INSERT INTO activity(ts, who, route, text, ip) VALUES(?,?,?,?,?)', [date('Y-m-d H:i:s'), $u['username'] ?? '', $route, mb_substr($text, 0, 300), client_ip()]);
+        if (random_int(1, 60) === 1) {
+            q('DELETE FROM activity WHERE id NOT IN (SELECT id FROM activity ORDER BY id DESC LIMIT 2000)');
+        }
+    } catch (Throwable $e) {
+        error_log('activity log failed: ' . $e->getMessage());
+    }
+}
+
+/** Where is this uploaded/static file referenced? Returns human-readable places. */
+function media_usage(string $path): array
+{
+    $like = '%' . str_replace(['%', '_'], ['\\%', '\\_'], $path) . '%';
+    $use = [];
+    foreach (rows("SELECT k FROM settings WHERE v LIKE ? ESCAPE '\\'", [$like]) as $r) {
+        $use[] = 'Ayar: ' . $r['k'];
+    }
+    foreach (rows('SELECT i.cap, s.slug FROM items i JOIN subcats s ON s.id = i.sub_id WHERE i.image = ?', [$path]) as $r) {
+        $use[] = 'Ürün görseli (' . $r['slug'] . ')';
+    }
+    foreach (rows('SELECT label FROM pl_models WHERE image = ?', [$path]) as $r) {
+        $use[] = 'Tüp modeli: ' . $r['label'];
+    }
+    foreach (rows('SELECT label FROM hero_slides WHERE image = ?', [$path]) as $r) {
+        $use[] = 'Slider: ' . $r['label'];
+    }
+    foreach (rows('SELECT id FROM docs WHERE image = ? OR file = ?', [$path, $path]) as $r) {
+        $use[] = 'Belge #' . $r['id'];
+    }
+    foreach (rows("SELECT slug FROM pages WHERE blocks LIKE ? ESCAPE '\\'", [$like]) as $r) {
+        $use[] = 'Sayfa: ' . $r['slug'];
+    }
+    return array_values(array_unique($use));
+}
+
+/** CSV helpers with the escape character set explicitly (PHP 8.4 deprecates the implicit default). */
+function csv_put($fh, array $row): void
+{
+    fputcsv($fh, $row, ',', '"', '\\');
+}
+
+function csv_get($fh, string $delim = ',')
+{
+    return fgetcsv($fh, 0, $delim, '"', '\\');
+}

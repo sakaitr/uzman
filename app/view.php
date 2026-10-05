@@ -769,11 +769,11 @@ function page_404(): string
 }
 
 /** Render a full page. Returns [status, html]. */
-function render_page(string $lang, string $slug): array
+function render_page(string $lang, string $slug, bool $preview = false): array
 {
     $GLOBALS['UZ_LANG'] = $lang;
     $GLOBALS['UZ_SLUG'] = $slug;
-    $page = row('SELECT * FROM pages WHERE slug = ? AND status = 1', [$slug]);
+    $page = row('SELECT * FROM pages WHERE slug = ?' . ($preview ? '' : ' AND status = 1'), [$slug]);
     if (!$page) {
         $GLOBALS['UZ_ABS'] = true;
         $html = head('404', t('title_index'), '', true) . '<div class="site-header scrolled" id="siteHeader"><div class="wrap navbar"><a href="' . h(base_url()) . '" class="brand"><span class="brand-logo" aria-hidden="true"></span><span class="brand-name">' . h(brand_word()) . '<span class="brand-sub">' . h(brand_sub_foot()) . '</span></span></a></div></div><main id="main">'
@@ -801,7 +801,7 @@ function render_page(string $lang, string $slug): array
             default: $body = null;
         }
         if ($body === null) {
-            return render_page($lang, '__missing__');
+            return render_page($lang, '__missing__', $preview);
         }
         // admin-editable SEO overrides for system pages
         $m = jd($page['meta']);
@@ -813,5 +813,5 @@ function render_page(string $lang, string $slug): array
             $title = ml($tt);
         }
     }
-    return [200, head($slug, $title, $desc, (int)($page['noindex'] ?? 0) === 1, seo_jsonld_tag($slug, $lang, $page, $title, $desc)) . header_html($slug) . $body . footer_html()];
+    return [200, head($slug, $title, $desc, $preview || (int)($page['noindex'] ?? 0) === 1 || (int)$page['status'] !== 1, seo_jsonld_tag($slug, $lang, $page, $title, $desc)) . header_html($slug) . $body . footer_html()];
 }

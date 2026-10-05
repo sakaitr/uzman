@@ -59,6 +59,16 @@ Panel → **Marka ve görünüm**: marka adı (üst menü, alt bilgi, sekme baş
 - **Renkler:** 10 hazır palet (koyu ve açık) ya da 4 renk seçerek özel palet (zemin, yazı, vurgu, ikinci vurgu). Ara tonlar otomatik türetilir, erişilebilirlik (kontrast) kontrolü canlı gösterilir. Açık zeminli paletlerde arka plan videoları gizlenir. Yönetim paneli de marka vurgu rengine ve adına uyar.
 - Yazı tipleri bu sürümde sabittir.
 
+## Canlıya alma (go-live)
+Panel → **Canlıya alma kontrolü**: 35'e yakın otomatik kontrol (HTTPS, dışarıdan erişilebilir dosya testi, PHP/eklentiler, SMTP ve test e-postası, cron, yedek, içerik, SEO) ve elle onaylanacak maddeler (KVKK onayı, eski site yedeği, DNS, içerik onayı, gerçek form testi, Search Console). Yeni kurulum **test modunda** (arama motorlarına kapalı) açılır; canlıya geçerken:
+1. Ayarlar → SEO: **Site adresi** = `https://alanadi.com`, "dizinlemeye izin ver", "HTTPS'e yönlendir" ve "alan adına yönlendir" kutularını işaretleyin. (Kilitlenirseniz adrese `?noredirect=1` ekleyin.)
+2. Ayarlar → Form bildirimleri: bildirim adres(ler)i (virgülle birden fazla) ve SMTP; Araçlar → test e-postası.
+3. cPanel → Cron Jobs: İzleme ve otomasyon sayfasındaki komut (haftalık tarama + yedek + aylık rapor).
+4. Kullanıcılar: kişiye özel kullanıcı adı, her hesaba e-posta (şifre sıfırlama), gerekirse **Editör** rolü (içerik/SEO/büyüme; sistem ayarlarına erişemez).
+5. Araçlar: ilk yedeği alın ve ZIP yedeğini bilgisayarınıza indirin.
+
+Diğer yönetim özellikleri: etkinlik günlüğü (Kullanıcılar), yayında olmayan sayfaları **önizleme**, sayfa adresi değişince otomatik **301 yönlendirme** (Sayfalar → Yönlendirmeler), kullanımdaki görselin silinmesini engelleme, Site metinleri **CSV** dışa/içe aktarma (çeviri ajansı için), oturum 8 saat hareketsizlikte kapanır, PHP hataları ekrana basılmaz (`data/logs/php-error.log`).
+
 ## Güncelleme (mevcut kurulum)
 Yeni sürümün dosyalarını aynı klasöre çıkarın (`data/` ve `uploads/` korunur). Veritabanı ilk istekte kendini yükseltir (`schema_version`); elle bir şey yapmanız gerekmez.
 

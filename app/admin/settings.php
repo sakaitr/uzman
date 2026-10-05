@@ -10,16 +10,22 @@ function admin_settings(): void
         foreach ($text as $k) {
             set_setting($k, post_str($k, 160));
         }
-        $email = post_str('email', 160);
-        $notify = post_str('notify_email', 160);
-        $from = post_str('mail_from', 160);
-        foreach (['email' => $email, 'notify_email' => $notify, 'mail_from' => $from] as $k => $v) {
+        foreach (['email' => post_str('email', 160), 'mail_from' => post_str('mail_from', 160)] as $k => $v) {
             if ($v !== '' && !filter_var($v, FILTER_VALIDATE_EMAIL)) {
                 $errs[] = "$k geçerli bir e-posta değil.";
             } else {
                 set_setting($k, $v);
             }
         }
+        $list = array_values(array_filter(preg_split('/[\s,;]+/', post_str('notify_email', 500)) ?: [], 'strlen'));
+        $badMail = array_filter($list, function ($e) { return !filter_var($e, FILTER_VALIDATE_EMAIL); });
+        if ($badMail) {
+            $errs[] = 'Bildirim adresi geçerli değil: ' . implode(', ', $badMail);
+        } else {
+            set_setting('notify_email', implode(', ', $list));
+        }
+        set_setting('force_https', ($_POST['force_https'] ?? '0') === '1' ? '1' : '0');
+        set_setting('force_host', ($_POST['force_host'] ?? '0') === '1' ? '1' : '0');
         $ig = post_str('instagram', 200);
         set_setting('instagram', preg_match('#^https?://#', $ig) || $ig === '' ? $ig : 'https://www.instagram.com/' . ltrim($ig, '@/'));
         set_setting('whatsapp', preg_replace('/\D/', '', post_str('whatsapp', 30)));
@@ -66,7 +72,7 @@ function admin_settings(): void
     }
     echo '</div></div>';
     echo '<div class="card"><h2>Form bildirimleri (e-posta)</h2><p class="hint" style="margin-top:-8px">Teklif formu doldurulduğunda bu adrese e-posta gider. Başvurular her durumda Başvurular menüsüne de kaydedilir.</p><div class="grid g2">'
-        . field('Bildirimin gideceği adres', 'notify_email', $v('notify_email'), 'email') . field('Gönderen adresi (From)', 'mail_from', $v('mail_from'), 'email', 'Boşsa SMTP kullanıcısı ya da noreply@alanadı kullanılır.')
+        . field('Bildirimin gideceği adres(ler)', 'notify_email', $v('notify_email'), 'text', 'Birden fazla adres için virgülle ayırın: ad@firma.com, diger@firma.com') . field('Gönderen adresi (From)', 'mail_from', $v('mail_from'), 'email', 'Boşsa SMTP kullanıcısı ya da noreply@alanadı kullanılır.')
         . field('SMTP sunucu', 'smtp_host', $v('smtp_host'), 'text', 'cPanel → E-posta Hesapları → Bağlantı Ayarları. Boş bırakırsanız PHP mail() kullanılır.')
         . field('SMTP port', 'smtp_port', $v('smtp_port'), 'number') . field('SMTP kullanıcı', 'smtp_user', $v('smtp_user'))
         . '<div class="field"><label class="l">SMTP şifre</label><input type="password" name="smtp_pass" autocomplete="new-password" placeholder="' . ($v('smtp_pass') !== '' ? '(kayıtlı — değiştirmek için yazın)' : '') . '"></div>
@@ -76,7 +82,10 @@ function admin_settings(): void
     }
     echo '</select></div></div><a class="btn sm" href="' . admin_url('tools') . '#mailtest">Test e-postası gönder →</a></div>';
     echo '<div class="card"><h2>SEO</h2>' . field('Site adresi (canonical)', 'site_url', $v('site_url'), 'text', 'Örn: https://uzmancosmetic.com — canlıya alırken girin. Boşsa o an açılan adres kullanılır (test alan adında yayınlarken boş bırakın).')
-        . checkbox('robots_index', $v('robots_index') !== '0', 'Arama motorlarının siteyi dizinlemesine izin ver (test sitesinde kapatın)') . '</div>';
+        . checkbox('robots_index', $v('robots_index') !== '0', 'Arama motorlarının siteyi dizinlemesine izin ver (test sitesinde kapatın)')
+        . checkbox('force_https', $v('force_https') === '1', 'Tüm ziyaretleri HTTPS\'e yönlendir (Site adresi https:// ile başlamalı; SSL sertifikası çalışıyor olmalı)')
+        . checkbox('force_host', $v('force_host') === '1', 'Site adresindeki alan adına yönlendir (www / farklı alan adlarını tek adrese toplar)')
+        . '<p class="hint">Yönlendirmeler yanlış kurulursa panele erişemezsiniz; kurtarmak için adrese <code>?noredirect=1</code> ekleyin.</p></div>';
     echo '<div class="savebar"><button class="btn primary">Kaydet</button></div></form>';
     afoot();
 }

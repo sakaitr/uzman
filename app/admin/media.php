@@ -23,7 +23,10 @@ function admin_media(): void
     if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         if (($_POST['do'] ?? '') === 'delete') {
             $m = row('SELECT * FROM media WHERE id = ?', [(int)($_POST['id'] ?? 0)]);
-            if ($m && strpos($m['path'], 'uploads/') === 0) {
+            $used = $m ? media_usage($m['path']) : [];
+            if ($m && $used) {
+                flash('Bu dosya kullanımda, silinemez: ' . implode(', ', array_slice($used, 0, 5)) . '. Önce o alanlardan kaldırın.', 'err');
+            } elseif ($m && strpos($m['path'], 'uploads/') === 0) {
                 @unlink(UZ_ROOT . '/' . $m['path']);
                 q('DELETE FROM media WHERE id = ?', [$m['id']]);
                 flash('Dosya silindi. (Sayfalarda hâlâ kullanılıyorsa görsel kırık görünür.)');

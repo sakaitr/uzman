@@ -46,7 +46,7 @@ function ahead(string $title, string $active = '', string $sub = ''): void
     $u = admin_user();
     $items = [
         ['dash', 'Panel'], ['pages', 'Sayfalar'], ['strings', 'Site metinleri'], ['catalog', 'Ürünler'], ['tubes', 'Private Label tüpler'],
-        ['hero', 'Ana sayfa slider'], ['docs', 'Belgeler / sertifikalar'], ['media', 'Medya'], ['subs', 'Başvurular'], ['sep'], ['hdr', 'Büyüme'], ['growth', 'Büyüme panosu'], ['seo', 'SEO & GEO'], ['actions', 'Aksiyonlar'], ['ads', 'Reklamlar'], ['reports', 'Raporlar'], ['tracking', 'İzleme ve otomasyon'], ['sep'], ['brand', 'Marka ve görünüm'], ['settings', 'Ayarlar'], ['users', 'Kullanıcılar'], ['tools', 'Araçlar'],
+        ['hero', 'Ana sayfa slider'], ['docs', 'Belgeler / sertifikalar'], ['media', 'Medya'], ['subs', 'Başvurular'], ['sep'], ['hdr', 'Büyüme'], ['growth', 'Büyüme panosu'], ['seo', 'SEO & GEO'], ['actions', 'Aksiyonlar'], ['ads', 'Reklamlar'], ['reports', 'Raporlar'], ['tracking', 'İzleme ve otomasyon'], ['sep'], ['golive', 'Canlıya alma kontrolü'], ['brand', 'Marka ve görünüm'], ['settings', 'Ayarlar'], ['users', 'Kullanıcılar'], ['tools', 'Araçlar'],
     ];
     $n = new_submissions();
     echo '<!DOCTYPE html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
@@ -54,6 +54,9 @@ function ahead(string $title, string $active = '', string $sub = ''): void
 <link rel="stylesheet" href="../assets/css/fonts.css"><link rel="stylesheet" href="admin.css?v=' . UZ_VERSION . '">' . admin_brand_css() . '<link rel="icon" href="../' . h(brand_path('brand_favicon') ?: 'assets/img/favicon.png') . '"></head><body>
 <div class="layout"><aside class="side"><a class="brand" href="' . admin_url('dash') . '">' . admin_brand_mark() . h(brand_word()) . '</a><nav>';
     foreach ($items as $it) {
+        if (!is_admin_role() && in_array($it[0], admin_only_routes(), true)) {
+            continue;
+        }
         if ($it[0] === 'sep') {
             echo '<div class="sep"></div>';
             continue;
@@ -65,7 +68,7 @@ function ahead(string $title, string $active = '', string $sub = ''): void
         echo '<a href="' . admin_url($it[0]) . '" class="' . ($active === $it[0] ? 'on' : '') . '">' . h($it[1]) . ($it[0] === 'subs' && $n ? '<span class="badge">' . $n . '</span>' : '') . '</a>';
     }
     echo '</nav><div class="foot"><div style="margin-bottom:8px"><a href="../" target="_blank" rel="noopener">Siteyi görüntüle ↗</a></div>' . h($u['name'] ?: $u['username']) . '<br><a href="' . admin_url('logout') . '">Çıkış yap</a></div></aside>
-<main class="content"><div class="pagehead"><div><h1>' . h($title) . '</h1>' . ($sub ? '<p>' . h($sub) . '</p>' : '') . '</div></div>' . flash_html();
+<main class="content">' . (setting('robots_index', '1') === '0' ? '<div class="flash err" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center"><span><b>Test modu:</b> site arama motorlarına kapalı (noindex). Canlıya alırken açın.</span><a class="btn sm" href="' . admin_url('golive') . '">Canlıya alma kontrolü →</a></div>' : '') . '<div class="pagehead"><div><h1>' . h($title) . '</h1>' . ($sub ? '<p>' . h($sub) . '</p>' : '') . '</div></div>' . flash_html();
 }
 
 function afoot(): void

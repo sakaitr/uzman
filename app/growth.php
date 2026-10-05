@@ -295,14 +295,14 @@ function growth_cron(string $task): string
         audit_save($a);
         $v = actions_verify_with_audit($a);
         $log[] = 'SEO taraması: skor ' . $a['score'] . ", $v aksiyon doğrulandı";
+        $log[] = 'Veritabanı yedeği: ' . (backup_db() ? 'alındı' : 'alınamadı');
     }
     if ($task === 'monthly' || ($task === 'all' && date('j') === '1')) {
         require_once UZ_APP . '/mail.php';
         $r = growth_report(date('Y-m', strtotime('first day of last month')));
-        $to = trim((string)setting('notify_email')) ?: (string)setting('email');
-        if ($to !== '') {
+        foreach (notify_recipients() as $to) {
             [$ok, $err] = mail_send($to, setting('site_name', 'Site') . ' — aylık büyüme raporu (' . $r['ym'] . ')', report_text($r) . "\n\nAyrıntı: " . base_url() . "admin/index.php?a=reports&m=" . $r['ym']);
-            $log[] = 'Aylık rapor e-postası: ' . ($ok ? 'gönderildi' : 'gönderilemedi (' . $err . ')');
+            $log[] = 'Aylık rapor e-postası → ' . $to . ': ' . ($ok ? 'gönderildi' : 'gönderilemedi (' . $err . ')');
         }
     }
     q('DELETE FROM visits WHERE day < ?', [date('Y-m-d', strtotime('-26 months'))]);

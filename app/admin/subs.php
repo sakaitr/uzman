@@ -78,12 +78,12 @@ function admin_subs_csv(): void
     header('Content-Disposition: attachment; filename="basvurular-' . date('Y-m-d') . '.csv"');
     $o = fopen('php://output', 'w');
     fwrite($o, "\xEF\xBB\xBF");
-    fputcsv($o, ['ID', 'Tarih', 'Dil', 'Ad Soyad', 'Firma', 'E-posta', 'Telefon', 'Kategori', 'Pazar', 'Adet', 'Proje', 'Durum']);
+    csv_put($o, ['ID', 'Tarih', 'Dil', 'Ad Soyad', 'Firma', 'E-posta', 'Telefon', 'Kategori', 'Pazar', 'Adet', 'Proje', 'Durum']);
     foreach (rows('SELECT * FROM submissions ORDER BY id DESC') as $s) {
         $cells = [$s['id'], $s['created_at'], $s['lang'], $s['name'], $s['company'], $s['email'], $s['phone'], $s['category'], $s['market'], $s['qty'], $s['brief'], $s['status']];
         // neutralise spreadsheet formulas
         $cells = array_map(function ($c) { return is_string($c) && preg_match('/^[=+\-@]/', $c) ? "'" . $c : $c; }, $cells);
-        fputcsv($o, $cells);
+        csv_put($o, $cells);
     }
     fclose($o);
 }

@@ -10,6 +10,7 @@ if (!is_installed()) {
 }
 
 maybe_upgrade();
+enforce_canonical();
 $x = $_GET['x'] ?? '';
 if ($x === 'robots') {
     header('Content-Type: text/plain; charset=utf-8');
@@ -51,14 +52,26 @@ if (!in_array($lang, LANGS, true) || !preg_match('/^[a-z0-9-]{1,60}$/', $slug)) 
     $slug = '__missing__';
 }
 
+$preview = false;
+if (isset($_GET['preview']) && !empty($_COOKIE['uzsess'])) {
+    start_session();
+    $preview = !empty($_SESSION['uid']) && (bool)val('SELECT 1 FROM users WHERE id = ?', [(int)$_SESSION['uid']]);
+    session_write_close();
+}
 $cacheDir = data_dir() . '/cache';
 $cacheFile = $cacheDir . '/' . substr(md5((string)($_SERVER['HTTP_HOST'] ?? '')), 0, 8) . '__' . $lang . '__' . $slug . '.html';
-$useCache = ($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'GET' && !isset($_GET['theme']);
+$useCache = ($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'GET' && !isset($_GET['theme']) && !$preview;
 if ($useCache && is_file($cacheFile)) {
     $html = (string)file_get_contents($cacheFile);
     $status = 200;
 } else {
-    [$status, $html] = render_page($lang, $slug);
+    [$status, $html] = render_page($lang, $slug, $preview);
+    if ($status === 404 && ($rd = row('SELECT * FROM redirects WHERE from_slug = ?', [$slug]))) {
+        q('UPDATE redirects SET hits = hits + 1 WHERE id = ?', [$rd['id']]);
+        $to = (string)$rd['to_url'];
+        header('Location: ' . (preg_match('#^(https?:)?//#', $to) || $to[0] === '/' ? $to : canonical_base() . ($lang === DEFAULT_LANG ? '' : $lang . '/') . $to . '.html'), true, 301);
+        exit;
+    }
     if ($status === 200 && $useCache) {
         if (!is_dir($cacheDir)) {
             @mkdir($cacheDir, 0775, true);
@@ -70,7 +83,10 @@ http_response_code($status);
 header('Content-Type: text/html; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: strict-origin-when-cross-origin');
-if ($status === 200) {
+if ($preview) {
+    header('Cache-Control: no-store');
+    header('X-Robots-Tag: noindex');
+} elseif ($status === 200) {
     $etag = '"' . md5($html) . '"';
     header('ETag: ' . $etag);
     header('Cache-Control: public, max-age=0, must-revalidate');

@@ -15,7 +15,7 @@ function requirements(): array
     return $r;
 }
 
-function install_site(string $username, string $password, string $name = 'Yönetici'): void
+function install_site(string $username, string $password, string $name = 'Yönetici', string $email = ''): void
 {
     foreach (['data', 'data/cache', 'data/sessions', 'data/logs', 'uploads'] as $d) {
         if (!is_dir(UZ_ROOT . '/' . $d)) {
@@ -30,7 +30,7 @@ function install_site(string $username, string $password, string $name = 'Yönet
     migrate();
     seed_import();
     if (!val('SELECT COUNT(*) FROM users')) {
-        q('INSERT INTO users(username, name, pass_hash, role, created_at) VALUES(?,?,?,?,?)',
-            [$username, $name, password_hash($password, PASSWORD_DEFAULT), 'admin', date('Y-m-d H:i:s')]);
+        q('INSERT INTO users(username, name, email, pass_hash, role, created_at) VALUES(?,?,?,?,?,?)',
+            [$username, $name, $email, password_hash($password, PASSWORD_DEFAULT), 'admin', date('Y-m-d H:i:s')]);
     }
 }

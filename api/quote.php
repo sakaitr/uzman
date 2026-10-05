@@ -45,8 +45,14 @@ q('INSERT INTO submissions(created_at, lang, name, company, email, phone, catego
      $at('a_source'), $at('a_medium'), $at('a_campaign', 60), $at('a_term', 100), $at('a_content', 100), $cid, $refHost, $at('a_landing', 120), $channel]);
 $id = (int)db()->lastInsertId();
 
-$to = trim((string)setting('notify_email')) ?: (string)setting('email');
+$tos = notify_recipients();
 $body = "Yeni teklif / numune talebi (#$id)\n\nAd Soyad : $name\nFirma    : $company\nE-posta  : $email\nTelefon  : $phone\nKategori : $category\nPazar    : $market\nAdet     : $qty\nDil      : $lang\nKaynak   : " . ($channel ?: 'direct') . ($at('a_campaign') !== '' ? ' / ' . $at('a_campaign') : '') . "\n\nProje:\n$brief\n\n— uzmancosmetic web sitesi";
-[$ok, $err] = $to !== '' ? mail_send($to, "Yeni talep: $company — $name", $body, $email) : [false, 'alıcı yok'];
+$ok = false;
+$err = 'alıcı yok';
+foreach ($tos as $to) {
+    [$o1, $e1] = mail_send($to, "Yeni talep: $company — $name", $body, $email);
+    $ok = $ok || $o1;
+    $err = $o1 ? '' : $e1;
+}
 q('UPDATE submissions SET mail_ok = ?, note = ? WHERE id = ?', [$ok ? 1 : 0, $ok ? '' : mb_substr($err, 0, 300), $id]);
 json_out(['ok' => true]);

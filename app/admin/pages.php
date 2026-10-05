@@ -26,7 +26,37 @@ function admin_pages(): void
         echo '<tr><td><b>' . h(page_title_tr($p)) . '</b> ' . ($p['type'] === 'custom' ? '<span class="pill">özel</span>' : '<span class="pill off">sistem</span>') . '</td><td><code>' . h($p['slug']) . '.html</code></td><td>' . ($p['in_nav'] ? 'Evet' : '—') . '</td><td>' . $ft . '</td><td><span class="pill ' . ($p['status'] ? 'ok' : 'off') . '">' . ($p['status'] ? 'Yayında' : 'Gizli') . '</span></td><td class="actions"><a class="btn sm" href="' . admin_url('page_edit', ['id' => $p['id']]) . '">Düzenle</a>'
             . ($p['type'] === 'custom' ? '<form method="post" style="display:inline">' . csrf_field() . '<input type="hidden" name="do" value="delete"><input type="hidden" name="id" value="' . $p['id'] . '"><button class="btn sm danger" data-confirm="Bu sayfa silinsin mi?">Sil</button></form>' : '') . '</td></tr>';
     }
-    echo '</tbody></table></div>';
+    echo '</tbody></table></div><p style="margin-top:14px"><a class="btn sm" href="' . admin_url('redirects') . '">Yönlendirmeler (301) →</a></p>';
+    afoot();
+}
+
+function admin_redirects(): void
+{
+    if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
+        if (($_POST['do'] ?? '') === 'delete') {
+            q('DELETE FROM redirects WHERE id = ?', [(int)($_POST['id'] ?? 0)]);
+            flash('Yönlendirme silindi.');
+        } else {
+            $from = slugify(post_str('from_slug', 60));
+            $to = post_str('to_url', 300);
+            if ($from === '' || $to === '' || row('SELECT id FROM pages WHERE slug = ? AND status = 1', [$from])) {
+                flash('Eski adres boş olamaz ve yayındaki bir sayfa olmamalı; yeni adres gerekli.', 'err');
+            } else {
+                $to = preg_match('#^(https?://|/)#', $to) ? $to : slugify($to);
+                q('INSERT INTO redirects(from_slug, to_url, created_at) VALUES(?,?,?) ON CONFLICT(from_slug) DO UPDATE SET to_url = excluded.to_url', [$from, $to, date('Y-m-d H:i:s')]);
+                flash('Yönlendirme eklendi.');
+            }
+        }
+        cache_clear();
+        redirect_to('redirects');
+    }
+    ahead('Yönlendirmeler', 'pages', 'Eski adresleri yenisine 301 ile yönlendirir (arama sıralamasını korur)');
+    echo '<form method="post" class="card" style="max-width:820px">' . csrf_field() . '<h2>Yeni yönlendirme</h2><div class="grid g2">' . field('Eski sayfa adresi', 'from_slug', '', 'text', 'Örn: eski-sayfa  → /eski-sayfa.html (5 dilde de geçerli)') . field('Yeni adres', 'to_url', '', 'text', 'Sayfa adresi (örn. process) ya da tam URL / yol') . '</div><button class="btn primary">Ekle</button></form>
+<div class="card" style="padding:0"><table><thead><tr><th>Eski</th><th>Yeni</th><th style="text-align:right">Kullanım</th><th></th></tr></thead><tbody>';
+    foreach (rows('SELECT * FROM redirects ORDER BY id DESC') as $r) {
+        echo '<tr><td><code>' . h($r['from_slug']) . '.html</code></td><td><code>' . h($r['to_url']) . '</code></td><td style="text-align:right">' . (int)$r['hits'] . '</td><td class="actions"><form method="post">' . csrf_field() . '<input type="hidden" name="do" value="delete"><input type="hidden" name="id" value="' . $r['id'] . '"><button class="btn sm danger" data-confirm="Silinsin mi?">Sil</button></form></td></tr>';
+    }
+    echo '</tbody></table></div><p class="hint">Sayfanın adresini değiştirdiğinizde yönlendirme otomatik eklenir.</p>';
     afoot();
 }
 
@@ -70,6 +100,8 @@ function admin_page_edit(): void
                     redirect_to('page_edit', ['id' => $p['id']]);
                 }
                 $slug = $ns;
+                q('INSERT INTO redirects(from_slug, to_url, created_at) VALUES(?,?,?) ON CONFLICT(from_slug) DO UPDATE SET to_url = excluded.to_url', [$p['slug'], $ns, date('Y-m-d H:i:s')]);
+                q('DELETE FROM redirects WHERE from_slug = ?', [$ns]);
             }
         }
         q('UPDATE pages SET slug=?, status=?, in_nav=?, in_footer=?, sort=?, title=?, meta=?, h1=?, lead=?, cta=?, blocks=?, updated_at=?, noindex=? WHERE id=?', [
@@ -131,6 +163,6 @@ function admin_page_edit(): void
         }
         echo '</p></div>';
     }
-    echo '<div class="savebar"><button class="btn primary">Kaydet</button><a class="btn" href="../' . ($p['slug'] === 'index' ? '' : h($p['slug']) . '.html') . '" target="_blank" rel="noopener">Sayfayı aç ↗</a></div></form>';
+    echo '<div class="savebar"><button class="btn primary">Kaydet</button><a class="btn" href="../' . ($p['slug'] === 'index' ? '?preview=1' : h($p['slug']) . '.html?preview=1') . '" target="_blank" rel="noopener">Önizle ↗' . ($p['status'] ? '' : ' (yayında değil)') . '</a></div></form>';
     afoot();
 }

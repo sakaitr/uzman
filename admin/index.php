@@ -24,6 +24,7 @@ if (!is_installed()) {
 }
 
 maybe_upgrade();
+enforce_canonical();
 start_session();
 if ($a === 'logout') {
     $_SESSION = [];
@@ -33,11 +34,23 @@ if ($a === 'logout') {
 }
 if (!admin_user()) {
     require UZ_APP . '/admin/login.php';
-    admin_login_page();
+    if ($a === 'forgot') {
+        admin_forgot_page();
+    } elseif ($a === 'reset') {
+        admin_reset_page();
+    } else {
+        admin_login_page();
+    }
     exit;
 }
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     csrf_check();
+    log_activity('POST ' . $a . (isset($_POST['do']) ? ' / ' . preg_replace('/[^a-z_]/', '', (string)$_POST['do']) : ''), $a);
+}
+if (!is_admin_role() && in_array($a, admin_only_routes(), true)) {
+    flash('Bu bölüm yalnızca yöneticiler içindir.', 'err');
+    header('Location: index.php?a=dash');
+    exit;
 }
 
 $routes = [
@@ -48,7 +61,8 @@ $routes = [
     'subs' => ['subs.php', 'admin_subs'], 'sub_view' => ['subs.php', 'admin_sub_view'], 'subs_csv' => ['subs.php', 'admin_subs_csv'],
     'seo' => ['seo.php', 'admin_seo'], 'seo_pages' => ['seo.php', 'admin_seo_pages'], 'seo_settings' => ['seo.php', 'admin_seo_settings'], 'seo_preview' => ['seo.php', 'admin_seo_preview'],
     'growth' => ['growth.php', 'admin_growth'], 'actions' => ['growth.php', 'admin_actions'], 'action_edit' => ['growth.php', 'admin_action_edit'], 'ads' => ['growth.php', 'admin_ads'], 'ad_edit' => ['growth.php', 'admin_ad_edit'],
-    'reports' => ['growth.php', 'admin_reports'], 'tracking' => ['growth.php', 'admin_tracking'],
+    'reports' => ['growth.php', 'admin_reports'], 'tracking' => ['growth.php', 'admin_tracking'], 'golive' => ['golive.php', 'admin_golive'],
+    'strings_csv' => ['strings.php', 'admin_strings_csv'], 'redirects' => ['pages.php', 'admin_redirects'],
     'brand' => ['brand.php', 'admin_brand'],
     'settings' => ['settings.php', 'admin_settings'], 'users' => ['users.php', 'admin_users'], 'tools' => ['users.php', 'admin_tools'], 'backup' => ['users.php', 'admin_backup'],
 ];
