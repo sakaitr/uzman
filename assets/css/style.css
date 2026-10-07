@@ -613,7 +613,7 @@ html { font-variant-numeric: lining-nums; }
 .consent { display: flex; gap: 12px; align-items: flex-start; margin: 4px 0 28px; font-size: 13px; line-height: 1.55; color: var(--muted); cursor: pointer; }
 .consent input { flex: none; width: 18px; height: 18px; margin-top: 2px; accent-color: var(--gold); }
 .consent a { color: var(--gold-hi); text-decoration: underline; text-underline-offset: 3px; }
-.hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.hp { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); opacity: 0; pointer-events: none; }
 .form-status.err { color: #ff9a8a; }
 .foot-legal { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 .foot-legal a { color: var(--muted); transition: color .3s var(--ease); }
